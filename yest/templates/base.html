@@ -1,0 +1,119 @@
+{% load static %}
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Yes&Home Web Management System v1.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS /css/bootstrap.min.css-->
+    <!--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/sticky-footer-navbar.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+
+    <style>
+        html, body {height: 100%;}
+        .container{height: 90%;}
+    </style>
+
+  </head>
+
+  <body>
+
+    {% block header %}
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="height: 80px;">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Yes&Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item active">
+                  <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Docment</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#">Sales</a>
+                </li>
+              </ul>
+              <!--
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+              -->
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    <!--  
+      <div style="height: 90px;background-color:#ff7d24;"></div>
+
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">ブログ-blog-</h1>
+          <p class="col-md-8 fs-4">ブログです</p>
+          <button class="btn btn-primary btn-lg" type="button">Example button</button>
+        </div>
+    </div>
+    -->
+
+    {% endblock header %}
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer class="footer mt-auto py-3 divFooter">
+        <div class="container px-6">
+      
+          <div class="row gx-5">
+            <div class="col footer-col1">
+                <h3>Yes&Home</h3>
+                <p class="footer-logo2">株式会社イエストホーム</p>
+                <p class="footer-logo3">北海道知事　石狩(1) 8834号</p>
+            </div>
+        
+            <div class="col footer-col2">
+                <p>
+                  札幌市白石区南郷通16丁目北1-18
+                  <br>TEL 011-868-7770
+                  <br>FAX 011-868-7771		
+                  <br>E-mail info@yesthome.co.jp
+                  <br>https://yesthome.co.jp/
+                </p>
+            </div>
+          </div>
+        
+        </div>
+      
+    </footer>
+      
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!--
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    -->
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+  </body>
+</html>
+
