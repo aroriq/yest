@@ -9,7 +9,6 @@ urlpatterns = [
     # path('blog/', include('blog.urls')),
 ]
 
-# https://adiramadhan17.medium.com/modify-title-and-header-django-admin-interface-a6ad6e470d92 
 #Modify Site Header
 admin.site.site_header = 'Yes&Home Administration'
 #Modify Site Title
