@@ -1,0 +1,364 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body class="d-flex flex-column h-100">
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+
+  <div class="container px-6">
+    <h1 class="mt-5 text-center">契約時費用明細</h1>
+    <p class="lead text-end">発行日 2021年12月31日</p>
+    <p class="lead mt-5"><u>{{ customer.lastname }}様</u></p>
+  </div>
+
+  <div class="container px-6">
+    <dl class="row">
+      <dt class="col-sm-3">物件名</dt>
+      <dd class="col-sm-9">
+        <p>南郷マンション 1001号室</p>
+      </dd>
+    
+      <dt class="col-sm-3">所在地</dt>
+      <dd class="col-sm-9">札幌市白石区南郷通1丁目1-1</dd>
+    </dl>
+  </div>
+  
+  <div class="container px-6">
+      <table class="table table-hover">
+        <thead  class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">項目</th>
+            <th scope="col">月</th>
+            <th scope="col">金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td colspan="2">敷金</td>
+            <td>\100,000</td>
+          </tr>
+  
+          <tr>
+            <th scope="row">2</th>
+            <td colspan="2">礼金</td>
+            <td>\50,000</td>
+          </tr>
+  
+          <tr>
+            <th rowspan="2" scope="row">3</th>
+            <td rowspan="2">家賃</td>
+            <td colspan="1">月分</td>
+            <td>\25,000</td>
+          </tr>
+          <tr>
+            <td colspan="1">月分</td>
+            <td>\51,000</td>
+          </tr>
+  
+          <tr>
+            <th rowspan="2"scope="row">4</th>
+            <td rowspan="2">共益費</td>
+            <td colspan="1">月分</td>
+            <td>\1,000</td>
+          </tr>
+          <tr>
+            <td colspan="1">月分</td>
+            <td>\2,000</td>
+          </tr>
+  
+          <tr>
+            <th rowspan="2"scope="row">5</th>
+            <td rowspan="2">町内会費</td>
+            <td colspan="1">月分</td>
+            <td>\1,000</td>
+          </tr>
+          <tr>
+            <td colspan="1">月分</td>
+            <td>\2,000</td>
+          </tr>
+  
+          <tr>
+            <th rowspan="2"scope="row">6</th>
+            <td rowspan="2">24時間管理費</td>
+            <td colspan="1">月分</td>
+            <td>\1,000</td>
+          </tr>
+          <tr>
+            <td colspan="1">月分</td>
+            <td>\2,000</td>
+          </tr>
+   
+          <tr>
+            <th rowspan="2"scope="row">8</th>
+            <td rowspan="2">駐車場料</td>
+            <td colspan="1">月分</td>
+            <td>\1,000</td>
+          </tr>
+          <tr>
+            <td colspan="1">月分</td>
+            <td>\2,000</td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td colspan="2">月額保証料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td colspan="2">火災保険料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td colspan="2">仲介手数料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td colspan="2">清掃料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td colspan="2">初回保証委託料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td colspan="2">FF分解整備料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td colspan="2">シリンダー交換料</td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td colspan="2"></td>
+            <td>\0</td>
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td colspan="2"></td>
+            <td>\0</td>
+          </tr>
+
+
+
+
+          <tr class="table-active">
+            <td scope="row" class="text-center" colspan="3">[A]　合計金額(税込)</td>
+            <td >\0</td>
+          </tr>
+  
+
+          <tr>
+            <td scope="row" class="text-center" colspan="3">[B]　手付金</td>
+            <td>\0</td>
+          </tr>
+  
+          <tr class="table-active">
+            <td scope="row" class="text-center" colspan="3">[A－B]　差引残金</td>
+            <td>\50,000</td>
+          </tr>
+        </tbody>
+        <tfoot class="table-light">
+          <td scope="row" class="text-center" colspan="3">差引残金お振込期日</td>
+          <td>2021/12/31</td>
+        </tfoot>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="pagebreak"></div>
+
+  <div class="container">
+    <h2 class="mt-5">必要書類</h2>
+    <div class="row">
+      <div class="col-sm">
+        <h4 class="mt-5">契約者様</h4>
+        <div class="list-group list-group-flush">
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            住民票 (本籍記載のもの)
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Second 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Third 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Fourth 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Fifth 
+          </label>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <h4 class="mt-5">同居人様</h4>
+        <div class="list-group list-group-flush">
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            住民票 (本籍記載のもの) 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Second 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Third 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Fourth 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Fifth 
+          </label>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <h4 class="mt-5">連帯保証人様</h4>
+        <div class="list-group list-group-flush">
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            First 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Second 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Third 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Fourth 
+          </label>
+          <label class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" value="">
+            Fifth 
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container px-6">
+    <h3 class="mt-5">備考</h3>
+    <br>
+    <hr>
+    <br>
+
+  </div>
+
+  <div class="container px-6">
+    <div class="row gx-5  border">
+      <div class="col">
+            <h4 class="mt-5">振込先</h4>
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <th scope="row">銀行名</th>
+                  <td>北洋銀行</td>
+                </tr>
+                <tr>
+                  <th scope="row">支店名</th>
+                  <td>027　東月寒支店</td>
+                </tr>
+                <tr>
+                  <th scope="row">口座番号</th>
+                  <td>普通　0523785</td>
+                </tr>
+                <tr>
+                  <th scope="row">名義</th>
+                  <td>株式会社イエストホーム　<br>代表取締役　矢部　尚哉</td>
+                </tr>
+                <tr>
+                  <th scope="row">フリガナ</th>
+                  <td>ｶ）ｲｴｽﾄﾎｰﾑ ﾀﾞｲﾋｮｳﾄﾘｼﾏﾘﾔｸ ﾔﾍﾞﾅｵﾔ	</td>
+                </tr>
+        
+              </tbody>
+            </table>
+      </div>
+
+      <div class="col "> 
+        <h4 class="mt-5">担当店</h4>
+        <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row">本支店名</th>
+            <td>株式会社イエストホーム</td>
+          </tr>
+          <tr>
+            <th scope="row">住所</th>
+            <td>札幌市白石区南郷通16丁目北1-18</td>
+          </tr>
+          <tr>
+            <th scope="row">TEL</th>
+            <td>011-868-7770</td>
+          </tr>
+          <tr>
+            <th scope="row">FAX</th>
+            <td>011-868-7771</td>
+          </tr>
+          <tr>
+            <th scope="row">E-mail</th>
+            <td>info@yesthome.co.jp	</td>
+          </tr>
+          <tr>
+            <th scope="row">担当者</th>
+            <td>鈴木</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer mt-auto py-3 divFooter">
+  <div class="container px-6">
+
+    <div class="row gx-5">
+      <div class="col footer-col1">
+          <h3>Yes&Home</h3>
+          <p class="footer-logo2">株式会社イエストホーム</p>
+          <p class="footer-logo3">北海道知事　石狩(1) 8834号</p>
+      </div>
+  
+      <div class="col footer-col2">
+          <p>
+            札幌市白石区南郷通16丁目北1-18
+            <br>TEL 011-868-7770
+            <br>FAX 011-868-7771		
+            <br>E-mail info@yesthome.co.jp
+            <br>https://yesthome.co.jp/
+          </p>
+      </div>
+    </div>
+  
+  </div>
+
+</footer>
+
+</body>
+
+{% endblock content %}

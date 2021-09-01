@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class='container'>
+        {% for customer in customer_list %}
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-header">{{ customer.lastname }}</h5>
+            <div class="card-body">
+              <h5 class="card-title">投稿者</h5>
+              <h6 class="card-title">レビュ</h6>
+              <a href="{% url 'customerlist'%}" class="btn btn-primary">詳細へ</a>
+              <a href="#" class="btn btn-primary">ボタン</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
