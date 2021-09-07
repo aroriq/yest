@@ -1,7 +1,10 @@
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('yhauth/', include('django.contrib.auth.urls')), #  追加
+    path('yhauth/', include('yhauth.urls')), #  追加
     path('admin/', admin.site.urls),
     path('', include('yhauth.urls')),
     path('docs/', include('docs.urls')),
