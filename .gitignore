@@ -1,2 +1,8 @@
 venv
 */settings.py
+yest/settings.py
+
+*.pyc
+*.pyo
+__pycache__
+db.sqlite3
