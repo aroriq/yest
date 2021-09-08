@@ -10,23 +10,23 @@
           <div class="col-md-6">
               <div class="card p-4 py-5" style="background-color: #15173c;">
                   <h2 style="color: #ff7d24;">Yes&Home</h2>
-                  <h4 style="color: white;">ログアウトしました</h4>
                   {% if error %}
                   <div style="color: whitesmoke;">
                   {{ error }}
                   </div>
                   {% endif %}
-                  <div class="signup mt-3"> 
+                  <h4 style="color: white;"></h4>
 
+                  <br><br><a href="{% url 'signup' %}">ユーザー登録画面へ</a> <br><br>
 
-
-                    <div class="mt-4"> <a href="{% url 'login' %}" class="btn btn-secondary btn-lg"  role="button">ログイン画面へ</a></div>
+                  <div class="mt-4"> <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
                   <!-- <div class="mt-4"> <button class="btn btn-danger button btn-block">ログアウト</button> </div><br> -->
-                   <a href="{% url 'signup' %}">ユーザー登録画面へ</a> 
-              </div>
+                  <!-- <a href="logout/">ログアウト</a> -->
+
           </div>
       </div>
     </form>
   </div>
   
+
 {% endblock content %}
