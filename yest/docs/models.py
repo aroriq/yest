@@ -32,3 +32,24 @@ class CustomerModel(models.Model):
         return "%s %s (%s)" % (self.lastname, self.firstname, self.contractInfo)
     
 
+class CorpModel(models.Model):
+    class Meta:
+        verbose_name_plural = '店舗データ'
+    name = models.CharField(verbose_name='店舗名', max_length=50, default='')
+    postcode = models.CharField(verbose_name='郵便番号', max_length=10, blank=True, null=True)
+    address = models.CharField(verbose_name='住所', blank=True, null=True, max_length=100)
+    email = models.EmailField(verbose_name='E-mail', blank=True, null=True, max_length=100, )
+    tel = models.CharField(verbose_name='電話番号', blank=True, null=True, max_length=20,)
+    fax = models.CharField(verbose_name='FAX', blank=True, null=True, max_length=20, )
+    bank = models.CharField(verbose_name='銀行名', blank=True, null=True, max_length=20, )
+    bankbranch = models.CharField(verbose_name='支店名', blank=True, null=True, max_length=20, )
+    bankaccount = models.CharField(verbose_name='口座', blank=True, null=True, max_length=20, )
+    bankid = models.CharField(verbose_name='名義', blank=True, null=True, max_length=100, )
+    bankkana = models.CharField(verbose_name='フリガナ', blank=True, null=True, max_length=100, )
+  
+    postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, null=True)
+    update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
+
+    def __str__(self):
+        return "%s" % (self.name)
+
