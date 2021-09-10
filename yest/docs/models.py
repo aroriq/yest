@@ -2,13 +2,14 @@ from os import name
 from django.db import models
 
 # Create your models here.
-#CustomerCategory=(('Rent', '賃貸'), ('Buy','購入'), ('Sell', '売却'))
 
 class CustomerModel(models.Model):
     class Meta:
         verbose_name_plural = '顧客管理データ'
     lastname = models.CharField(verbose_name='姓', max_length=20, default='')
     firstname = models.CharField(verbose_name='名', max_length=20, default='')
+    lastnamekana = models.CharField(verbose_name='姓（フリガナ）', max_length=20, default='')
+    firstnamekana = models.CharField(verbose_name='名（フリガナ）', max_length=20, default='')
     honorific = models.CharField(verbose_name='敬称', blank=True, null=True, default='様', max_length=10)
     age = models.PositiveSmallIntegerField(verbose_name='年齢', blank=True, null=True, )
     gender = models.CharField(verbose_name='性別', blank=True, null=True, choices=(('1','男性'), ('2', '女性'), ('3', 'その他')), max_length=1)
