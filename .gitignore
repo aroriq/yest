@@ -6,3 +6,5 @@ yest/settings.py
 *.pyo
 __pycache__
 db.sqlite3
+
+memo.md

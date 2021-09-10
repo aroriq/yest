@@ -37,12 +37,13 @@ def loginview(request):
             return render(request, 'login.html', {'error':'ログインに失敗しました。ユーザー名とパスワードを確認して下さい。'})
     return render(request, 'login.html', {})
 
+@login_required
 def logoutview(request):
     logout(request)
     # return redirect('login')
     return render(request, 'logout.html', {})
 
-
+@login_required
 def indexview(request):
     return render(request, 'index.html', {})
 
