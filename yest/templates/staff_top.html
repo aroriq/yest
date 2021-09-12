@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center">スタッフ一覧</h2>
+</div>
+
+<div class="container mt-5">
+    <p class="text-end">{% now "Y年m月d日" %}</p>
+</div>
+
+
+<div class="container mt-5">
+    {% if staff_list %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>氏名</th>
+            <th>フリガナ</th>
+            <th>部署</th>
+            <th>最終更新日</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for staff in staff_list %}
+        <tr>
+            <th><a href="{% url 'staff_detail' staff.id %}">{{ staff.lastname }} {{ staff.firstname }}</a></th>
+            <th>{{ staff.lastnamekana }} {{ staff.firstnamekana }}</th>
+            <th>{{ staff.department }}</th>
+            <th>{{ staff.update }}</th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>スタッフはまだ登録されていません。</p>
+    {% endif %}
+</div>
+</main>
+{% endblock content %}
