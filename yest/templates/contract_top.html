@@ -21,6 +21,7 @@
             <th>物件名</th>
             <th>担当者</th>
             <th>最終更新日</th>
+            <th>編集</th>
             <th>契約時費用明細</th>
         </tr>
         </thead>
@@ -30,10 +31,11 @@
             <th><a href="{% url 'contract_detail' contract.id %}">{{ contract.title }}</a></th>
             <th>{{ contract.offerdate }}</th>
             <th>{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</th>
-            <th>{{ contract.property.propertyname }}
+            <th>{{ contract.property.propertyname }}</th>
             <th>{{ contract.staff.lastname }}</th>
             <th>{{ contract.update }}</th>
-            <th><a href="{% url 'meisai_print' contract.id %}">{{ contract.title }}</a></th>
+            <th><a href="{% url 'contract_edit' contract.id %}">Update</a></th>
+            <th><a href="{% url 'meisai_print' contract.id %}">Print</a></th>
         </tr>
         {% endfor %}
         </tbody>
@@ -41,6 +43,10 @@
     {% else %}
     <p>契約時費用明細はまだ登録されていません。</p>
     {% endif %}
+</div>
+
+<div class="container mt-5">
+    <p class="text-end"><a href="{% url 'contract_new' %}">新規登録</a></p>
 </div>
 
 {% endblock content %}

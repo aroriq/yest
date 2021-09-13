@@ -61,6 +61,7 @@ def staff_detail(request, staff_id):
 
 
 # contract
+@login_required
 def contract_top(request):
     contract_list = ContractModel.objects.all()
     context = {"contract_list": contract_list}

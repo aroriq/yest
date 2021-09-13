@@ -15,13 +15,24 @@
                   {{ error }}
                   </div>
                   {% endif %}
-                  <h4 style="color: white;"></h4>
+                  <h4 style="color: white;">Documents</h4>
 
-                  <br><br><a href="{% url 'signup' %}">ユーザー登録画面へ</a> <br><br>
+                  <h4 style="color: white;">Sales</h4>
+                  
+                  <h4 style="color: white;">Management</h4>
+
+                  <br><br><a href="{% url 'contract_top' %}">契約データ</a> <br><br>
+                  <br><br><a href="{% url 'contract_top' %}">顧客データ</a> <br><br>
+                  <br><br><a href="{% url 'contract_top' %}">物件データ</a> <br><br>
+                  <br><br><a href="{% url 'staff_top' %}">スタッフ一覧</a> <br><br>
+                  <br><br><a href="{% url 'staff_top' %}">会社データ</a> <br><br>
+
+                  <br><br><a href="{% url 'signup' %}">ユーザー登録画面</a> <br><br>
 
                   <div class="mt-4"> <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
                   <!-- <div class="mt-4"> <button class="btn btn-danger button btn-block">ログアウト</button> </div><br> -->
                   <!-- <a href="logout/">ログアウト</a> -->
+              </div>
 
           </div>
       </div>
