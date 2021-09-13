@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <div class="container mt-5">
-    <h2 class="text-center">スタッフ一覧</h2>
+    <h2></h2>
 </div>
 
 <div class="container mt-5">
     <p class="text-end">{% now "Y年m月d日" %}</p>
 </div>
 
-
 <div class="container mt-5">
-    {% if staff_list %}
+    {% if meisai_list %}
     <table class="table">
         <thead>
         <tr>
@@ -23,19 +23,19 @@
         </tr>
         </thead>
         <tbody>
-        {% for staff in staff_list %}
+        {% for meisai in meisai_list %}
         <tr>
-            <th><a href="{% url 'staff_detail' staff.id %}">{{ staff.lastname }} {{ staff.firstname }}</a></th>
-            <th>{{ staff.lastnamekana }} {{ staff.firstnamekana }}</th>
-            <th>{{ staff.department }}</th>
-            <th>{{ staff.update }}</th>
+            <th><a href="{% url 'meisai_print' meisai.id %}">{{ meisai.lastname }} {{ meisai.firstname }}</a></th>
+            <th>{{ meisai.lastnamekana }} {{ meisai.firstnamekana }}</th>
+            <th>{{ meisai.department }}</th>
+            <th>{{ meisai.update }}</th>
         </tr>
         {% endfor %}
         </tbody>
     </table>
     {% else %}
-    <p>スタッフはまだ登録されていません。</p>
+    <p>契約時費用明細はまだ登録されていません。</p>
     {% endif %}
 </div>
-
+    
 {% endblock content %}

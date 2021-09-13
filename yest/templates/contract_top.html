@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2></h2>
+</div>
+
+<div class="container mt-5">
+    <p class="text-end">{% now "Y年m月d日" %}</p>
+</div>
+
+<div class="container mt-5">
+    {% if contract_list %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>契約ID</th>
+            <th>申込日</th>
+            <th>契約者</th>
+            <th>物件名</th>
+            <th>担当者</th>
+            <th>最終更新日</th>
+            <th>契約時費用明細</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contract in contract_list %}
+        <tr>
+            <th><a href="{% url 'contract_detail' contract.id %}">{{ contract.title }}</a></th>
+            <th>{{ contract.offerdate }}</th>
+            <th>{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</th>
+            <th>{{ contract.property.propertyname }}
+            <th>{{ contract.staff.lastname }}</th>
+            <th>{{ contract.update }}</th>
+            <th><a href="{% url 'meisai_print' contract.id %}">{{ contract.title }}</a></th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>契約時費用明細はまだ登録されていません。</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

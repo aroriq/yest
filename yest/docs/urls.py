@@ -7,6 +7,12 @@ urlpatterns = [
     path("staff_new/", views.staff_new, name="staff_new"),
     path("staff/<int:staff_id>/", views.staff_detail, name="staff_detail"),
     path("staff/<int:staff_id>/edit/", views.staff_edit, name="staff_edit"),
+    path("contract_top/", views.contract_top, name="contract_top"),
+    path("contract_new/", views.contract_new, name="contract_new"),
+    path("contract/<int:contract_id>/", views.contract_detail, name="contract_detail"),
+    path("contract/<int:contract_id>/edit/", views.contract_edit, name="contract_edit"),
+
+    path("meisai_print/<int:contract_id>/", views.meisai_print, name="meisai_print"),
 
     path('customerlist/', customerList, name='customerlist'),
     path('hiyomeisai/', DocsHiyomeisai, name='hiyomeisai'),

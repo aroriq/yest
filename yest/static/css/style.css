@@ -1,3 +1,77 @@
+:root{
+  --font-family-sans-serif: "游明朝","Helvetica Neue", Helvetica, Arial,  Meiryo, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+html{
+  font-size: 12.5px;
+}
+
+header{
+  font-size: 2rem;
+}
+
+main {
+  width: 210mm;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: auto;
+  margin-left : auto;
+  /* padding: 0; */
+  font-family: var(--font-family-sans-serif);  
+}
+
+
+main {
+background-color: #ffffff;
+padding: 10mm;
+}
+
+h6, h5, h4, h3, h2, h1 {
+  font-family: "游ゴシック体", "Helvetica Neue", Helvetica, Arial, Meiryo, "游明朝", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", sans-serif;
+  font-weight: 500;
+}
+
+.container{
+  padding: 0;
+  margin-top: 40px;
+}
+
+footer{
+  padding-top: 60px;
+}
+
+.printfooter{
+  font-family: "游ゴシック体", "Helvetica Neue", Helvetica, Arial, Meiryo, "游明朝", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+
+
+.btn {
+  border-radius: 2px;
+}
+
+.btn-small {
+  border-radius: 1px;
+}
+
+.btn-large {
+  border-radius: 3px;
+}
+
+@page {
+  size : A4;
+  }
+
+@media print {
+  body {
+    /* for chrome */
+    width: 210mm;
+    /* for chrome */
+    min-width: auto !important;
+  }
+}
+
 table td{
     /*text-align: center; */
     vertical-align: middle;
@@ -59,6 +133,13 @@ footer{
    border-width:1px 0 1px 0
  } 
 
+ .footer-logo4{
+  text-align: center; 
+  font-size: 1.25rem;
+  /* border: solid #15173c;
+  border-width:1px 0 1px 0; */
+} 
+
  .footer-col2{
   text-align: left; 
   display: table-cell;
@@ -69,14 +150,14 @@ footer{
   break-after: page;
  }
 
-
- @media print {
-  .divFooter {
-      display: none;
-      }
-  }
-
+ 
   @media print {
+    .divFooter {
+        display: none;
+        }
+    }
+
+    @media print {
     .divFooter {
     position: fixed;
     bottom: 0;
@@ -84,12 +165,12 @@ footer{
     }
   }
 
-  @media screen {
+  /* @media screen {
     .divFooter {
         display: none;
         }
     }
-
+ */
 
   @media print {
     header {
@@ -97,3 +178,10 @@ footer{
       }
   }
 
+
+  @media print {
+    .header-end {
+        display: none;
+        }
+    }
+  
