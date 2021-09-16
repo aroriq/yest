@@ -13,6 +13,7 @@ urlpatterns = [
     path("contract/<int:contract_id>/edit/", views.contract_edit, name="contract_edit"),
 
     path("meisai_print/<int:contract_id>/", views.meisai_print, name="meisai_print"),
+    path("zanmu_print/<int:contract_id>/", views.zanmu_print, name="zanmu_print"),
 
     path('customerlist/', customerList, name='customerlist'),
     path('hiyomeisai/', DocsHiyomeisai, name='hiyomeisai'),

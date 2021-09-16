@@ -105,3 +105,9 @@ def meisai_print(request, contract_id):
     contract = get_object_or_404(ContractModel, pk=contract_id)
     return render(request, 'meisai_print.html',
                   {'contract': contract})
+
+@login_required
+def zanmu_print(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'zanmu_print.html',
+                  {'contract': contract})

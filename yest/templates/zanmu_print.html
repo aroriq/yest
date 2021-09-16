@@ -14,23 +14,35 @@
 </div>
 
 <div class="container p-0 mt-0">
-    <h1 class="text-center">契約時費用明細</h1>
+    <h1 class="text-center">残務処理指示書</h1>
 </div>
 
 <div class="container p-0 mt-3">
-    <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
+　  <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
     <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</p>
   </div>
 
   <div class="container px-6 py-0 mt-5">
     <dl class="row" style="font-size: 1.25rem;">
-      <p class="col-sm-12">物件名　　{{ contract.property.propertyname }} {{ contract.property.room }}</p>
+      <p class="col-sm-12">申込日　　　　{{ contract.offerdate }}</p>
+      <p class="col-sm-12">入居日　　　　{{ contract.occupdate }}</p>
+      <p class="col-sm-12">物件名　　　　{{ contract.property.propertyname }} {{ contract.property.room }}</p>
       <!-- <dd class="col-sm-9">{{ contract.property.propertyname }}</dd> -->
-      <p class="col-sm-12">所在地　　{{ contract.property.address }}</p>
+      <p class="col-sm-12">所在地　　　　{{ contract.property.address }}</p>
       <!-- <dd class="col-sm-9">{{ contract.property.address }}</dd> -->
+      <p class="col-sm-12">顧客名　　　　{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}　(電話 {{ contract.customer.tel1 }} )</p>
     </dl>
   </div>
+
+  <hr>
   
+  <div class="container px-6 py-0 mt-5">
+    <dl class="row" style="font-size: 1.25rem;">
+      <p class="col-sm-12">契約金残金　　{{ contract.offerdate }}</p>
+      <p class="col-sm-12">重説実施日　　{{ contract.occupdate }}</p>
+    </dl>
+  </div>
+
   <div class="containerp-0 mt-5">
       <table class="table table-hover px-6">
         <thead  class="table-light">
