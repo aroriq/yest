@@ -76,6 +76,52 @@ class CorpModel(models.Model):
     def __str__(self):
         return "%s" % (self.name)
 
+class KanriModel(models.Model):
+    class Meta:
+        verbose_name_plural = '31_管理会社データ'
+    
+    name = models.CharField(verbose_name='管理会社名', max_length=50, default='')
+    postcode = models.CharField(verbose_name='郵便番号', default='', max_length=10, blank=True, null=True)
+    address = models.CharField(verbose_name='住所', default='', blank=True, null=True, max_length=100)
+    email = models.EmailField(verbose_name='E-mail', default='', blank=True, null=True, max_length=100, )
+    tel = models.CharField(verbose_name='電話番号', default='', blank=True, null=True, max_length=20,)
+    fax = models.CharField(verbose_name='FAX', default='', blank=True, null=True, max_length=20, )
+    postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, null=True)
+    update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+class TransModel(models.Model):
+    class Meta:
+        verbose_name_plural = '32_引越会社データ'
+    name = models.CharField(verbose_name='引越会社名', max_length=50, default='')
+    postcode = models.CharField(verbose_name='郵便番号', default='', max_length=10, blank=True, null=True)
+    address = models.CharField(verbose_name='住所', default='', blank=True, null=True, max_length=100)
+    email = models.EmailField(verbose_name='E-mail', default='', blank=True, null=True, max_length=100, )
+    tel = models.CharField(verbose_name='電話番号', default='', blank=True, null=True, max_length=20,)
+    fax = models.CharField(verbose_name='FAX', default='', blank=True, null=True, max_length=20, )
+    postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, null=True)
+    update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+class GuarantModel(models.Model):
+    class Meta:
+        verbose_name_plural = '33_保証会社データ'
+    name = models.CharField(verbose_name='保証会社名', max_length=50, default='')
+    postcode = models.CharField(verbose_name='郵便番号', default='', max_length=10, blank=True, null=True)
+    address = models.CharField(verbose_name='住所', default='', blank=True, null=True, max_length=100)
+    email = models.EmailField(verbose_name='E-mail', default='', blank=True, null=True, max_length=100, )
+    tel = models.CharField(verbose_name='電話番号', default='', blank=True, null=True, max_length=20,)
+    fax = models.CharField(verbose_name='FAX', default='', blank=True, null=True, max_length=20, )
+    postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, null=True)
+    update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
+
+    def __str__(self):
+        return "%s" % (self.name)
+
 class StaffModel(models.Model):
     class Meta:
         verbose_name_plural = '52_スタッフデータ'
@@ -111,6 +157,9 @@ class ContractModel(models.Model):
     property = models.ForeignKey(PropertyModel, verbose_name='物件', on_delete=models.PROTECT)
     corp = models.ForeignKey(CorpModel, verbose_name='担当店舗', on_delete=models.PROTECT, blank=True, null=True, )
     staff = models.ForeignKey(StaffModel, verbose_name='担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
+    kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
+    trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
+    guarant = models.ForeignKey(GuarantModel, verbose_name='保証会社', on_delete=models.PROTECT)
     offerdate = models.DateField(verbose_name='申込日', default=None, blank=True )
     contractdate = models.DateField(verbose_name='契約開始日', auto_now=True,  null=True, )
     occupdate = models.DateField(verbose_name='入居日', default=None, blank=True, null=True, )
@@ -159,10 +208,10 @@ class ContractModel(models.Model):
     doc1a = models.BooleanField(verbose_name='必要書類1_契約者', default=False, blank=True, null=True, )
     doc1b = models.BooleanField(verbose_name='必要書類1_同居人', default=False, blank=True, null=True, )
     doc1c = models.BooleanField(verbose_name='必要書類1_連帯保証人', default=False, blank=True, null=True, )
-    doc2 = models.CharField(verbose_name='必要書類1', default='入居者全員住民票(本籍記載)', max_length=50, blank=True, null=True, )
-    doc2a = models.BooleanField(verbose_name='必要書類1_契約者', default=False, blank=True, null=True, )
-    doc2b = models.BooleanField(verbose_name='必要書類1_同居人', default=False, blank=True, null=True, )
-    doc2c = models.BooleanField(verbose_name='必要書類1_連帯保証人', default=False, blank=True, null=True, )
+    doc2 = models.CharField(verbose_name='必要書類2', default='入居者全員住民票(本籍記載)', max_length=50, blank=True, null=True, )
+    doc2a = models.BooleanField(verbose_name='必要書類2_契約者', default=False, blank=True, null=True, )
+    doc2b = models.BooleanField(verbose_name='必要書類2_同居人', default=False, blank=True, null=True, )
+    doc2c = models.BooleanField(verbose_name='必要書類2_連帯保証人', default=False, blank=True, null=True, )
     doc3 = models.CharField(verbose_name='必要書類3', default='印鑑証明書', max_length=50, blank=True, null=True, )
     doc3a = models.BooleanField(verbose_name='必要書類3_契約者', default=False, blank=True, null=True, )
     doc3b = models.BooleanField(verbose_name='必要書類3_同居人', default=False, blank=True, null=True, )
@@ -200,7 +249,8 @@ class ContractModel(models.Model):
     docbb = models.BooleanField(verbose_name='必要書類11_同居人', default=False, blank=True, null=True, )
     docbc = models.BooleanField(verbose_name='必要書類11_連帯保証人', default=False, blank=True, null=True, )
     remarks = models.TextField(verbose_name='特記事項', blank=True, null=True, default='')
-    # jsdate = models.DateField(verbose_name='重説実施日', default=None, blank=True, null=True,  )
+    jsdate = models.DateField(verbose_name='重説実施日', default=None, blank=True, null=True,  )
+    zanmuremarks = models.TextField(verbose_name='残務処理特記事項', blank=True, null=True, default='')
     def __str__(self):
         return "%s (%s)" % (self.title, self.offerdate)
 

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'docs.apps.DocsConfig',
     'sales.apps.SalesConfig',
     'blog.apps.BlogConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,7 @@ TIME_ZONE = 'Asia/Tokyo'
 USE_I18N = True
 
 USE_L10N = True
+NUMBER_GROUPING = 3
 
 USE_TZ = True
 

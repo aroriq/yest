@@ -19,7 +19,7 @@
 
 <div class="container p-0 mt-3">
 　  <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
-    <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</p>
+    <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</p> -->
   </div>
 
   <div class="container px-6 py-0 mt-5">
@@ -38,310 +38,39 @@
   
   <div class="container px-6 py-0 mt-5">
     <dl class="row" style="font-size: 1.25rem;">
-      <p class="col-sm-12">契約金残金　　{{ contract.offerdate }}</p>
-      <p class="col-sm-12">重説実施日　　{{ contract.occupdate }}</p>
+      <p class="col-sm-12">契約金残金　　{{ contract.limit }}</p>
+      <p class="col-sm-12">重説実施日　　{{ contract.jsdate }}</p>
     </dl>
   </div>
 
-  <div class="containerp-0 mt-5">
-      <table class="table table-hover px-6">
-        <thead  class="table-light">
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">項目</th>
-            <th scope="col">月</th>
-            <th scope="col">金額(円)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td colspan="2">敷金</td>
-            <td>{{ contract.shikikin }}</td>
-          </tr>
+    <hr>
   
-          <tr>
-            <th scope="row">2</th>
-            <td colspan="2">礼金</td>
-            <td>{{ contract.reikin }}</td>
-          </tr>
-  
-          <tr>
-            <th rowspan="2" scope="row">3</th>
-            <td rowspan="2">家賃</td>
-            <td colspan="1">{{ contract.month1 }}月分</td>
-            <td>{{ contract.yachin1 }}</td>
-          </tr>
-          <tr>
-            <td colspan="1">{{ contract.month2 }}月分</td>
-            <td>{{ contract.yachin2 }}</td>
-          </tr>
-  
-          <tr>
-            <th rowspan="2"scope="row">4</th>
-            <td rowspan="2">共益費</td>
-            <td colspan="1">{{ contract.month1 }}月分</td>
-            <td>{{ contract.kyoekihi1 }}</td>
-          </tr>
-          <tr>
-            <td colspan="1">{{ contract.month2 }}月分</td>
-            <td>{{ contract.kyoekihi2 }}</td>
-          </tr>
-  
-          <tr>
-            <th rowspan="2"scope="row">5</th>
-            <td rowspan="2">町内会費</td>
-            <td colspan="1">{{ contract.month1 }}月分</td>
-            <td>{{ contract.chonai1 }}</td>
-          </tr>
-          <tr>
-            <td colspan="1">{{ contract.month2 }}月分</td>
-            <td>{{ contract.chonai2 }}</td>
-          </tr>
-  
-          <tr>
-            <th rowspan="2"scope="row">6</th>
-            <td rowspan="2">24時間管理費</td>
-            <td colspan="1">{{ contract.month1 }}月分</td>
-            <td>{{ contract.kanrihi1 }}</td>
-          </tr>
-          <tr>
-            <td colspan="1">{{ contract.month2 }}月分</td>
-            <td>{{ contract.kanrihi2 }}</td>
-          </tr>
-   
-          <tr>
-            <th rowspan="2"scope="row">7</th>
-            <td rowspan="2">駐車場料</td>
-            <td colspan="1">{{ contract.month1 }}月分</td>
-            <td>{{ contract.park1 }}</td>
-          </tr>
-          <tr>
-            <td colspan="1">{{ contract.month2 }}月分</td>
-            <td>{{ contract.park2 }}</td>
-          </tr>
-
-          <tr>
-            <th scope="row">8</th>
-            <td colspan="2">{{ contract.item1 }}</td>
-            <td>{{ contract.hosyo }}</td>
-          </tr>
-          <tr>
-            <th scope="row">9</th>
-            <td colspan="2">{{ contract.item2 }}</td>
-            <td>{{ contract.kasai }}</td>
-          </tr>
-          <tr>
-            <th scope="row">10</th>
-            <td colspan="2">{{ contract.item3 }}</td>
-            <td>{{ contract.chukai }}</td>
-          </tr>
-          <tr>
-            <th scope="row">11</th>
-            <td colspan="2">{{ contract.item4 }}</td>
-            <td>{{ contract.etc3 }}</td>
-          </tr>
-          <tr>
-            <th scope="row">12</th>
-            <td colspan="2">{{ contract.item5 }}</td>
-            <td>{{ contract.hosyoitaku }}</td>
-          </tr>
-          <tr>
-            <th scope="row">13</th>
-            <td colspan="2">{{ contract.item6 }}</td>
-            <td>{{ contract.ff }}</td>
-          </tr>
-          <tr>
-            <th scope="row">14</th>
-            <td colspan="2">{{ contract.item7 }}</td>
-            <td>{{ contract.cyrinder }}</td>
-          </tr>
-          <tr>
-            <th scope="row">15</th>
-            <td colspan="2">{{ contract.item8 }}</td>
-            <td>{{ contract.item8bill }}</td>
-          </tr>
-          <tr>
-            <th scope="row">16</th>
-            <td colspan="2">{{ contract.item9 }}</td>
-            <td>{{ contract.item9bill }}</td>
-          </tr>
-
-          <tr class="table-active">
-            <td scope="row" class="text-center" colspan="3">[A]　合計金額(税込)</td>
-            <td>{{ contract.total }}</td>
-          </tr>
-
-          <tr>
-            <td scope="row" class="text-center" colspan="3">[B]　手付金</td>
-            <td>{{ contract.deposit }}</td>
-          </tr>
-  
-          <tr class="table-active">
-            <td scope="row" class="text-center" colspan="3">[A－B]　差引残金</td>
-            <td>{{ contract.zankin }}</td>
-          </tr>
-        </tbody>
-        <tfoot class="table-light">
-          <td scope="row" class="text-center" colspan="3">差引残金お振込期日</td>
-          <td>{{ contract.limit }}</td>
-        </tfoot>
-      </tbody>
-    </table>
-
+  <div class="container px-6 py-0 mt-5">
+    <dl class="row" style="font-size: 1.25rem;">
+      <p class="col-sm-12">管理会社　　{{ contract.kanri.name }}</p>
+      <p class="col-sm-12">TEL番号　　{{ contract.kanri.tel }}</p>
+      <p class="col-sm-12">FAX番号　　{{ contract.kanri.fax }}</p>
+    </dl>
   </div>
 
-  <div class="pagebreak"></div>
+  <!-- <div class="pagebreak"></div> -->
 
-  <!-- <div class="container px-6 p-0 mt-2">
-    <h3 class="mt-5">必要書類</h3>
-    <div class="row">
-      <div class="col-sm">
-        <h4 class="mt-3">契約者様</h4>
-        <div class="list-group list-group-flush">
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            住民票 (本籍記載のもの)
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Second 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Third 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Fourth 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Fifth 
-          </label>
-        </div>
-      </div>
-
-      <div class="col-sm">
-        <h4 class="mt-3">同居人様</h4>
-        <div class="list-group list-group-flush">
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            住民票 (本籍記載のもの) 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Second 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Third 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Fourth 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Fifth 
-          </label>
-        </div>
-      </div>
-
-      <div class="col-sm">
-        <h4 class="mt-3">連帯保証人様</h4>
-        <div class="list-group list-group-flush">
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            First 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Second 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Third 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Fourth 
-          </label>
-          <label class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" value="">
-            Fifth 
-          </label>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-  <div class="container p-0 mt-5">
-    <h3 class="">必要書類</h3>
-    <div class="container mt-3 px-3" style="font-size: 1.25rem; line-height: 200%;">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">契約者</th>
-                <th scope="col">同居人</th>
-                <th scope="col">連帯保証人</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>{{ contract.doc1 }}</td>
-                <td>{{ contract.doc1a }}</td>
-                <td>{{ contract.doc1b }}</td>
-                <td>{{ contract.doc1c }}</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>{{ contract.doc2 }}</td>
-                <td>{{ contract.doc2a }}</td>
-                <td>{{ contract.doc2b }}</td>
-                <td>{{ contract.doc2c }}</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>{{ contract.doc3 }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>{{ contract.doc4 }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>{{ contract.doc5 }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  </div>
-
-
-
-  <div class="container p-0 mt-5">
-    <h3 class="">備考</h3>
+  <div class="container p-5 mt-5" style="border: solid 1px;">
+    <!-- <h3 class="">備考</h3> -->
     <div class="container mt-3 px-3" style="font-size: 1.25rem; line-height: 200%;">
         <strong><u>
-            {{ contract.remarks }}
+          {% autoescape on %}
+            {{ contract.zanmuremarks | linebreaksbr }}
+            {% endautoescape %}
         </u></strong>
               </div>
   </div>
 
+  <br>
+  <br>
+  <br>
+
+  {% comment %}
   <div class="container px-6 pt-0">
     <div class="row gx-5 ">
       <div class="col">
@@ -405,6 +134,7 @@
         </tbody>
       </table>
 
+      {% endcomment %}
       <!-- <div class="col footer-col1 px-6 py-0 printfooter">
         <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="50%">
         <h3>Yes&Home</h3>
