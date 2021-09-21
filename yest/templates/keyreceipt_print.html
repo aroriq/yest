@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Begin page content -->
+<!-- <body class="d-flex flex-column h-100"> -->
+<main class="flex-shrink-0 py-0 px-6">
+
+  <!-- <div class="header-end" style="height: 150px;">---</div> -->
+
+   <div class="container p-0 mt-5">
+      <h1 class="text-center">契約書控え兼一般物件　　鍵受領書</h1>
+  </div>
+  
+  <div class="container p-0 mt-6">
+    <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
+    <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p> -->
+  </div>
+  
+  <div class="container px-6 py-0 mt-5">
+    <dl class="row" style="font-size: 1.25rem;">
+      <p class="col-sm-12">物件名　　{{ contract.property.propertyname }} {{ contract.property.room }}</p>
+      <!-- <dd class="col-sm-9">{{ contract.property.propertyname }}</dd> -->
+      <p class="col-sm-12">所在地　　{{ contract.property.address }}</p>
+      <!-- <dd class="col-sm-9">{{ contract.property.address }}</dd> -->
+    </dl>
+  </div>
+
+  <div class="container p-5 mt-5">
+    <h3 class="mt-0">鍵</h3>
+    <table class="table px-6" style="width: 90%; font-size: 1.5rem; line-height: 200%; margin-right: auto; margin-left: auto;">
+      <tbody>
+        <tr>
+          <td colspan="2">部屋</td>
+          <td><div class='text-end'>{{ contract.key1 }}　本　　　　　　　</div></td>
+        </tr>
+        <tr>
+          <td colspan="2">車庫</td>
+          <td><div class='text-end'>{{ contract.key2 }}　本　　　　　　　</div></td>
+        </tr>
+        <tr>
+          <td colspan="2">トランクルーム</td>
+          <td><div class='text-end'>{{ contract.key3 }}　本　　　　　　　</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="container p-0 mt-5" style="border: solid 0px;">
+        <strong>
+            <dl class="row " style="font-size: 1.25rem;">
+              <p class="col-sm-12">本日確かに上記番号の鍵を受領致しました。</p>
+              <p class="col-sm-12">尚、退室時に遅延なく鍵を返却し、上記鍵番号の鍵紛失の場合は、</p>
+              <p class="col-sm-12">ドアノブ交換の費用を実費負担することを確約致します。</p>
+              <p class="col-sm-12"></p>
+              <p class="col-sm-12">又、本物件の賃貸契約に関して重要事項説明を受けた事を認めます。</p>
+              <p class="col-sm-12"></p>
+            </dl>
+         </strong>
+
+         <br>
+         <strong>
+          <dl class="row text-end" style="font-size: 1.25rem;">
+            <p class="col-sm-12">西暦　　　　　　年　　　　月　　　　日</p>
+          </dl>
+       </strong>
+      </div>
+
+      <br>
+      <br>
+      <div class="container p-0 mt-5" style="border: solid 0px;width: 80%;">
+        <strong>
+        <dl class="row " style="font-size: 1.25rem;">
+          <p class="col-sm-12">新住所</p>
+          <hr>
+          <p class="col-sm-12">氏　名　　　　　　　　　　　　　　　　　　　　　　　　　　　印</p>
+          <hr>
+          <p class="col-sm-12">電話番号</p>
+          <hr>
+        </dl>
+     </strong>
+  </div>
+
+</main>
+<!-- </body> -->
+   
+{% endblock content %}

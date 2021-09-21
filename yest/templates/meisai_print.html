@@ -168,10 +168,10 @@
           </tr>
           {% endif %}
 
-          {% if contract.item9bill %}
+          {% if contract.itemb9ill %}
           <tr>
             <td colspan="2">　{{ contract.item9 }}</td>
-            <td><div class='text-end'>{{ contract.item9bill|intcomma }}円　　　　　　　</div></td>
+            <td><div class='text-end'>{{ contract.itemb9ill|intcomma }}円　　　　　　　</div></td>
           </tr>
           {% endif %}
 
@@ -180,7 +180,7 @@
           <tfoot class="table-light">
           <tr class="table-active">
             <td scope="row" class="text-center" colspan="2">[A]　合計金額(税込)</td>
-            <td><div class='text-end'>{{ contract.total |intcomma }}円　　　　　　　</div></td>
+            <td><div class='text-end'>{{ contract.price_total |intcomma }}円　　　　　　　</div></td>
           </tr>
 
           <tr>
@@ -190,7 +190,7 @@
   
           <tr>
             <td scope="row" class="text-center" colspan="2">[A－B]　差引残金</td>
-            <td><div class='text-end'>{{ contract.zankin |intcomma }}円　　　　　　　</div></td>
+            <td><div class='text-end'>{{ contract.remain_bill |intcomma }}円　　　　　　　</div></td>
           </tr>
 
           <tr>

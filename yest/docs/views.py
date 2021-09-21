@@ -8,7 +8,8 @@ from django.contrib.auth import authenticate, login
 from .models import CustomerModel, StaffModel, ContractModel
 from django.http import HttpResponse
 
-from .forms import StaffForm, ContractForm
+from .forms import StaffForm, ContractForm, ReceiptForm
+from django.views.generic.edit import FormView
 
 # Create your views here.
 def customerList(request):
@@ -107,7 +108,68 @@ def meisai_print(request, contract_id):
                   {'contract': contract})
 
 @login_required
+def kanrimeisai_print(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'kanrimeisai_print.html',
+                  {'contract': contract})
+
+@login_required
 def zanmu_print(request, contract_id):
     contract = get_object_or_404(ContractModel, pk=contract_id)
     return render(request, 'zanmu_print.html',
                   {'contract': contract})
+
+@login_required
+def report_print(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'report_print.html',
+                  {'contract': contract})
+
+
+@login_required
+def receipt_print(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'receipt_print.html',
+                  {'contract': contract})
+
+@login_required
+def receipt_edit(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    # if contract.created_by_id != request.user.id:
+    #     return HttpResponseForbidden("この編集は許可されていません。")
+
+    if request.method == "POST":
+        form = ReceiptForm(request.POST, instance=contract)
+        if form.is_valid():
+            form.save()
+            return render(request, 'receipt_print.html',
+                  {'contract': contract})
+            #return redirect('receipt_print.html', contract_id=contract_id)
+    else:
+        form = ReceiptForm(instance=contract)
+    return render(request, 'receipt_edit.html', {'form': form})
+
+@login_required
+def keyreceipt_print(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'keyreceipt_print.html',
+                  {'contract': contract})
+
+@login_required
+def fax_print(request, contract_id):
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'fax_print.html',
+                  {'contract': contract})
+
+
+from django.contrib import messages
+from django.views.generic.edit import FormView
+from docs.forms import CulcForm
+class CulcView(FormView):
+    template_name = 'culcform.html'
+    form_class = CulcForm
+    success_url = 'culc'  # リダイレクト先URL
+    def form_valid(self, form):
+        form.save()  # 保存処理など
+        messages.add_message(self.request, messages.SUCCESS, '登録しました！')  # メッセージ出力
+        return super().form_valid(form)

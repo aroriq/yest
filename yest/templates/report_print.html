@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Begin page content -->
+<!-- <body class="d-flex flex-column h-100"> -->
+<main class="flex-shrink-0 py-0 px-6">
+
+<div class="header-end" style="height: 150px;">---</div>
+
+<div class="container p-0 mt-0">
+    <p class="lead text-end">({{ contract.title }})</p>
+</div>
+
+<div class="container p-0 mt-0">
+    <h1 class="text-center">契約関係書類報告書</h1>
+</div>
+
+<div class="container p-0 mt-3">
+　  <p class="lead text-end">契約開始日 {{ contract.contractdate }}</p>
+    <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</p> -->
+  </div>
+
+  <div class="container px-6 py-0 mt-5">
+    <dl class="row" style="font-size: 1.25rem;">
+      <p class="col-sm-12">契約者氏名　　　　{{ contract.customer.lastname }} {{ contract.customer.firstname }} (電話 {{ contract.customer.tel1 }} )</p>
+      <!-- <p class="col-sm-12">申込日　　　　{{ contract.offerdate }}</p> -->
+      <!-- <p class="col-sm-12">入居日　　　　{{ contract.occupdate }}</p> -->
+      <p class="col-sm-12">物　件　名　　　　{{ contract.property.propertyname }} {{ contract.property.room }}</p>
+      <!-- <dd class="col-sm-9">{{ contract.property.propertyname }}</dd> -->
+      <p class="col-sm-12">所　在　地　　　　{{ contract.property.address }}</p>
+      <!-- <dd class="col-sm-9">{{ contract.property.address }}</dd> -->
+    </dl>
+  </div>
+
+  <hr>
+  
+  <div class="container px-6 py-0 mt-5">
+    <dl class="row" style="font-size: 1.25rem;">
+      <p class="col-sm-12">管理会社　　{{ contract.kanri.name }}　　　(電話　{{ contract.kanri.tel }})</p>
+      <p class="col-sm-12">保証会社　　{{ contract.guarant.name }}　　　(電話　{{ contract.guarant.tel }})</p>
+    </dl>
+  </div>
+
+  <hr>
+ 
+  <div class="container px-6 py-0 mt-5">
+    <h3 class="">添付書類</h3>
+    <dl class="row mt-3" style="font-size: 1.25rem; line-height: 200%;">
+      <p class="col-sm-12">{{ contract.reportdoc | linebreaksbr  }}</p>
+    </dl>
+  </div>
+
+  <div class="container p-5 mt-5" style="border: solid 1px;">
+    <h3 class="">備考</h3>
+    <div class="container " style="font-size: 1.25rem; line-height: 150%;">
+        <strong><u>
+          <div class="container px-6 py-0 mt-5">
+            <dl class="row" style="font-size: 1.25rem;">
+              <p class="col-sm-12">{{ contract.reportremarks | linebreaksbr  }}</p>
+            </dl>
+          </div>
+                </u></strong>
+              </div>
+  </div>
+
+  <br>
+
+  <div class="container p-0 mt-0">
+    <p class="lead text-end" style="font-size: 1.5rem;">(担当) {{ contract.staff.lastname }}   </p>
+</div>
+
+  {% comment %}
+  <div class="container px-6 pt-0">
+    <div class="row gx-5 ">
+      <div class="col">
+            <h4 class="mt-5">振込先</h4>
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <th scope="row">銀行</th>
+                  <td>{{ contract.corp.bank }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">支店</th>
+                  <td>{{ contract.corp.bankbranch }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">口座</th>
+                  <td>{{ contract.corp.bankaccount }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">名義</th>
+                  <td>{{ contract.corp.bankid }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">ﾌﾘｶﾞﾅ</th>
+                  <td>{{ contract.corp.bankkana }}</td>
+                </tr>
+        
+              </tbody>
+            </table>
+            
+      </div>
+
+      <div class="col "> 
+        <h4 class="mt-5">担当店</h4>
+        <table class="table table-hover">
+        <tbody>            
+          <tr>
+            <th scope="row">店名</th>
+            <td>{{ contract.corp.name }}</td>
+        </tr>
+          <tr>
+            <th scope="row">住所</th>
+            <td>{{ contract.corp.address }}</td>
+        </tr>
+          <tr>
+            <th scope="row">TEL</th>
+            <td>{{ contract.corp.tel }}</td>
+        </tr>
+          <tr>
+            <th scope="row">FAX</th>
+            <td>{{ contract.corp.fax }}</td>
+        </tr>
+          <tr>
+            <th scope="row">Mail</th>
+            <td>{{ contract.corp.email }}</td>
+        </tr>
+          <tr>
+            <th scope="row">担当</th>
+            <td>{{ contract.staff.lastname }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- <div class="col footer-col1 px-6 py-0 printfooter">
+        <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="50%">
+        <h3>Yes&Home</h3>
+        <p class="footer-logo4 my-1 py-1">株式会社　イエストホーム</p>
+        <p class="footer-logo3 my-1 py-1">北海道知事　石狩(1) 8834号</p>
+    </div> -->
+
+    </div>
+    </div>
+  </div>
+
+<div style="text-align: center">
+    <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="30%">
+</div>
+
+<!-- <footer class="footer mt-auto py-3 divFooter">
+  <div class="container px-6">
+
+    <div class="row gx-5">
+      <div class="col footer-col1">
+          <h3>Yes&Home</h3>
+          <p class="footer-logo2">株式会社イエストホーム</p>
+          <p class="footer-logo3">北海道知事　石狩(1) 8834号</p>
+      </div>
+  
+      <div class="col footer-col2">
+          <p>
+            札幌市白石区南郷通16丁目北1-18
+            <br>TEL 011-868-7770
+            <br>FAX 011-868-7771		
+            <br>E-mail info@yesthome.co.jp
+            <br>https://yesthome.co.jp/
+          </p>
+      </div>
+    </div>
+  
+  </div>
+</footer> -->
+{% endcomment %}
+
+
+</main>
+<!-- </body> -->
+
+
+    
+{% endblock content %}

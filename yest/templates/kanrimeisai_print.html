@@ -1,0 +1,585 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+<!-- Begin page content -->
+<!-- <body class="d-flex flex-column h-100"> -->
+<main class="flex-shrink-0 py-0 px-6">
+
+<div class="header-end" style="height: 150px;">---</div>
+
+<div class="container p-0 mt-0">
+    <p class="lead text-end">({{ contract.title }})</p>
+</div>
+
+<div class="container p-0 mt-0">
+    <h1 class="text-center">契約費明細書</h1>
+</div>
+
+<div class="container p-0 mt-3">
+    <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
+    <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</p>
+  </div>
+
+  <div class="container px-6 py-0 mt-5">
+    <dl class="row" style="font-size: 1.25rem;">
+      <p class="col-sm-12">物件名　　{{ contract.property.propertyname }} {{ contract.property.room }}</p>
+      <!-- <dd class="col-sm-9">{{ contract.property.propertyname }}</dd> -->
+      <p class="col-sm-12">所在地　　{{ contract.property.address }}</p>
+      <!-- <dd class="col-sm-9">{{ contract.property.address }}</dd> -->
+    </dl>
+  </div>
+  
+  <div class="containerp-0 mt-2">
+      <table class="table table-hover px-6" style="width: 90%; font-size: 1.20rem; line-height: 85%; margin-right: auto; margin-left: auto;">
+        <thead  class="table-light">
+          <tr>
+            <th scope="col">項目</th>
+            <th scope="col"></th>
+            <th scope="col" style="width: 50%; text-align: center;">　　金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if contract.shikikin %}
+          <tr>
+            <td colspan="2">　敷金</td>
+            <td><div class='text-end'>{{ contract.shikikin|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+  
+          {% if contract.reikin %}
+          <tr>
+            <td colspan="2">　礼金</td>
+            <td><div class='text-end'>{{ contract.reikin|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+  
+          {% if contract.yachin1 or yachin2 %}
+          <tr>
+            <td rowspan="2">　家賃</td>
+            <td colspan="1"><div class='text-end'>{{ contract.month1 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.yachin1 |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          <tr>
+            <td colspan="1"><div class='text-end'>{{ contract.month2 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.yachin2|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+  
+          {% if contract.kyoekihi1 or kyoekihi2 %}
+          <tr>
+            <td rowspan="2">　共益費</td>
+            <td colspan="1"><div class='text-end'>{{ contract.month1 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.kyoekihi1|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          <tr>
+            <td colspan="1"><div class='text-end'>{{ contract.month2 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.kyoekihi2 |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+  
+          {% if contract.chonai1 or chonai2 %}
+          <tr>
+            <td rowspan="2">　町内会費</td>
+            <td colspan="1"><div class='text-end'>{{ contract.month1 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.chonai1 |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          <tr>
+            <td colspan="1"><div class='text-end'>{{ contract.month2 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.chonai2 |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+  
+          {% if contract.kanrihi1 or kanrihi2 %}
+          <tr>
+            <td rowspan="2">　24時間管理費</td>
+            <td colspan="1"><div class='text-end'>{{ contract.month1 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.kanrihi1|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          <tr>
+            <td colspan="1"><div class='text-end'>{{ contract.month2 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.kanrihi2|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+   
+          {% if contract.park1 or park2 %}
+          <tr>
+            <td rowspan="2">　駐車場料</td>
+            <td colspan="1"><div class='text-end'>{{ contract.month1 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.park1 |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          <tr>
+            <td colspan="1"><div class='text-end'>{{ contract.month2 }}月分</div></td>
+            <td><div class='text-end'>{{ contract.park2 |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+
+          {% if contract.hosyo %}
+          <tr>
+            <td colspan="2">　{{ contract.item1 }}</td>
+            <td><div class='text-end'>{{ contract.hosyo |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if contract.kasai %}
+          <tr>
+            <td colspan="2">　{{ contract.item2 }}</td>
+            <td><div class='text-end'>{{ contract.kasai|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if contract.chukai %}
+          <tr>
+            <td colspan="2">　{{ contract.item3 }}</td>
+            <td><div class='text-end'>{{ contract.chukai|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if contract.etc3 %}
+          <tr>
+            <td colspan="2">　{{ contract.item4 }}</td>
+            <td><div class='text-end'>{{ contract.etc3|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if contract.hosyoitaku %}
+          <tr>
+            <td colspan="2">　{{ contract.item5 }}</td>
+            <td><div class='text-end'>{{ contract.hosyoitaku |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+
+          {% if contract.ff %}
+          <tr>
+            <td colspan="2">　{{ contract.item6 }}</td>
+            <td><div class='text-end'>{{ contract.ff|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+
+          {% if contract.cyrinder %}
+          <tr>
+            <td colspan="2">　{{ contract.item7 }}</td>
+            <td><div class='text-end'>{{ contract.cyrinder |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+
+          {% if contract.item8bill %}
+          <tr>
+            <td colspan="2">　{{ contract.item8 }}</td>
+            <td><div class='text-end'>{{ contract.item8bill |intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+
+          {% if contract.itemb9ill %}
+          <tr>
+            <td colspan="2">　{{ contract.item9 }}</td>
+            <td><div class='text-end'>{{ contract.itemb9ill|intcomma }}円　　　　　　　</div></td>
+          </tr>
+          {% endif %}
+
+        </tbody>
+
+          <tfoot class="table-light">
+          <tr class="table-active">
+            <td scope="row" class="text-center" colspan="2">[A]　合計金額(税込)</td>
+            <td><div class='text-end'>{{ contract.price_total |intcomma }}円　　　　　　　</div></td>
+          </tr>
+
+          <tr>
+            <td scope="row" class="text-center" colspan="2">[B]　手付金</td>
+            <td><div class='text-end'>{{ contract.deposit |intcomma }}円　　　　　　　</div></td>
+          </tr>
+  
+          <tr>
+            <td scope="row" class="text-center" colspan="2">[A－B]　差引残金</td>
+            <td><div class='text-end'>{{ contract.remain_bill |intcomma }}円　　　　　　　</div></td>
+          </tr>
+
+          <tr>
+          <td scope="row" class="text-center" colspan="2">差引残金お振込期日</td>
+          <td><div class='text-start'>{{ contract.limit }}</div></td>
+        </tr>
+      </tfoot>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="containerp-0 mt-1">
+      <h4 class="mt-1">上記に含まれない費用</h4>
+  
+      <table class="table table-hover px-6" style="width: 90%; font-size: 1.20rem; line-height: 85%; margin-right: auto; margin-left: auto;">
+      <tbody>
+        {% if contract.etcitem1bill %}
+        <tr>
+          <td colspan="2">　{{ contract.etcitem1 }}</td>
+          <td><div class='text-end'>{{ contract.etcitem1bill|intcomma }}円　　　　　　　</div></td>
+        </tr>
+        {% endif %}
+
+        {% if contract.etcitem2bill %}
+        <tr>
+          <td colspan="2">　{{ contract.etcitem2 }}</td>
+          <td><div class='text-end'>{{ contract.etcitem2bill|intcomma }}円　　　　　　　</div></td>
+        </tr>
+        {% endif %}
+
+        {% if contract.etcitem3bill %}
+        <tr>
+          <td colspan="2">　{{ contract.etcitem3 }}</td>
+          <td><div class='text-end'>{{ contract.etcitem3bill|intcomma }}円　　　　　　　</div></td>
+        </tr>
+        {% endif %}
+      </tbody>
+      </table>
+
+  {% if contract.adbill %}
+  <h4 class="mt-0">その他</h4>
+  <table class="table table-borderless px-6" style="width: 90%; font-size: 1.20rem; line-height: 100%; margin-right: auto; margin-left: auto;">
+    <tbody>
+      <tr>
+        <td colspan="2">広告料</td>
+        <td><div class='text-end'>{{ contract.adbill|intcomma }}円　　　　　　　</div></td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
+
+  </div>
+
+    <div class="pagebreak"></div>
+
+    <div class="container px-6 p-0 mt-2">
+      <h3 class="mt-5">必要書類</h3>
+      <div class="row">
+        <div class="col-sm">
+          <h4 class="mt-3">契約者様</h4>
+          <div class="list-group list-group-flush">
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              住民票 (本籍記載のもの)
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Second 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Third 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fourth 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fifth 
+            </label>
+          </div>
+        </div>
+  
+        <div class="col-sm">
+          <h4 class="mt-3">同居人様</h4>
+          <div class="list-group list-group-flush">
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              住民票 (本籍記載のもの) 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Second 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Third 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fourth 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fifth 
+            </label>
+          </div>
+        </div>
+  
+        <div class="col-sm">
+          <h4 class="mt-3">連帯保証人様</h4>
+          <div class="list-group list-group-flush">
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              First 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Second 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Third 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fourth 
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fifth 
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    {% comment %}
+  
+    <div class="container p-0 mt-5">
+      <h3 class="">必要書類</h3>
+      <div class="container mt-3 px-3" style="font-size: 1.20rem; line-height: 200%; width: 95%; margin-right: auto; margin-left: auto;">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col" style="width: 18%;">契約者</th>
+                  <th scope="col" style="width: 18%;">同居人</th>
+                  <th scope="col" style="width: 15%;">連帯保証人</th>
+                </tr>
+              </thead>
+              <tbody>
+  
+                {% if contract.doc1a or contract.doc1b or contract.doc1c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc1 }}</td>
+                  <td>　{{ contract.doc1a|yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc1b|yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc1c|yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+  
+                {% if contract.doc2a or contract.doc2b or contract.doc2c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc2 }}</td>
+                  <td>　{{ contract.doc2a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc2b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc2c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.doc3a or contract.doc3b or contract.doc3c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc3 }}</td>
+                  <td>　{{ contract.doc3a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc3b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc3c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.doc4a or contract.doc4b or contract.doc4c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc4 }}</td>
+                  <td>　{{ contract.doc4a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc4b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc4c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+                
+                {% if contract.doc5a or contract.doc5b or contract.doc5c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc5 }}</td>
+                  <td>　{{ contract.doc5a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc5b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc5c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.doc6a or contract.doc6b or contract.doc6c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc6 }}</td>
+                  <td>　{{ contract.doc6a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc6b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc6c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.doc7a or contract.doc7b or contract.doc7c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc7 }}</td>
+                  <td>　{{ contract.doc7a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc7b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc7c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.doc8a or contract.doc8b or contract.doc8c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc8 }}</td>
+                  <td>　{{ contract.doc8a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc8b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc8c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.doc9a or contract.doc9b or contract.doc9c %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doc9 }}</td>
+                  <td>　{{ contract.doc9a |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.doc9b |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.doc9c |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.docaa or contract.docab or contract.docac %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.doca }}</td>
+                  <td>　{{ contract.docaa |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.docab |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.docac |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+                {% if contract.docba or contract.docbb or contract.docbc %}
+                <tr>
+                  <th scope="row">・</th>
+                  <td>{{ contract.docb }}</td>
+                  <td>　{{ contract.docba |yesno:'●,－,' }}</td>
+                  <td>　{{ contract.docbb |yesno:'●,－,' }}</td>
+                  <td>　　{{ contract.docbc |yesno:'●,－,' }}</td>
+                </tr>
+                {% endif %}
+  
+              </tbody>
+            </table>
+          </div>
+    </div>
+  
+    {% endcomment %}
+  
+    <div class="container p-0 mt-5">
+      <h3 class="">備考</h3>
+      <div class="container mt-3 px-3" style="font-size: 1.25rem; line-height: 200%;">
+          <strong><u>
+              {{ contract.remarks | linebreaksbr }}
+          </u></strong>
+                </div>
+    </div>
+  
+    <div class="container px-6 pt-0">
+      <div class="row gx-5 ">
+        <div class="col">
+              <h4 class="mt-5">振込先</h4>
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th scope="row">銀行</th>
+                    <td>{{ contract.corp.bank }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">支店</th>
+                    <td>{{ contract.corp.bankbranch }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">口座</th>
+                    <td>{{ contract.corp.bankaccount }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">名義</th>
+                    <td>{{ contract.corp.bankid }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">ﾌﾘｶﾞﾅ</th>
+                    <td>{{ contract.corp.bankkana }}</td>
+                  </tr>
+          
+                </tbody>
+              </table>
+              
+        </div>
+  
+        <div class="col "> 
+          <h4 class="mt-5">担当店</h4>
+          <table class="table table-hover">
+          <tbody>            
+            <tr>
+              <th scope="row">店名</th>
+              <td>{{ contract.corp.name }}</td>
+          </tr>
+            <tr>
+              <th scope="row">住所</th>
+              <td>{{ contract.corp.address }}</td>
+          </tr>
+            <tr>
+              <th scope="row">TEL</th>
+              <td>{{ contract.corp.tel }}</td>
+          </tr>
+            <tr>
+              <th scope="row">FAX</th>
+              <td>{{ contract.corp.fax }}</td>
+          </tr>
+            <tr>
+              <th scope="row">Mail</th>
+              <td>{{ contract.corp.email }}</td>
+          </tr>
+            <tr>
+              <th scope="row">担当</th>
+              <td>{{ contract.staff.lastname }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <!-- <div class="col footer-col1 px-6 py-0 printfooter">
+          <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="50%">
+          <h3>Yes&Home</h3>
+          <p class="footer-logo4 my-1 py-1">株式会社　イエストホーム</p>
+          <p class="footer-logo3 my-1 py-1">北海道知事　石狩(1) 8834号</p>
+      </div> -->
+  
+      </div>
+      </div>
+    </div>
+  
+  <div style="text-align: center">
+      <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="30%">
+  </div>
+  
+  <!-- <footer class="footer mt-auto py-3 divFooter">
+    <div class="container px-6">
+  
+      <div class="row gx-5">
+        <div class="col footer-col1">
+            <h3>Yes&Home</h3>
+            <p class="footer-logo2">株式会社イエストホーム</p>
+            <p class="footer-logo3">北海道知事　石狩(1) 8834号</p>
+        </div>
+    
+        <div class="col footer-col2">
+            <p>
+              札幌市白石区南郷通16丁目北1-18
+              <br>TEL 011-868-7770
+              <br>FAX 011-868-7771		
+              <br>E-mail info@yesthome.co.jp
+              <br>https://yesthome.co.jp/
+            </p>
+        </div>
+      </div>
+    
+    </div>
+  
+  </footer> -->
+  </main>
+  <!-- </body> -->
+  
+    
+  {% endblock content %}
+  

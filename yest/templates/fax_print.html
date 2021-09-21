@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Begin page content -->
+<!-- <body class="d-flex flex-column h-100"> -->
+<main class="flex-shrink-0 py-0 px-6">
+
+  <div class="header-end" style="height: 150px;">---</div>
+
+  <div class="container p-0 mt-0">
+      <h1 class="text-center">FAX送付状</h1>
+  </div>
+  
+  <div class="container p-0 mt-3">
+    <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
+    <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p> -->
+  </div>
+  
+  <div class="container p-0 t-2">
+    <div class="row">
+      <div class="col "> 
+        <h3>送信先</h3>
+        <br>
+        <table class="table table-borderless">
+              <tbody style="font-size: 1.5rem;">            
+                  <tr>
+              <td>{{ contract.kanri.name }}　御中</td>
+          </tr>
+            <tr>
+              <td>　ご担当者 様</td>
+          </tr>
+            <tr>
+              <td>TEL {{ contract.kanri.tel }}</td>
+          </tr>
+            <tr>
+              <td>FAX {{ contract.kanri.fax }}</td>
+          </tr>
+    </tbody>
+        </table>
+      </div>
+  
+        <div class="col " style="position: relative;"> 
+          <!-- <h3>送信元</h3> -->
+          <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="60%">
+          <!-- <img class="imgprint" src="{% static 'img/kakuin.png' %}" alt="イエストホーム角印" width="100px" style="position: absolute; top: 10%;"> -->
+          <table class="table table-borderless">
+            <strong>
+              
+              <tbody style="font-size: 1.25rem;">            
+            <tr>
+              <td>{{ contract.corp.name }}</td>
+          </tr>
+            <tr>
+              <td>{{ contract.corp.address }}</td>
+          </tr>
+            <tr>
+              <td>TEL {{ contract.corp.tel }} / FAX {{ contract.corp.fax }}</td>
+          </tr>
+          <tr>
+            <td>{{ contract.corp.email }}</td>
+        </tr>
+        <tr>
+            <td>担当者　{{ contract.staff.lastname }}</td>
+        </tr>
+          </tbody>
+        </strong>
+        </table>
+  
+      </div>
+      </div>
+    </div>
+    
+    <div class="container mt-1" style="border-bottom: solid 1px; width:95%; font-size:2.5rem">
+      <strong>
+      <p class="col-sm-12">送信用件　{{ contract.property.propertyname }} {{ contract.property.room }} 申込書</p>
+    </strong>
+    </div>
+    
+    <br>
+    <div class="container p-2 mt-5" style="border: solid 2px;">
+          <strong>
+              <dl class="row px-3" style="font-size: 1.5rem;">
+                <p class="col-sm-12 mt-3">{{ contract.kanridoc| linebreaksbr }}</p>
+              </dl>
+           </strong>
+    </div>
+  
+    <div class="pagebreak"></div>
+  
+    <!-- <div class="header-end" style="height: 150px;">---</div> -->
+    <div class="header-end" style="height: 150px;"><br><br><hr></div>
+
+    <div class="container p-0 mt-0">
+        <h1 class="text-center">FAX送付状</h1>
+    </div>
+    
+    <div class="container p-0 mt-3">
+      <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
+      <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p> -->
+    </div>
+    
+    <div class="container p-0 t-2">
+      <div class="row">
+        <div class="col "> 
+          <h3>送信先</h3>
+          <br>
+          <table class="table table-borderless">
+                <tbody style="font-size: 1.5rem;">            
+                    <tr>
+                <td>{{ contract.trans.name }}　御中</td>
+            </tr>
+              <tr>
+                <td>　ご担当者 様</td>
+            </tr>
+              <tr>
+                <td>TEL {{ contract.trans.tel }}</td>
+            </tr>
+              <tr>
+                <td>FAX {{ contract.trans.fax }}</td>
+            </tr>
+      </tbody>
+          </table>
+        </div>
+    
+          <div class="col " style="position: relative;"> 
+            <!-- <h3>送信元</h3> -->
+            <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="60%">
+            <!-- <img class="imgprint" src="{% static 'img/kakuin.png' %}" alt="イエストホーム角印" width="100px" style="position: absolute; top: 10%;"> -->
+            <table class="table table-borderless">
+              <strong>
+                
+                <tbody style="font-size: 1.25rem;">            
+              <tr>
+                <td>{{ contract.corp.name }}</td>
+            </tr>
+              <tr>
+                <td>{{ contract.corp.address }}</td>
+            </tr>
+              <tr>
+                <td>TEL {{ contract.corp.tel }} / FAX {{ contract.corp.fax }}</td>
+            </tr>
+            <tr>
+              <td>{{ contract.corp.email }}</td>
+          </tr>
+          <tr>
+              <td>担当者　{{ contract.staff.lastname }}</td>
+          </tr>
+            </tbody>
+          </strong>
+          </table>
+    
+        </div>
+        </div>
+      </div>
+      
+      <div class="container mt-1" style="border-bottom: solid 1px; width:95%; font-size:2.5rem">
+        <strong>
+        <p class="col-sm-12 text-center">引　越　見　積　依　頼　書</p>
+      </strong>
+      </div>
+
+      <div class="container px-6 py-0 mt-5">
+                <dl class="row" style="font-size: 1.25rem;">
+          <p class="col-sm-12">物件名　　{{ contract.property.propertyname }} {{ contract.property.room }}</p>
+          <!-- <dd class="col-sm-9">{{ contract.property.propertyname }}</dd> -->
+          <p class="col-sm-12">所在地　　{{ contract.property.address }}</p>
+          <!-- <dd class="col-sm-9">{{ contract.property.address }}</dd> -->
+        </dl>
+      </div>
+      
+      <br>
+      <h3 class="mt-0">連絡希望日</h3>
+      <div class="container p-2 mt-1" style="border: solid 2px;">
+            <strong>
+                <dl class="row px-3" style="font-size: 1.5rem;">
+                  <p class="col-sm-12 mt-3">{{ contract.transdate| linebreaksbr }}</p>
+                </dl>
+             </strong>
+      </div>
+    
+      <br>
+      <h3 class="mt-0">備考</h3>
+      <div class="container p-2 mt-1" style="border: solid 2px;">
+            <strong>
+                <dl class="row px-3" style="font-size: 1.5rem;">
+                  <p class="col-sm-12 mt-3">{{ contract.transremarks| linebreaksbr }}</p>
+                </dl>
+             </strong>
+      </div>
+    </div>
+</main>
+<!-- </body> -->
+   
+{% endblock content %}

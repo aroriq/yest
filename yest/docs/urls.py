@@ -13,7 +13,17 @@ urlpatterns = [
     path("contract/<int:contract_id>/edit/", views.contract_edit, name="contract_edit"),
 
     path("meisai_print/<int:contract_id>/", views.meisai_print, name="meisai_print"),
+    path("kanrimeisai_print/<int:contract_id>/", views.kanrimeisai_print, name="kanrimeisai_print"),
     path("zanmu_print/<int:contract_id>/", views.zanmu_print, name="zanmu_print"),
+    path("report_print/<int:contract_id>/", views.report_print, name="report_print"),
+
+    path("receipt/<int:contract_id>/", views.receipt_print, name="receipt_print"),
+    path("receipt/<int:contract_id>/edit/", views.receipt_edit, name="receipt_edit"),
+
+    path("keyreceipt_print/<int:contract_id>/", views.keyreceipt_print, name="keyreceipt_print"),
+    path("fax_print/<int:contract_id>/", views.fax_print, name="fax_print"),
+
+    path("culc/", views.CulcView.as_view(), name="culc"),
 
     path('customerlist/', customerList, name='customerlist'),
     path('hiyomeisai/', DocsHiyomeisai, name='hiyomeisai'),

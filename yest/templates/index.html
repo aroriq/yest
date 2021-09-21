@@ -2,6 +2,14 @@
 
 {% block content %}
 
+<div class="container mt-5">
+  <h2></h2>
+</div>
+
+<div class="container mt-5">
+  <p class="text-end">{% now "Y年m月d日" %}</p>
+</div>
+
 <div style="height: 110px;"></div>
 
 <div class="container mt-5">
@@ -9,27 +17,33 @@
       <div class="row d-flex justify-content-center">
           <div class="col-md-6">
               <div class="card p-4 py-5" style="background-color: #15173c;">
-                  <h2 style="color: #ff7d24;">Yes&Home</h2>
+                  <h1 style="color: #ff7d24;">INDEX</h1>
                   {% if error %}
                   <div style="color: whitesmoke;">
                   {{ error }}
                   </div>
                   {% endif %}
-                  <h4 style="color: white;">Documents</h4>
 
-                  <h4 style="color: white;">Sales</h4>
+                  <div class="container mt-5">
+                    <h3><a href="{% url 'contract_top' %}" style="color: white;">Docment</a></h3>
+                  </div>
+
+                  <div class="container mt-5">
+                    <h3><a href="{% url 'index' %}" style="color: white;">Sales</a></h3>
+                  </div>
                   
-                  <h4 style="color: white;">Management</h4>
-
-                  <br><br><a href="{% url 'contract_top' %}">契約データ</a> <br><br>
+                  <div class="container mt-5">
+                    <h3><a href="{% url 'signup' %}" style="color: white;">ユーザー登録</a></h3>
+                  </div>
+                    <!-- <br><br><a href="{% url 'contract_top' %}">契約データ</a> <br><br>
                   <br><br><a href="{% url 'contract_top' %}">顧客データ</a> <br><br>
                   <br><br><a href="{% url 'contract_top' %}">物件データ</a> <br><br>
                   <br><br><a href="{% url 'staff_top' %}">スタッフ一覧</a> <br><br>
                   <br><br><a href="{% url 'staff_top' %}">会社データ</a> <br><br>
+ -->
+                  <!-- <br><br><a href="{% url 'signup' %}">ユーザー登録画面</a> <br><br> -->
 
-                  <br><br><a href="{% url 'signup' %}">ユーザー登録画面</a> <br><br>
-
-                  <div class="mt-4"> <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
+                  <div class="mt-4" > <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
                   <!-- <div class="mt-4"> <button class="btn btn-danger button btn-block">ログアウト</button> </div><br> -->
                   <!-- <a href="logout/">ログアウト</a> -->
               </div>

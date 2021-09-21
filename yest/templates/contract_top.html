@@ -21,9 +21,14 @@
             <th>物件名</th>
             <th>担当者</th>
             <th>最終更新日</th>
-            <th>編集</th>
+            <!-- <th>編集</th> -->
             <th>契約時費用明細</th>
+            <th>契約費明細書</th>
             <th>残務処理指示書</th>
+            <th>契約関係書類報告書</th>
+            <th>鍵受領書</th>
+            <th>領収書・預り証</th>
+            <th>FAX送付状</th>
         </tr>
         </thead>
         <tbody>
@@ -35,9 +40,14 @@
             <th>{{ contract.property.propertyname }}</th>
             <th>{{ contract.staff.lastname }}</th>
             <th>{{ contract.update }}</th>
-            <th><a href="{% url 'contract_edit' contract.id %}">Update</a></th>
+            <!-- <th><a href="{% url 'contract_edit' contract.id %}">Update</a></th> -->
             <th><a href="{% url 'meisai_print' contract.id %}">契約時費用明細</a></th>
+            <th><a href="{% url 'kanrimeisai_print' contract.id %}">契約費明細書</a></th>
             <th><a href="{% url 'zanmu_print' contract.id %}">残務処理指示書</a></th>
+            <th><a href="{% url 'report_print' contract.id %}">契約関係書類報告書</a></th>
+            <th><a href="{% url 'keyreceipt_print' contract.id %}">鍵受領書</a></th>
+            <th><a href="{% url 'receipt_print' contract.id %}">領収書・預り証</a></th>
+            <th><a href="{% url 'fax_print' contract.id %}">FAX送付状</a></th>
         </tr>
         {% endfor %}
         </tbody>

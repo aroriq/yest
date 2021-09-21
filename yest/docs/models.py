@@ -170,40 +170,47 @@ class ContractModel(models.Model):
                                                         #   MaxValueValidator.MaxValueValidator(12)]
                                                           )
     month2 = models.PositiveSmallIntegerField(verbose_name='翌月', default=datetime.datetime.today().month+1, blank=True, null=True, )
-    shikikin = models.PositiveSmallIntegerField(verbose_name='敷金', default=None, blank=True, null=True, )
-    reikin = models.PositiveSmallIntegerField(verbose_name='礼金', default=None, blank=True, null=True, )
-    yachin1 = models.PositiveSmallIntegerField(verbose_name='家賃(当月)', default=None, blank=True, null=True, )
-    yachin2 = models.PositiveSmallIntegerField(verbose_name='家賃(翌月)', default=None, blank=True, null=True, )
-    kyoekihi1 = models.PositiveSmallIntegerField(verbose_name='共益費(当月)', default=None, blank=True, null=True, )
-    kyoekihi2 = models.PositiveSmallIntegerField(verbose_name='共益費(翌月)', default=None, blank=True, null=True, )
-    chonai1 = models.PositiveSmallIntegerField(verbose_name='町内会費(当月)', default=None, blank=True, null=True, )
-    chonai2 = models.PositiveSmallIntegerField(verbose_name='町内会費(翌月)', default=None, blank=True, null=True, )
-    kanrihi1 = models.PositiveSmallIntegerField(verbose_name='管理費(当月)', default=None, blank=True, null=True, )
-    kanrihi2 = models.PositiveSmallIntegerField(verbose_name='管理費(翌月)', default=None, blank=True, null=True, )
-    park1 = models.PositiveSmallIntegerField(verbose_name='駐車場費(当月)', default=None, blank=True, null=True, )
-    park2 = models.PositiveSmallIntegerField(verbose_name='駐車場費(翌月)', default=None, blank=True, null=True, )
+    shikikin = models.PositiveSmallIntegerField(verbose_name='敷金', default=0, blank=True, null=True, )
+    reikin = models.PositiveSmallIntegerField(verbose_name='礼金', default=0, blank=True, null=True, )
+    yachin1 = models.PositiveSmallIntegerField(verbose_name='家賃(当月)', default=0, blank=True, null=True, )
+    yachin2 = models.PositiveSmallIntegerField(verbose_name='家賃(翌月)', default=0, blank=True, null=True, )
+    kyoekihi1 = models.PositiveSmallIntegerField(verbose_name='共益費(当月)', default=0, blank=True, null=True, )
+    kyoekihi2 = models.PositiveSmallIntegerField(verbose_name='共益費(翌月)', default=0, blank=True, null=True, )
+    chonai1 = models.PositiveSmallIntegerField(verbose_name='町内会費(当月)', default=0, blank=True, null=True, )
+    chonai2 = models.PositiveSmallIntegerField(verbose_name='町内会費(翌月)', default=0, blank=True, null=True, )
+    kanrihi1 = models.PositiveSmallIntegerField(verbose_name='管理費(当月)', default=0, blank=True, null=True, )
+    kanrihi2 = models.PositiveSmallIntegerField(verbose_name='管理費(翌月)', default=0, blank=True, null=True, )
+    park1 = models.PositiveSmallIntegerField(verbose_name='駐車場費(当月)', default=0, blank=True, null=True, )
+    park2 = models.PositiveSmallIntegerField(verbose_name='駐車場費(翌月)', default=0, blank=True, null=True, )
     item1 = models.CharField(verbose_name='項目1', default='月額保証料', max_length=50, blank=True, null=True, )
-    hosyo = models.PositiveSmallIntegerField(verbose_name='項目1金額', default=None, blank=True, null=True, )
+    hosyo = models.SmallIntegerField(verbose_name='項目1金額', default=0, blank=True, null=True, )
     item2 = models.CharField(verbose_name='項目2', default='火災保険料', max_length=50, blank=True, null=True, )
-    kasai = models.PositiveSmallIntegerField(verbose_name='項目2金額', default=None, blank=True, null=True, )
+    kasai = models.SmallIntegerField(verbose_name='項目2金額', default=0, blank=True, null=True, )
     item3 = models.CharField(verbose_name='項目3', default='仲介手数料', max_length=50, blank=True, null=True, )
-    chukai = models.PositiveSmallIntegerField(verbose_name='項目3金額', default=None, blank=True, null=True, )
+    chukai = models.SmallIntegerField(verbose_name='項目3金額', default=0, blank=True, null=True, )
     item4 = models.CharField(verbose_name='項目4', default='清掃料', max_length=50, blank=True, null=True, )
-    etc3 = models.PositiveSmallIntegerField(verbose_name='項目4金額', default=None, blank=True, null=True, )
+    etc3 = models.SmallIntegerField(verbose_name='項目4金額', default=0, blank=True, null=True, )
     item5 = models.CharField(verbose_name='項目5', default='初回保証委託料', max_length=50, blank=True, null=True, )
-    hosyoitaku = models.PositiveSmallIntegerField(verbose_name='項目5金額', default=None, blank=True, null=True, )
+    hosyoitaku = models.SmallIntegerField(verbose_name='項目5金額', default=0, blank=True, null=True, )
     item6 = models.CharField(verbose_name='項目6', default='FF分解整備料', max_length=50, blank=True, null=True, )
-    ff = models.PositiveSmallIntegerField(verbose_name='項目6金額', default=None, blank=True, null=True, )
+    ff = models.SmallIntegerField(verbose_name='項目6金額', default=0, blank=True, null=True, )
     item7 = models.CharField(verbose_name='項目7', default='シリンダー交換料', max_length=50, blank=True, null=True, )
-    cyrinder = models.PositiveSmallIntegerField(verbose_name='項目7金額', default=None, blank=True, null=True, )
+    cyrinder = models.SmallIntegerField(verbose_name='項目7金額', default=0, blank=True, null=True, )
     item8 = models.CharField(verbose_name='項目8', default='', max_length=50, blank=True, null=True, )
-    item8bill = models.PositiveSmallIntegerField(verbose_name='項目8金額', default=None, blank=True, null=True, )
+    item8bill = models.SmallIntegerField(verbose_name='項目8金額', default=0, blank=True, null=True, )
     item9 = models.CharField(verbose_name='項目9', default='', max_length=50, blank=True, null=True, )
-    itemb9ill = models.PositiveSmallIntegerField(verbose_name='項目9金額', default=None, blank=True, null=True, )
+    itemb9ill = models.SmallIntegerField(verbose_name='項目9金額', default=0, blank=True, null=True, )
     total = models.PositiveSmallIntegerField(verbose_name='合計金額(税込)', default=None, blank=True, null=True, )
-    deposit = models.PositiveSmallIntegerField(verbose_name='手付金', default=None, blank=True, null=True, )
+    deposit = models.PositiveSmallIntegerField(verbose_name='手付金', default=0, blank=True, null=True, )
     zankin = models.PositiveSmallIntegerField(verbose_name='差引残金', default=None, blank=True, null=True, )
     limit = models.DateField(verbose_name='差引残金期日', default=None, blank=True, null=True)
+    etcitem1 = models.CharField(verbose_name='上記外項目1', default='火災保険料(2年)', max_length=50, blank=True, null=True, )
+    etcitem1bill = models.SmallIntegerField(verbose_name='上記外項目1金額', default=0, blank=True, null=True, )
+    etcitem2 = models.CharField(verbose_name='上記外項目2', default='ハウスクリーニング料(退去時)', max_length=50, blank=True, null=True, )
+    etcitem2bill = models.SmallIntegerField(verbose_name='上記外項目2金額', default=0, blank=True, null=True, )
+    etcitem3 = models.CharField(verbose_name='上記外項目3', default='シリンダー交換料(退去時)', max_length=50, blank=True, null=True, )
+    etcitem3bill = models.SmallIntegerField(verbose_name='上記外項目3金額', default=0, blank=True, null=True, )
+    adbill = models.SmallIntegerField(verbose_name='広告料金額', default=0, blank=True, null=True, )
     doc1 = models.CharField(verbose_name='必要書類1', default='入居者全員住民票(本籍省略)', max_length=50, blank=True, null=True, )
     doc1a = models.BooleanField(verbose_name='必要書類1_契約者', default=False, blank=True, null=True, )
     doc1b = models.BooleanField(verbose_name='必要書類1_同居人', default=False, blank=True, null=True, )
@@ -251,6 +258,51 @@ class ContractModel(models.Model):
     remarks = models.TextField(verbose_name='特記事項', blank=True, null=True, default='')
     jsdate = models.DateField(verbose_name='重説実施日', default=None, blank=True, null=True,  )
     zanmuremarks = models.TextField(verbose_name='残務処理特記事項', blank=True, null=True, default='')
+    reportdoc = models.TextField(verbose_name='契約関係書類報告書　添付書類', blank=True, null=True, \
+        default='・入居申込書\n・契約書コピー（別紙特約、覚書等）\n・重説控え（原本）\n・保証会社申込書（身分証明書等含）\n・保証会社承認通知書\n・保証会社契約書控え（コピー）\n・鍵受領書\n・')
+    reportremarks = models.TextField(verbose_name='契約関係書類報告書　備考', blank=True, null=True, default='')
+    key1 = models.PositiveSmallIntegerField(verbose_name='鍵本数(部屋)', default=1, blank=True, null=True, )
+    key2 = models.PositiveSmallIntegerField(verbose_name='鍵本数(車庫)', default=0, blank=True, null=True, )
+    key3 = models.PositiveSmallIntegerField(verbose_name='鍵本数(トランクルーム)', default=0, blank=True, null=True, )
+    transdate = models.TextField(verbose_name='引越連絡希望日', default='第1希望 月　日　:  ～　: \n\n第2希望 月　日　:  ～　: \n\n第3希望 月　日　:  ～　: ', blank=True, null=True,  )
+    transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='', blank=True, null=True,  )
+    kanridoc = models.TextField(verbose_name='管理会社宛FAX　本文', blank=True, null=True,  
+        default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\nいつもお世話になっております。\n\n表記物件の入居申込書を送付致します。\n\n（送信枚数　本紙を含め　　枚）\n\n【備考】\n\n', )
+    receiptremarks1 = models.TextField(verbose_name='領収書　備考', default='', blank=True, null=True,  )
+    receiptremarks2 = models.TextField(verbose_name='預り証　備考', default='', blank=True, null=True,  )
+    # sum = models.PositiveSmallIntegerField(verbose_name='合計金額(税込)', editable=False, blank=True, null=True, default=None)
     def __str__(self):
         return "%s (%s)" % (self.title, self.offerdate)
+    
+    def price_total(self):
+        return self.shikikin + self.reikin\
+             + self.yachin1 + self.yachin2\
+             + self.kyoekihi1 + self.kyoekihi2\
+             + self.chonai1 + self.chonai2\
+             + self.kanrihi1 + self.kanrihi2\
+             + self.park1 + self.park2\
+             + self.hosyo\
+             + self.kasai\
+             + self.chukai\
+             + self.etc3\
+             + self.hosyoitaku\
+             + self.ff\
+             + self.cyrinder\
+             + self.item8bill\
+             + self.itemb9ill
 
+    def remain_bill(self):
+        return self.price_total() - self.deposit
+
+
+
+class Post(models.Model):
+    """投稿モデル"""
+    class Meta:
+        db_table = 'post'
+    title = models.CharField(verbose_name='タイトル', max_length=10)
+    comment = models.CharField(verbose_name='コメント', max_length=100)
+    created_at = models.DateTimeField(verbose_name='登録日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+    def __str__(self):
+        return self.title + ',' + self.comment

@@ -13,10 +13,10 @@ urlpatterns = [
 ]
 
 #Modify Site Header
-admin.site.site_header = 'Yes&Home Administration'
+admin.site.site_header = 'Yes&Home'
 #Modify Site Title
 admin.site.site_title = 'Yes&Home'
 #Modify Site Index Title
-admin.site.index_title = 'Yes&Home Administration'
+admin.site.index_title = 'Yes&Home Database'
 #Modify Site URL
 admin.site.site_urls= '/admin'
