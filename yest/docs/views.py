@@ -135,16 +135,14 @@ def receipt_print(request, contract_id):
 @login_required
 def receipt_edit(request, contract_id):
     contract = get_object_or_404(ContractModel, pk=contract_id)
-    # if contract.created_by_id != request.user.id:
-    #     return HttpResponseForbidden("この編集は許可されていません。")
 
     if request.method == "POST":
         form = ReceiptForm(request.POST, instance=contract)
         if form.is_valid():
             form.save()
             return render(request, 'receipt_print.html',
-                  {'contract': contract})
-            #return redirect('receipt_print.html', contract_id=contract_id)
+                 {'contract': contract})
+            # return redirect('receipt_print.html', contract_id=contract_id)
     else:
         form = ReceiptForm(instance=contract)
     return render(request, 'receipt_edit.html', {'form': form})

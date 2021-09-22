@@ -9,35 +9,21 @@
 
 <div class="header-end" style="height: 150px;">---</div>
 
-
-<div class="container mt-5">
-    <h2>領収書・預り証　編集</h2>
-</div>
-
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">保存する</button>
     </form>
-</div>
-
-<!-- <form action="" method="POST">
-    {{ form.non_field_errors }}
-    <div class="field">
-        {{ form..label_tag }}
-        {{ form.name }}
-        <span class="helptext">{{ form.name.help_text }}</span>
-        {{ form.name.errors }}
-    </div>
-    {% csrf_token %}
-</form>
-<!-- <div class="container p-0 mt-0"> -->
-    <p class="lead text-end">({{ contract.title }})</p>
 </div> -->
 
+
 <div class="container p-0 mt-0">
-    <h1 class="text-center">領収書</h1>
+    <p class="lead text-end">({{ contract.title }})</p>
+</div>
+
+<div class="container p-0 mt-0">
+    <h1 class="text-center">領収書【Edit】</h1>
 </div>
 
 <div class="container p-0 mt-3">
@@ -62,31 +48,17 @@
     <div class="row gx-5 ">
       <div class="col">
             <hr>
-            <table class="table table-borderless">
-              <tbody>
-                <tr>
-                  <th scope="row">小計</th>
-                  <td>{{ contract.corp.bank }}円</td>
-                </tr>
-                <tr>
-                  <th scope="row">うち消費税</th>
-                  <td>{{ contract.corp.bank }}円</td>
-                </tr>
-                <tr>
-                  <th scope="row">(内訳)</th>
-                  <td>{{ contract.corp.bank }}</td>
-                </tr>
-                <tr>
-                  <th scope="row">10%対象</th>
-                  <td>{{ contract.corp.bank }}円 (消費税　{{ contract.corp.bank }}円</td>
-                </tr>
-                <tr>
-                  <th scope="row" ></th>
-                  <td>{{ contract.corp.bank }}</td>
-                </tr>
-        
-              </tbody>
-            </table>
+            <form method="POST">
+                {{ form.non_field_errors }}
+                <div class="field">
+                    {{ form.receiptremarks1.label_tag }}
+                    {{ form.receiptremarks1 }}
+                    <span class="helptext">{{ form.receiptremarks1.help_text }}</span>
+                    {{ form.receiptremarks1.error }}
+                </div>
+                {% csrf_token %}
+                <button type="submit">保存する</button>
+            </form>
             <hr>
       </div>
 

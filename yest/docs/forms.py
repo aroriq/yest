@@ -27,12 +27,12 @@ class ReceiptForm(forms.ModelForm):
         model = ContractModel
         fields = ('title', 'receiptremarks1')
         labels = {
-            'title': '名前',
-            'receiptremarks1': '年齢'
+            'title': '契約タイトル',
+            'receiptremarks1': '備考'
         }
         help_texts = {
             'title': '契約タイトル',
-            'receiptremarks1': '領収書備考'
+            'receiptremarks1': '領収書の備考を記入して下さい'
         }
 
 
