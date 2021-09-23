@@ -3,11 +3,12 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h2></h2>
+    <h2>契約データ一覧</h2>
 </div>
 
 <div class="container mt-5">
     <p class="text-end">{% now "Y年m月d日" %}</p>
+    <p class="text-end">全{{ contract_list | length }}件</p>
 </div>
 
 <div class="container mt-5">
@@ -56,6 +57,62 @@
     <p>契約時費用明細はまだ登録されていません。</p>
     {% endif %}
 </div>
+
+{% include 'include/page.html' %}
+
+<div class="container mt-5">
+    <h2>未契約データ一覧</h2>
+</div>
+
+<div class="container mt-5">
+    {% if contract_list %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>契約ID</th>
+            <th>申込日</th>
+            <th>契約者</th>
+            <th>物件名</th>
+            <th>担当者</th>
+            <th>最終更新日</th>
+            <!-- <th>編集</th> -->
+            <th>契約時費用明細</th>
+            <th>契約費明細書</th>
+            <th>残務処理指示書</th>
+            <th>契約関係書類報告書</th>
+            <th>鍵受領書</th>
+            <th>領収書・預り証</th>
+            <th>FAX送付状</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contract in contract_list %}
+        {% if not contract.completed %}
+        <tr>
+            <th><a href="{% url 'contract_detail' contract.id %}">{{ contract.title }}</a></th>
+            <th>{{ contract.offerdate }}</th>
+            <th>{{ contract.customer.lastname }} {{ contract.customer.firstname }} {{ contract.customer.honorific }}</th>
+            <th>{{ contract.property.propertyname }}</th>
+            <th>{{ contract.staff.lastname }}</th>
+            <th>{{ contract.update }}</th>
+            <!-- <th><a href="{% url 'contract_edit' contract.id %}">Update</a></th> -->
+            <th><a href="{% url 'meisai_print' contract.id %}">契約時費用明細</a></th>
+            <th><a href="{% url 'kanrimeisai_print' contract.id %}">契約費明細書</a></th>
+            <th><a href="{% url 'zanmu_print' contract.id %}">残務処理指示書</a></th>
+            <th><a href="{% url 'report_print' contract.id %}">契約関係書類報告書</a></th>
+            <th><a href="{% url 'keyreceipt_print' contract.id %}">鍵受領書</a></th>
+            <th><a href="{% url 'receipt_print' contract.id %}">領収書・預り証</a></th>
+            <th><a href="{% url 'fax_print' contract.id %}">FAX送付状</a></th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>契約時費用明細はまだ登録されていません。</p>
+    {% endif %}
+</div>
+
 
 <div class="container mt-5">
     <p class="text-end"><a href="{% url 'contract_new' %}">新規登録</a></p>

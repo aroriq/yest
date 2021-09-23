@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'sales.apps.SalesConfig',
     'blog.apps.BlogConfig',
     'django.contrib.humanize',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+
+
 {% block content %}
 
 
@@ -28,18 +30,59 @@
 
 <div class="container p-0 mt-3">
   <p class="lead text-end">発行日 {% now "Y年 n月 j日" %}</p>
-  <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p>
+  <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p> -->
 </div>
 
-<div class="container p-5 mt-5" style="border: solid 1px; width: 80%;">
-  <h2 class="text-center mt-2">合計金額　　円</h2>
+<form method="POST">
+    <strong>
+    {{ form.non_field_errors }}
+    <div class="field p-4 my-5" style="font-size: 1.5rem;width:75%; border: solid 0px ;background-color: beige; ">
+        {{ form.receipt_atena.label_tag }}
+        {{ form.receipt_atena }}
+        <span class="helptext">{{ form.receipt_atena.help_text }}</span>
+        {{ form.receipt_atena.error }}
+        <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+    </div>
+    </strong>
+    {% csrf_token %}
+</form>
+
+
+<div class="container p-5 mt-5" style="border: solid 1px; width: 100%;">
+  <h2 class="text-center mt-2">合計金額
+    <form method="POST">
+        {{ form.non_field_errors }}
+        <div class="inline-block field p-4 my-5" style="width:100%; border: solid 0px ;background-color: beige; ">
+            <!-- {{ form.receipt_total.label_tag }} -->
+            {{ form.receipt_total }}
+            <span class="helptext">{{ form.receipt_total.help_text }}</span>
+            {{ form.receipt_meimo.error }}
+            <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+        </div>
+        {% csrf_token %}
+    </form>
+
+    </h2>
 </div>
 
 <div class="container p-0 mt-3" style="border: solid 0px;">
       <strong>
-          <dl class="row text-center" style="font-size: 1.25rem;">
-            <p class="col-sm-12">{{ contract.purpus }}として</p>
-            <p class="col-sm-12">上記正に領収いたしました。</p>
+          <dl class="row text-center" style="font-size: 1.25rem; ">
+            <div style="width:100%">
+            <form method="POST">
+                {{ form.non_field_errors }}
+                <div class="field p-4 my-5" style="width:100%; border: solid 0px ;background-color: beige; ">
+                    {{ form.receipt_meimo.label_tag }}
+                    {{ form.receipt_meimo }}
+                    <span class="helptext">{{ form.receipt_meimo.help_text }}</span>
+                    {{ form.receipt_meimo.error }}
+                    <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+                </div>
+                {% csrf_token %}
+            </form>
+            </div>
+            <!-- <p class="col-sm-12">{{ contract.purpus }}として</p> -->
+            <!-- <p class="col-sm-12">上記正に領収いたしました。</p> -->
           </dl>
        </strong>
 </div>
@@ -47,25 +90,34 @@
   <div class="container px-6 pt-0 mt-2">
     <div class="row gx-5 ">
       <div class="col">
-            <hr>
+            <!-- <hr> -->
             <form method="POST">
                 {{ form.non_field_errors }}
-                <div class="field">
-                    {{ form.receiptremarks1.label_tag }}
+                <div class="field p-4 my-5" style="width:100%; border: solid 0px ;background-color: beige; ">
+                    <!-- {{ form.receiptremarks1.label_tag }} -->
                     {{ form.receiptremarks1 }}
                     <span class="helptext">{{ form.receiptremarks1.help_text }}</span>
                     {{ form.receiptremarks1.error }}
+                    <button type="submit" class="submit btn btn-primary">保存/印刷</button>
                 </div>
                 {% csrf_token %}
-                <button type="submit">保存する</button>
             </form>
-            <hr>
+            <!-- <hr> -->
       </div>
 
       <div class="col " style="position: relative;"> 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="75%">
-        <img class="imgprint" src="{% static 'img/kakuin.png' %}" alt="イエストホーム角印" width="100px" style="position: absolute; top: 10%;">
-        <strong><table class="table table-borderless">
+        <img class="imgprint" src="{% static 'img/kakuin.png' %}" alt="イエストホーム角印" width="100px" style="position: absolute; top: 48%;">
+        <!-- <strong><table class="table table-borderless">
         <tbody style="font-size: 1.25rem;">            
           <tr>
             <td>{{ contract.corp.name }}</td>
@@ -81,7 +133,7 @@
         </tr>
         </tbody>
       </strong>
-      </table>
+      </table> -->
 
     <!-- <div class="col footer-col1 px-6 py-0 printfooter">
         <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="50%">
@@ -94,7 +146,8 @@
     </div>
   </div>
 
-  <div class="pagebreak"></div>
+
+<div class="pagebreak"></div>
 
   <!-- <div class="container p-0 mt-0">
       <p class="lead text-end">({{ contract.title }})</p>

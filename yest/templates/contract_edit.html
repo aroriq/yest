@@ -1,17 +1,56 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
 
+<div class="jumbotron">
+    <h1>Django Tutorial</h1>
+    <p>これは Django フォームに CSS クラスを設定する方法のデモです。</p>
+</div>
+
 <div class="container mt-5">
-    <h2>契約データ編集</h2>
+    <h2>契約データ 編集</h2>
 </div>
 
 <div class="container mt-5">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">登録</button>
+        <div class="form-group text-right" style="padding:20px 0">
+            {{ form.as_p }}
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
     </form>
 </div>
-    
+
+<div class="container mt-5">
+    <form method="post" action="{% url 'login' %}" class="form-group">
+        {% csrf_token %}
+        {% for item in form %}
+            <div class="form-group">
+                <label for="{{item.id_for_label}}">{{item.label}}</label>
+                <input 
+                    type="{{item.field.widget.input_type}}"
+                    class="form-control" 
+                    {% if item.field.required %}required{% endif %} 
+                    name="{{item.name}}" 
+                    id="{{item.id_for_label}}">
+            </div>
+        {% endfor %}
+        <button type="submit" class="submit btn btn-primary">Login</button>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+</div>        
 {% endblock content %}
+
+<!-- <body>
+    <h1>Fill out the form!</h1>
+    <div class="container">
+        <form method="post">
+            <div class="form-group text-right" style="padding:20px 0">
+            {{ form.as_p }}
+            </div>
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+</body> -->

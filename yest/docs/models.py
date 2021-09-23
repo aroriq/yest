@@ -268,8 +268,14 @@ class ContractModel(models.Model):
     transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='', blank=True, null=True,  )
     kanridoc = models.TextField(verbose_name='管理会社宛FAX　本文', blank=True, null=True,  
         default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\nいつもお世話になっております。\n\n表記物件の入居申込書を送付致します。\n\n（送信枚数　本紙を含め　　枚）\n\n【備考】\n\n', )
+    receipt_atena = models.CharField(verbose_name='領収書　宛名', default='', max_length=50, blank=True, null=True, )  
+    receipt_meimo = models.CharField(verbose_name='領収書　但し書き', default='', max_length=50, blank=True, null=True, )  
+    receipt_total = models.PositiveSmallIntegerField(verbose_name='領収書　合計金額', default=0, blank=True, null=True, )
     receiptremarks1 = models.TextField(verbose_name='領収書　備考', default='', blank=True, null=True,  )
-    receiptremarks2 = models.TextField(verbose_name='預り証　備考', default='', blank=True, null=True,  )
+    azukari_atena = models.CharField(verbose_name='預り証　宛名', default='', max_length=50, blank=True, null=True, )  
+    azukari_meimo = models.CharField(verbose_name='預り証　但し書き', default='', max_length=50, blank=True, null=True, )  
+    azukari_total = models.PositiveSmallIntegerField(verbose_name='預り証　合計金額', default=0, blank=True, null=True, )
+    azukari_remarks2 = models.TextField(verbose_name='預り証　備考', default='', blank=True, null=True,  )
     # sum = models.PositiveSmallIntegerField(verbose_name='合計金額(税込)', editable=False, blank=True, null=True, default=None)
     def __str__(self):
         return "%s (%s)" % (self.title, self.offerdate)

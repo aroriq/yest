@@ -25,14 +25,18 @@ class ContractForm(forms.ModelForm):
 class ReceiptForm(forms.ModelForm):
     class Meta:
         model = ContractModel
-        fields = ('title', 'receiptremarks1')
+        fields = ('receipt_atena', 'receipt_meimo', 'receipt_total', 'receiptremarks1')
         labels = {
-            'title': '契約タイトル',
+            'receipt_atena': '宛名',
+            'receipt_meimo': '但し書き',
+            'receipt_total': '合計金額',
             'receiptremarks1': '備考'
         }
         help_texts = {
-            'title': '契約タイトル',
-            'receiptremarks1': '領収書の備考を記入して下さい'
+            'receipt_atena': '様',
+            'receipt_meimo': 'として',
+            'receipt_total': '円',
+            'receiptremarks1': ''
         }
 
 
