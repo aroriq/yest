@@ -1,7 +1,6 @@
 from os import name
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-
 import datetime
 
 # Create your models here.
@@ -160,14 +159,15 @@ class ContractModel(models.Model):
     kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
     trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
     guarant = models.ForeignKey(GuarantModel, verbose_name='保証会社', on_delete=models.PROTECT)
+    gas = models.CharField(verbose_name='ガス会社', default='', max_length=50, blank=True, null=True, )
     offerdate = models.DateField(verbose_name='申込日', default=None, blank=True )
     contractdate = models.DateField(verbose_name='契約開始日', auto_now=True,  null=True, )
     occupdate = models.DateField(verbose_name='入居日', default=None, blank=True, null=True, )
     postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, blank=True, null=True)
     update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
     month1 = models.IntegerField(verbose_name='当月', default=datetime.datetime.today().month, blank=True, null=True, 
-                                            #   validators=[MinValueValidator.MinValueValidator(1),
-                                                        #   MaxValueValidator.MaxValueValidator(12)]
+                                              validators=[MinValueValidator(1),
+                                                          MaxValueValidator(12)]
                                                           )
     month2 = models.PositiveSmallIntegerField(verbose_name='翌月', default=datetime.datetime.today().month+1, blank=True, null=True, )
     shikikin = models.PositiveSmallIntegerField(verbose_name='敷金', default=0, blank=True, null=True, )
@@ -257,6 +257,8 @@ class ContractModel(models.Model):
     docbc = models.BooleanField(verbose_name='必要書類11_連帯保証人', default=False, blank=True, null=True, )
     remarks = models.TextField(verbose_name='特記事項', blank=True, null=True, default='')
     jsdate = models.DateField(verbose_name='重説実施日', default=None, blank=True, null=True,  )
+    submitdoc = models.TextField(verbose_name='契約費明細　提出書類', blank=True, null=True, \
+        default='・建物賃貸借契約書（2部）\n・使用規則（2部）\n・原状回復の条件について（2部）\n・鍵預り証（1部）\n・リペアサービス申込書（1部）\n・保証会社申込書類（1式）\n・重要事項説明書写し（仲介業者書式）\n\n・火災保険加入書類\n・御入居者様へのご案内\n・物件状況チェックリスト')
     zanmuremarks = models.TextField(verbose_name='残務処理特記事項', blank=True, null=True, default='')
     reportdoc = models.TextField(verbose_name='契約関係書類報告書　添付書類', blank=True, null=True, \
         default='・入居申込書\n・契約書コピー（別紙特約、覚書等）\n・重説控え（原本）\n・保証会社申込書（身分証明書等含）\n・保証会社承認通知書\n・保証会社契約書控え（コピー）\n・鍵受領書\n・')

@@ -250,6 +250,7 @@
     <div class="container px-6 p-0 mt-2">
       <h3 class="mt-5">必要書類</h3>
       <div class="row">
+        <!-- <div class="col"> -->
         <div class="col-sm">
           <h4 class="mt-3">契約者様</h4>
           <div class="list-group list-group-flush">
@@ -466,6 +467,14 @@
   
     {% endcomment %}
   
+    <div class="container p-0 mt-5">
+      <h3 class="">提出書類</h3>
+      <div class="container mt-3 px-3" style="font-size: 1.25rem; line-height: 150%;">
+          <!-- <strong><u> -->
+              {{ contract.submitdoc | linebreaksbr }}
+          <!-- </u></strong> -->
+      </div>
+    </div>
     <div class="container p-0 mt-5">
       <h3 class="">備考</h3>
       <div class="container mt-3 px-3" style="font-size: 1.25rem; line-height: 200%;">
