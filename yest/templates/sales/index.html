@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block content %}
+
+
+<div class="main-screen">
+
+    <div class="container mt-5">
+        <h2 class="text-center">売上データ一覧</h2>
+    </div>
+    
+    <div class="container mt-5">
+        <p class="text-end">{% now "Y年m月d日" %}</p>
+    </div>
+    
+    <div class="container mt-5">
+        {% if object_list %}
+        <table class="table">
+            <thead>
+            <tr class="text-start">
+                <th>売上ID</th>
+                <th>担当者</th>
+                <th>担当アカウント</th>
+                <th>契約ID</th>
+                <th>申込日</th>
+                <th>契約者氏名</th>
+                <th>物件名(号室)</th>
+                <th>仲介手数料</th>
+                <th>広告料</th>
+                <th>事務手数料</th>
+                <th>その他</th>
+                <th>予備</th>
+                <!-- <th>残金</th> -->
+                <th>小計</th>
+                <th>合計(税抜)</th>
+                <th>残金</th>
+                <th>回収月</th>
+                <!-- <th>回収日</th> -->
+                <!-- <th>作成日</th> -->
+                <!-- <th>更新日</th> -->
+                <!-- <th>作成日時</th> -->
+                <th>更新日時</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for o in object_list %}
+            <tr>
+                <th class="text-center">{{ o.id }}</th>
+                <th>{{ o.responsiblestaff.first_name }} {{ o.responsiblestaff.last_name }}</th>
+                <th>{{ o.responsiblestaff }}</th>
+                <th>{{ o.contract.title }}</th>
+                <th>{{ o.contract.offerdate }}</th>
+                <th>{{ o.contract.customer.lastname }} {{ o.contract.customer.firstname }}</th>
+                <th>{{ o.contract.property.propertyname }} {{ o.contract.property.room }}</th>
+                <th class="text-end">{{ o.brokerage|intcomma }}</th>
+                <th class="text-end">{{ o.adfee|intcomma }}</th>
+                <th class="text-end">{{ o.hangingfee|intcomma }}</th>
+                <th class="text-end">{{ o.etc1fee|intcomma }}</th>
+                <th class="text-end">{{ o.etc2fee|intcomma }}</th>
+                <th class="text-end">{{ o.price_total_include_tax|intcomma }}</th>
+                <th class="text-end">{{ o.price_total|intcomma }}</th>
+                <!-- <th class="text-end">{{ o.zankin|intcomma }}</th> -->
+                <th class="text-center">{{ o.receive|yesno:'済,未,未入力' }}</th>
+                <th class="text-end">{{ o.recivemonth }}</th>
+                <!-- <th>{{ o.recivedate }}</th> -->
+                <!-- <th>{{ o.created_at }}</th> -->
+                <!-- <th>{{ o.updated_at }}</th> -->
+                <!-- <th>{{ o.created_dt }}</th> -->
+                <th>{{ o.updated_dt }}</th>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>登録されていません。</p>
+        {% endif %}
+    
+        <!-- <div class="container mt-5">
+            <p class="text-end"><a href="{% url 'staff_new' %}">新規登録</a></p>
+        </div> -->
+    
+    </div>
+    
+</div>
+
+{% endblock %}

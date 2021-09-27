@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center">売上データ一覧</h2>
+
+    <div class="table; line-height: 200%;">
+        {{df|safe}}
+    </div>
+
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center">describe</h2>
+
+    <div class="table">
+        {{describe|safe}}
+    </div>
+
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center">dtypes</h2>
+
+    <div class="table">
+        {{dtypes|safe}}
+    </div>
+
+</div>
+
+<hr>
+
+<div class="container mt-5"  style="width: 15%;line-height: 200%;">
+    <h2 class="text-center">担当者別売上</h2>
+
+    <div class="table">
+        {{df_staff|safe}}
+    </div>
+
+</div>
+
+<div class="container mt-5" style="width: 15%;line-height: 200%;">
+    <h2 class="text-center">月次売上</h2>
+
+    <div class="table">
+        {{df_month|safe}}
+    </div>
+
+    <div style="width:1000;height:100">
+        <img src="{% url 'sales_app:img_plot' %}" alt="">
+    </div>
+    
+</div>
+
+
+<div class="container mt-5" style="width: 15%;line-height: 200%;">
+    <h2 class="text-center">年次売上</h2>
+
+    <div class="table">
+        {{df_year|safe}}
+    </div>
+
+</div>
+
+<hr>
+
+
+<div class="container mt-5" style="width: 25%;line-height: 200%;">
+    <h2 class="text-center">月次担当者別売上</h2>
+
+    <div class="table">
+        {{df_monthstaff|safe}}
+    </div>
+
+</div>
+
+
+<div class="container mt-5" style="width: 25%;line-height: 200%;">
+    <h2 class="text-center">年次担当者別売上</h2>
+
+    <div class="table">
+        {{df_yearstaff|safe}}
+    </div>
+
+</div>
+
+<hr>
+
+<div class="container mt-5"  style="width: 25%;line-height: 200%;">
+    <h2 class="text-center">担当者別・月別</h2>
+
+    <div class="table">
+        {{df_staffmonth|safe}}
+    </div>
+
+</div>
+
+
+<div class="container mt-5"  style="width: 25%;line-height: 200%;">
+    <h2 class="text-center">担当者別・年別</h2>
+
+    <div class="table">
+        {{df_staffyear|safe}}
+    </div>
+
+</div>
+
+<hr>
+
+{% endblock content %}

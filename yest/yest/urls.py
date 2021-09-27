@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('yhauth.urls')),
     path('docs/', include('docs.urls')),
-    # path('sales/', include('sales.urls')),
+    path('sales/', include('sales.urls')),
     # path('blog/', include('blog.urls')),
 ]
 

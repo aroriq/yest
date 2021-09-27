@@ -41,26 +41,26 @@
         {{ form.receipt_atena }}
         <span class="helptext">{{ form.receipt_atena.help_text }}</span>
         {{ form.receipt_atena.error }}
-        <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+        <!-- <button type="submit" class="submit btn btn-primary">保存/印刷</button> -->
     </div>
     </strong>
-    {% csrf_token %}
-</form>
+    <!-- {% csrf_token %} -->
+<!-- </form> -->
 
 
 <div class="container p-5 mt-5" style="border: solid 1px; width: 100%;">
   <h2 class="text-center mt-2">合計金額
-    <form method="POST">
+    <!-- <form method="POST"> -->
         {{ form.non_field_errors }}
         <div class="inline-block field p-4 my-5" style="width:100%; border: solid 0px ;background-color: beige; ">
             <!-- {{ form.receipt_total.label_tag }} -->
             {{ form.receipt_total }}
             <span class="helptext">{{ form.receipt_total.help_text }}</span>
             {{ form.receipt_meimo.error }}
-            <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+            <!-- <button type="submit" class="submit btn btn-primary">保存/印刷</button> -->
         </div>
-        {% csrf_token %}
-    </form>
+        <!-- {% csrf_token %} -->
+    <!-- </form> -->
 
     </h2>
 </div>
@@ -69,17 +69,17 @@
       <strong>
           <dl class="row text-center" style="font-size: 1.25rem; ">
             <div style="width:100%">
-            <form method="POST">
+            <!-- <form method="POST"> -->
                 {{ form.non_field_errors }}
                 <div class="field p-4 my-5" style="width:100%; border: solid 0px ;background-color: beige; ">
                     {{ form.receipt_meimo.label_tag }}
                     {{ form.receipt_meimo }}
                     <span class="helptext">{{ form.receipt_meimo.help_text }}</span>
                     {{ form.receipt_meimo.error }}
-                    <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+                    <!-- <button type="submit" class="submit btn btn-primary">保存/印刷</button> -->
                 </div>
-                {% csrf_token %}
-            </form>
+                <!-- {% csrf_token %} -->
+            <!-- </form> -->
             </div>
             <!-- <p class="col-sm-12">{{ contract.purpus }}として</p> -->
             <!-- <p class="col-sm-12">上記正に領収いたしました。</p> -->
@@ -91,17 +91,17 @@
     <div class="row gx-5 ">
       <div class="col">
             <!-- <hr> -->
-            <form method="POST">
+            <!-- <form method="POST"> -->
                 {{ form.non_field_errors }}
                 <div class="field p-4 my-5" style="width:100%; border: solid 0px ;background-color: beige; ">
                     <!-- {{ form.receiptremarks1.label_tag }} -->
                     {{ form.receiptremarks1 }}
                     <span class="helptext">{{ form.receiptremarks1.help_text }}</span>
                     {{ form.receiptremarks1.error }}
-                    <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+                    <!-- <button type="submit" class="submit btn btn-primary">保存/印刷</button> -->
                 </div>
-                {% csrf_token %}
-            </form>
+                <!-- {% csrf_token %} -->
+            <!-- </form> -->
             <!-- <hr> -->
       </div>
 
@@ -144,8 +144,17 @@
 
     </div>
     </div>
-  </div>
 
+    <div class="text-center">
+        <button type="submit" class="submit btn btn-primary">保存/印刷</button>
+        {% csrf_token %}
+    </div>
+</form>
+
+
+
+
+</div>
 
 <div class="pagebreak"></div>
 
