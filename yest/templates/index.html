@@ -25,13 +25,17 @@
                   {% endif %}
 
                   <div class="container mt-5">
-                    <h3><a href="{% url 'contract_top' %}" style="color: white;">Docment</a></h3>
+                    <h3><a href="{% url 'contract_top' %}" style="color: white;">Docments</a></h3>
                   </div>
 
                   <div class="container mt-5">
-                    <h3><a href="{% url 'index' %}" style="color: white;">Sales</a></h3>
+                    <h3><a href="{% url 'sales_app:sales_list' %}" style="color: white;">Sales</a></h3>
                   </div>
                   
+                  <div class="container mt-5">
+                    <h3><a href="{% url 'sales_app:staff_list' %}" style="color: white;">Staff</a></h3>
+                  </div>
+
                   <div class="container mt-5">
                     <h3><a href="{% url 'signup' %}" style="color: white;">ユーザー登録</a></h3>
                   </div>

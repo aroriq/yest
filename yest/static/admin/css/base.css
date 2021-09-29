@@ -6,8 +6,10 @@
 
 /* VARIABLE DEFINITIONS */
 :root {
-  --primary: #79aec8;
-  --secondary: #417690;
+  --primary: #15173cbc;
+  /* --primary: #79aec8; */
+  /* --secondary: #417690; 15173c*/
+  --secondary: #15173c;
   --accent: #f5dd5d;
   --primary-fg: #fff;
 

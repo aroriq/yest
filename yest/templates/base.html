@@ -78,11 +78,15 @@
                 <a class="nav-link" aria-current="page" href="{% url 'index' %}">  Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Docments</a>
+                <a class="nav-link" href="{% url 'contract_top' %}">Docments</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="#">Sales</a>
+                <a class="nav-link " href="{% url 'sales_app:sales_list' %}">Sales</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'sales_app:staff_list' %}">Staff</a>
+              </li>
+
             </ul>
             <!--
             <form class="d-flex">

@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import customerList, DocsHiyomeisai
 from docs import views
-
+# app_name = 'docs_app'
 urlpatterns = [
     path("staff_top/", views.staff_top, name="staff_top"),
     path("staff_new/", views.staff_new, name="staff_new"),

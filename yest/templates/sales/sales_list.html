@@ -11,10 +11,12 @@
     <div class="container mt-5">
         <h2 class="text-center">売上データ一覧</h2>
     </div>
-    
+
+    {% comment %}    
     <div class="container mt-5">
         <p class="text-end">{% now "Y年m月d日" %}</p>
     </div>
+    {% endcomment %}    
     
     <div class="container mt-5">
         {% if object_list %}
@@ -23,7 +25,7 @@
             <tr class="text-start">
                 <th>売上ID</th>
                 <th>担当者</th>
-                <th>担当アカウント</th>
+                <!-- <th>アカウント</th> -->
                 <th>契約ID</th>
                 <th>申込日</th>
                 <th>契約者氏名</th>
@@ -49,8 +51,8 @@
             {% for o in object_list %}
             <tr>
                 <th class="text-center">{{ o.id }}</th>
-                <th>{{ o.responsiblestaff.first_name }} {{ o.responsiblestaff.last_name }}</th>
-                <th>{{ o.responsiblestaff }}</th>
+                <th><a href="{% url 'sales_app:staff_detail' user.id %}">{{ o.responsiblestaff.first_name }} {{ o.responsiblestaff.last_name }}</a></th>
+                <!-- <th>{{ o.responsiblestaff }}</th> -->
                 <th>{{ o.contract.title }}</th>
                 <th>{{ o.contract.offerdate }}</th>
                 <th>{{ o.contract.customer.lastname }} {{ o.contract.customer.firstname }}</th>
@@ -81,6 +83,10 @@
         <!-- <div class="container mt-5">
             <p class="text-end"><a href="{% url 'staff_new' %}">新規登録</a></p>
         </div> -->
+
+        <div class="container mt-5">
+            <p class="text-end"><a href="{% url 'sales_app:sales_summary' %}">売上データ統計</a></p>
+        </div>
     
     </div>
     

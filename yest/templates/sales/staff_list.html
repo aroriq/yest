@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-screen">
+
+    <div class="container mt-5">
+        <h2 class="text-center">スタッフ一覧</h2>
+    </div>
+    
+    {% comment %}    
+    <div class="container mt-5">
+        <p class="text-end">{% now "Y年m月d日" %}</p>
+    </div>
+    {% endcomment %}    
+   
+    <div class="container mt-5">
+        {% if object_list %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>氏名</th>
+                <th>ユーザー名</th>
+                <th>Mail</th>
+                <th>グループ</th>
+                <th>スタッフ</th>
+                <th>アクティブ</th>
+                <th>スーパーユーザー</th>
+                <th>最終ログイン</th>
+                <th>作成日</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in object_list %}
+            <tr>
+                <th>{{ user.id }}</th>
+                <th><a href="{% url 'sales_app:staff_detail' user.id %}">{{ user.first_name }} {{ user.last_name }}</a></th>
+                <th>{{ user.username }}</th>
+                <th>{{ user.email }}</th>
+                <th>{{ user.groups.all.0 }}</th>
+                <th>{{ user.is_staff }}</th>
+                <th>{{ user.is_active }}</th>
+                <th>{{ user.is_superuser }}</th>
+                <th>{{ user.last_login }}</th>
+                <th>{{ user.date_joined }}</th>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>スタッフはまだ登録されていません。</p>
+        {% endif %}
+
+        {% comment %}    
+        <div class="container mt-5">
+            <p class="text-end"><a href="{% url 'staff_new' %}">新規登録</a></p>
+        </div>
+        {% endcomment %}    
+    
+    </div>
+    
+</div>
+
+{% endblock content %}
