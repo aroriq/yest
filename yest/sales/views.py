@@ -14,6 +14,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import datetime
 
 from .models import SalesModel
 from . import graph
@@ -51,13 +52,62 @@ def create_svg(request,user_id):
     df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
     df["receivedate_day"]=pd.to_datetime(df["receivedate"])
     df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y-%m")
-    # df['receivedate_month'] = pd.to_datetime(df['receivedate']).dt.to_period('M')
+    # df['receivedate_month'] = pd.to_datetime(df['receivedate_day']).dt.to_period('M')
     df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
 
     df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
     
     graph.df2plt(df_month)
+    svg = graph.plt2svg()  #SVG化
+    plt.cla()  # グラフをリセット
+    response = HttpResponse(svg, content_type='image/svg+xml')
+    return response
+
+def create_bar_svg(request,user_id):
+    alldata = SalesModel.objects.all().values()
+    df = pd.DataFrame(alldata)
+    df = df[df["responsiblestaff_id"]==user_id]
+
+    df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
+    df["receivedate_day"]=pd.to_datetime(df["receivedate"])
+    df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y-%m")
+    # df['receivedate_month'] = pd.to_datetime(df['receivedate']).dt.to_period('M')
+    # df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
+
+    # df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]
+    df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
+    # graph.df2plt(df_month)
+
+    d_today = datetime.date.today()
+    monthlast=pd.Series(
+        pd.date_range(end=d_today, periods=15, freq='M')
+    )
+    year_month=monthlast.dt.strftime('%Y-%m')
+    df1=pd.DataFrame({"Date":year_month})
+
+    df2x=pd.Series(df_month.index)
+    df2y=pd.Series(df_month['total'])
+    df2=pd.DataFrame({"Date":df2x, 'Sales':df2y})
+    # df2=pd.DataFrame({"Date":['2021-06','2021-09'], "Sales":[111111,222222]})
+
+    df=df1.merge(df2, how='left', on='Date')
+    df=df.fillna(0)
+    df['Sales']=df['Sales'].astype('int')
+
+    x=df['Date']
+    y=df["Sales"]
+
+    # index = df.index
+    # index = df['Date']
+    # sales = df["Sales"]
+    # receive = df["Receive"]
+
+	# df = pd.DataFrame({'売上': sales,'回収': receive}, index=index)
+    # plt.bar(index, {'売上': sales,'回収': receive}, color='#15173c')
+
+    graph.df_to_plt(x, y, xlabel='Date', ylabel='total', title='Monthly Sales')
+
     svg = graph.plt2svg()  #SVG化
     plt.cla()  # グラフをリセット
     response = HttpResponse(svg, content_type='image/svg+xml')
@@ -72,7 +122,7 @@ def staff_detail(request,user_id):
     
     df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
     df["receivedate_day"]=pd.to_datetime(df["receivedate"])
-    df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y年%m月")
+    df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y-%m")
     df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
 
     df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]

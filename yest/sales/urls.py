@@ -12,6 +12,7 @@ urlpatterns = [
     path('staff_detail/<int:user_id>/', views.staff_detail, name='staff_detail'),
 
     path('create_svg/<int:user_id>/', views.create_svg, name='create_svg'),
+    path('create_bar_svg/<int:user_id>/', views.create_bar_svg, name='create_bar_svg'),
  
     # path('plot/', views.get_svg, name='bar'),
     # path('stats/total', views.barchart, name="img_stats_total"),

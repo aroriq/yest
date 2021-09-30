@@ -155,7 +155,8 @@ class ContractModel(models.Model):
     customer = models.ForeignKey(CustomerModel, verbose_name='契約者', on_delete=models.PROTECT)
     property = models.ForeignKey(PropertyModel, verbose_name='物件', on_delete=models.PROTECT)
     corp = models.ForeignKey(CorpModel, verbose_name='担当店舗', on_delete=models.PROTECT, blank=True, null=True, )
-    staff = models.ForeignKey(StaffModel, verbose_name='担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
+    responsiblestaff = models.ForeignKey('auth.User', verbose_name='責任担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
+    # staff = models.ForeignKey(StaffModel, verbose_name='担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
     kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
     trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
     guarant = models.ForeignKey(GuarantModel, verbose_name='保証会社', on_delete=models.PROTECT)
@@ -282,7 +283,7 @@ class ContractModel(models.Model):
     azukari_remarks2 = models.TextField(verbose_name='預り証　備考', default='', blank=True, null=True,  )
     # sum = models.PositiveSmallIntegerField(verbose_name='合計金額(税込)', editable=False, blank=True, null=True, default=None)
     def __str__(self):
-        return "%s (%s)" % (self.title, self.offerdate)
+        return "%s (%s) (%s)" % (self.title, self.offerdate, self.responsiblestaff.first_name)
     
     def price_total(self):
         return self.shikikin + self.reikin\

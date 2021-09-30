@@ -5,7 +5,7 @@ from django.http import HttpResponse
 import pandas as pd
 
 def df2plt(df):
-	
+
     index = df.index
     sales = df["total"]
     receive = df["total"]
@@ -13,11 +13,32 @@ def df2plt(df):
 
     # plt.bar(index, {'売上': sales,'回収': receive}, color='#15173c')
     plt.bar(index, sales, color='#15173c')
-    plt.title("Monthly Sales", color='#15173c')
+    plt.title("Monthly Salesxxxx", color='#15173c')
     plt.xlabel("Month")
     plt.ylabel("total")
 
+def df_to_plt(x,y,xlabel,ylabel,title):
+	plt.bar(x, y, color='#15173c')
+	plt.title(title, color='#15173c')
+	plt.xlabel(xlabel)
+	plt.ylabel(ylabel)
+	plt.xticks(rotation=45) 
 
+
+def df2plt_month(df):
+	
+	today = pd.to_datetime("today").date()
+	index=pd.date_range(end=today, periods=15,  freq='M') 
+	
+	index = df.index
+	sales = df["total"]
+	receive = df["total"]
+	# df = pd.DataFrame({'売上': sales,'回収': receive}, index=index)
+    # plt.bar(index, {'売上': sales,'回収': receive}, color='#15173c')
+	plt.bar(index, sales, color='#15173c')
+	plt.title("Monthly Sales", color='#15173c')
+	plt.xlabel("Month")
+	plt.ylabel("total")
 
 def plt2svg():
     buf = BytesIO()
