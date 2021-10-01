@@ -4,6 +4,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
 
 # Create your models here.
+from django.contrib.auth.models import User
+
+def get_first_name(self):
+    return "%s %s" % (self.first_name, self.last_name)
+
+User.add_to_class("__str__", get_first_name)
+
 
 class CustomerModel(models.Model):
     class Meta:
@@ -157,8 +164,6 @@ class ContractModel(models.Model):
     corp = models.ForeignKey(CorpModel, verbose_name='担当店舗', on_delete=models.PROTECT, blank=True, null=True, )
     responsiblestaff = models.ForeignKey('auth.User', verbose_name='責任担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
     # staff = models.ForeignKey(StaffModel, verbose_name='担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
-    kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
-    trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
     guarant = models.ForeignKey(GuarantModel, verbose_name='保証会社', on_delete=models.PROTECT)
     gas = models.CharField(verbose_name='ガス会社', default='', max_length=50, blank=True, null=True, )
     offerdate = models.DateField(verbose_name='申込日', default=None, blank=True )
@@ -267,10 +272,12 @@ class ContractModel(models.Model):
     key1 = models.PositiveSmallIntegerField(verbose_name='鍵本数(部屋)', default=1, blank=True, null=True, )
     key2 = models.PositiveSmallIntegerField(verbose_name='鍵本数(車庫)', default=0, blank=True, null=True, )
     key3 = models.PositiveSmallIntegerField(verbose_name='鍵本数(トランクルーム)', default=0, blank=True, null=True, )
-    transdate = models.TextField(verbose_name='引越連絡希望日', default='第1希望 月　日　:  ～　: \n\n第2希望 月　日　:  ～　: \n\n第3希望 月　日　:  ～　: ', blank=True, null=True,  )
-    transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='', blank=True, null=True,  )
+    kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
     kanridoc = models.TextField(verbose_name='管理会社宛FAX　本文', blank=True, null=True,  
         default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\nいつもお世話になっております。\n\n表記物件の入居申込書を送付致します。\n\n（送信枚数　本紙を含め　　枚）\n\n【備考】\n\n', )
+    trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
+    transdate = models.TextField(verbose_name='引越連絡希望日', default='第1希望 月　日　:  ～　: \n\n第2希望 月　日　:  ～　: \n\n第3希望 月　日　:  ～　: ', blank=True, null=True,  )
+    transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='', blank=True, null=True,  )
     receipt_date = models.DateField(verbose_name='領収書　発行日', default=None, blank=True, null=True,  )
     receipt_atena = models.CharField(verbose_name='領収書　宛名', default='', max_length=50, blank=True, null=True, )  
     receipt_meimo = models.CharField(verbose_name='領収書　但し書き', default='', max_length=50, blank=True, null=True, )  

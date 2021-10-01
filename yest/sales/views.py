@@ -16,8 +16,8 @@ import numpy as np
 import pandas as pd
 import datetime
 
-from .models import SalesModel
-from . import graph
+from sales.models import SalesModel
+from sales import graph
 
 
 class sales_list(LoginRequiredMixin, generic.ListView): # generic.ListViewを継承
@@ -44,25 +44,25 @@ class staff_list(LoginRequiredMixin, generic.ListView):
 #     response = HttpResponse(svg, content_type='image/svg+xml')
 #     return response
 
-def create_svg(request,user_id):
-    alldata = SalesModel.objects.all().values()
-    df = pd.DataFrame(alldata)
-    df = df[df["responsiblestaff_id"]==user_id]
+# def create_svg(request,user_id):
+#     alldata = SalesModel.objects.all().values()
+#     df = pd.DataFrame(alldata)
+#     df = df[df["responsiblestaff_id"]==user_id]
 
-    df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
-    df["receivedate_day"]=pd.to_datetime(df["receivedate"])
-    df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y-%m")
-    # df['receivedate_month'] = pd.to_datetime(df['receivedate_day']).dt.to_period('M')
-    df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
+#     df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
+#     df["receivedate_day"]=pd.to_datetime(df["receivedate"])
+#     df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y-%m")
+#     # df['receivedate_month'] = pd.to_datetime(df['receivedate_day']).dt.to_period('M')
+#     df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
 
-    df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]
-    df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
+#     df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]
+#     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
     
-    graph.df2plt(df_month)
-    svg = graph.plt2svg()  #SVG化
-    plt.cla()  # グラフをリセット
-    response = HttpResponse(svg, content_type='image/svg+xml')
-    return response
+#     graph.df2plt(df_month)
+#     svg = graph.plt2svg()  #SVG化
+#     plt.cla()  # グラフをリセット
+#     response = HttpResponse(svg, content_type='image/svg+xml')
+#     return response
 
 def create_bar_svg(request,user_id):
     alldata = SalesModel.objects.all().values()
@@ -72,7 +72,6 @@ def create_bar_svg(request,user_id):
     df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
     df["receivedate_day"]=pd.to_datetime(df["receivedate"])
     df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y-%m")
-    # df['receivedate_month'] = pd.to_datetime(df['receivedate']).dt.to_period('M')
     # df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
 
     # df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]
@@ -80,28 +79,20 @@ def create_bar_svg(request,user_id):
     # graph.df2plt(df_month)
 
     d_today = datetime.date.today()
-    monthlast=pd.Series(
-        pd.date_range(end=d_today, periods=15, freq='M')
+    monthstart=pd.Series(
+        pd.date_range(end=d_today, periods=15, freq='MS')
     )
-    year_month=monthlast.dt.strftime('%Y-%m')
-    df1=pd.DataFrame({"Date":year_month})
+    year_month=monthstart.dt.strftime('%Y-%m')
+    df1=pd.DataFrame({"receivedate_month":year_month})
 
-    df2x=pd.Series(df_month.index)
-    df2y=pd.Series(df_month['total'])
-    df2=pd.DataFrame({"Date":df2x, 'Sales':df2y})
-    # df2=pd.DataFrame({"Date":['2021-06','2021-09'], "Sales":[111111,222222]})
+    df2=pd.DataFrame(df_month['total']) 
 
-    df=df1.merge(df2, how='left', on='Date')
+    df=df1.merge(df2, how='left',on='receivedate_month')
     df=df.fillna(0)
-    df['Sales']=df['Sales'].astype('int')
+    df['total']=df['total'].astype('int')
 
-    x=df['Date']
-    y=df["Sales"]
-
-    # index = df.index
-    # index = df['Date']
-    # sales = df["Sales"]
-    # receive = df["Receive"]
+    x=df['receivedate_month']
+    y=df["total"]
 
 	# df = pd.DataFrame({'売上': sales,'回収': receive}, index=index)
     # plt.bar(index, {'売上': sales,'回収': receive}, color='#15173c')
@@ -134,7 +125,7 @@ def staff_detail(request,user_id):
     mydict = {
         "df": df.to_html(classes="table"),
         "df_year": df_year.to_html(header=False, classes="table",index_names=False ),
-        "df_month": df_month.to_html(header=False, classes="table",index_names=False ),
+        "df_month": df_month.to_html(header=True, classes="table",index_names=False ),
         # "describe":df.describe().to_html,        
         # "df_month_chart": df99.plot
     }

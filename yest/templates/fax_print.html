@@ -18,7 +18,7 @@
     <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p> -->
   </div>
   
-  <div class="container p-0 t-2">
+  <div class="container p-0 mt-0">
     <div class="row">
       <div class="col "> 
         <h3>送信先</h3>
@@ -72,9 +72,9 @@
       </div>
     </div>
     
-    <div class="container mt-1" style="border-bottom: solid 1px; width:95%; font-size:2.5rem">
+    <div class="container mt-0 py-2" style="border-bottom: solid 1px; width:95%; font-size:2.5rem">
       <strong>
-      <p class="col-sm-12">送信用件　{{ contract.property.propertyname }} {{ contract.property.room }} 申込書</p>
+      <p class="col-sm-12 text-center">送信用件　{{ contract.property.propertyname }} {{ contract.property.room }} 申込書</p>
     </strong>
     </div>
     
@@ -101,7 +101,7 @@
       <!-- <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ contract.customer.lastname }} {{ contract.customer.firstname }} 様</p> -->
     </div>
     
-    <div class="container p-0 t-2">
+    <div class="container p-0 mt-0">
       <div class="row">
         <div class="col "> 
           <h3>送信先</h3>
@@ -155,7 +155,7 @@
         </div>
       </div>
       
-      <div class="container mt-1" style="border-bottom: solid 1px; width:95%; font-size:2.5rem">
+      <div class="container mt-0 py-2" style="border-bottom: solid 1px; width:95%; font-size:2.5rem">
         <strong>
         <p class="col-sm-12 text-center">引　越　見　積　依　頼　書</p>
       </strong>
@@ -182,13 +182,17 @@
     
       <br>
       <h3 class="mt-0">備考</h3>
-      <div class="container p-2 mt-1" style="border: solid 2px;">
+      <div class="container p-2 my-3" style="border: solid 2px;">
             <strong>
                 <dl class="row px-3" style="font-size: 1.5rem;">
                   <p class="col-sm-12 mt-3">{{ contract.transremarks| linebreaksbr }}</p>
                 </dl>
              </strong>
       </div>
+
+      <br>
+      <br>
+      <br>
     </div>
 </main>
 <!-- </body> -->

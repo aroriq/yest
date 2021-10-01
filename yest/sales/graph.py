@@ -13,7 +13,7 @@ def df2plt(df):
 
     # plt.bar(index, {'売上': sales,'回収': receive}, color='#15173c')
     plt.bar(index, sales, color='#15173c')
-    plt.title("Monthly Salesxxxx", color='#15173c')
+    plt.title("Monthly Sales (15 months)", color='#15173c')
     plt.xlabel("Month")
     plt.ylabel("total")
 
@@ -22,7 +22,7 @@ def df_to_plt(x,y,xlabel,ylabel,title):
 	plt.title(title, color='#15173c')
 	plt.xlabel(xlabel)
 	plt.ylabel(ylabel)
-	plt.xticks(rotation=45) 
+	plt.xticks(rotation=90) 
 
 
 def df2plt_month(df):
