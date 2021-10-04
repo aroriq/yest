@@ -11,8 +11,8 @@ class SalesModel(Model):
         verbose_name_plural = '11_売上管理'
         
     # responsiblestaff = ForeignKey(get_user_model(), verbose_name='担当者名', on_delete=CASCADE)
-    responsiblestaff = ForeignKey('auth.User', verbose_name='担当者名', on_delete=CASCADE)
-    contract = ForeignKey(ContractModel, verbose_name='契約データ', on_delete=PROTECT)
+    responsiblestaff = ForeignKey('auth.User', verbose_name='担当者名', on_delete=PROTECT)
+    contract = ForeignKey(ContractModel, verbose_name='契約データ', on_delete=PROTECT, default=None, blank=True, null=True, )
     brokerage = IntegerField(verbose_name='仲介手数料', default=0, blank=True, null=True, )
     adfee = IntegerField(verbose_name='広告料', default=0, blank=True, null=True, )
     hangingfee = IntegerField(verbose_name='事務手数料', default=0, blank=True, null=True, )
@@ -28,6 +28,7 @@ class SalesModel(Model):
     receivedate = DateField(verbose_name='回収日', default=None, blank=True, null=True, )
     created_dt = DateTimeField(verbose_name='登録日時', auto_now_add=True, blank=True, null=True)
     updated_dt = DateTimeField(verbose_name='更新日時', auto_now=True, null=True)
+    corp = IntegerField(verbose_name='支店', default=None, blank=True, null=True, )
 
     
     def __str__(self):
@@ -43,3 +44,10 @@ class SalesModel(Model):
              + self.hangingfee + self.etc1fee\
              + self.etc2fee)/1.1)
 
+    # def corp(self):
+    #     return self.contract.corp
+
+# def get_corp(self):
+#     return self.contract
+
+# SalesModel.add_to_class(get_corp)

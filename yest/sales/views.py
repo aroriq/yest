@@ -15,7 +15,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import datetime
+import re
 
+from docs.models import CorpModel, ContractModel
 from sales.models import SalesModel
 from sales import graph
 
@@ -127,7 +129,8 @@ def staff_detail(request,user_id):
         "df_year": df_year.to_html(header=False, classes="table",index_names=False ),
         "df_month": df_month.to_html(header=True, classes="table",index_names=False ),
         # "describe":df.describe().to_html,        
-        # "df_month_chart": df99.plot
+        # "df_month_chart": df99.plot,
+        "user_id":user_id
     }
     return render(request,  'sales/staff_detail.html', context=mydict)
 
@@ -152,34 +155,64 @@ def staff_detail(request,user_id):
 
 
 def sales_summary(request):
-    alldata = SalesModel.objects.all().values()
-    df = pd.DataFrame(alldata)
+    # alldata = SalesModel.objects.all().values()
+    df = pd.DataFrame(SalesModel.objects.all().values())
     
     df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
     df["receivedate_day"]=pd.to_datetime(df["receivedate"])
     df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y年%m月")
     df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
     
-    # df_month = df.groupby("receivedate_month").sum()["brokerage"]
+
+    df['responsiblestaff_id']=pd.to_numeric(df['responsiblestaff_id'], downcast='integer') 
+
+    userdf = pd.DataFrame(User.objects.all().values())
+    userdf['name']=userdf['first_name'] + userdf['last_name']
+    userdf['responsiblestaff_id']=userdf['id']
+    userdf = userdf[['responsiblestaff_id', 'name']] #, 'email', 'is_staff', 'is_active']]
+    # pd.to_numeric(userdf['responsiblestaff_id'])
+    
+    df=pd.merge(df,userdf)
+
+    corpdf = CorpModel.objects.all()
+    corpdf = pd.DataFrame({'corp_id':range(len(corpdf)),'corp':corpdf})
+    corpdf['corp_id']=corpdf['corp_id']+1
+    corpdf=corpdf.replace(to_replace='株式会社イエストホーム', value='', regex=True)  
+    # contdf = ContractModel.objects.all().values()
+    contdf = pd.DataFrame(ContractModel.objects.all().values())
+    contdf = contdf[['id', 'completed','corp_id', 'item8bill']]#,'responsiblestaff_id'
+    contdf['contract_id']=contdf['id']
+
+    contcorpdf = pd.merge(contdf,corpdf,on='corp_id')
+    
+    df= pd.merge(df,contcorpdf,on='contract_id',sort=True)
+    df=df.sort_values(by='id_x')
+
+        # df_month = df.groupby("receivedate_month").sum()["brokerage"]
     df_year = pd.DataFrame(df.groupby("receivedate_year").sum()["total"])
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
-    df_staff = pd.DataFrame(df.groupby("responsiblestaff_id").sum()["total"])
-    df_yearstaff = pd.DataFrame(df.groupby(["receivedate_year", "responsiblestaff_id"]).sum()["total"])
-    df_monthstaff = pd.DataFrame(df.groupby(["receivedate_month", "responsiblestaff_id"]).sum()["total"])
-    df_staffyear = pd.DataFrame(df.groupby(["responsiblestaff_id", "receivedate_year" ]).sum()["total"])
-    df_staffmonth = pd.DataFrame(df.groupby(["responsiblestaff_id", "receivedate_month"]).sum()["total"])
-   
+    df_staff = pd.DataFrame(df.groupby("name").sum()["total"])
+    df_corp = pd.DataFrame(df.groupby("corp_id").sum()["total"])
+    df_yearstaff = pd.DataFrame(df.groupby(["receivedate_year", "name"]).sum()["total"])
+    df_monthstaff = pd.DataFrame(df.groupby(["receivedate_month", "name"]).sum()["total"])
+    df_staffyear = pd.DataFrame(df.groupby(["name", "receivedate_year" ]).sum()["total"])
+    df_staffmonth = pd.DataFrame(df.groupby(["name", "receivedate_month"]).sum()["total"])
+
+    df2=df[['name', 'contract_id','total', 'receivedate_day']]
+
     mydict = {
         "df": df.to_html(classes="table"),
         "df_year": df_year.to_html(header=False, classes="table",index_names=False ),
         "df_month": df_month.to_html(header=False, classes="table",index_names=False ),
         "df_staff": df_staff.to_html(header=False, classes="table",index_names=False  ),
+        # "df_corp": df_corp.to_html(header=False, classes="table",index_names=False  ),
         "df_yearstaff": df_yearstaff.to_html(header=False, classes="table" ,index_names=False ),
         "df_monthstaff": df_monthstaff.to_html(header=False, classes="table" ,index_names=False ),
         "df_staffyear": df_staffyear.to_html(header=False, classes="table" ,index_names=False ),
         "df_staffmonth": df_staffmonth.to_html(header=False, classes="table" ,index_names=False ),
         # "describe":df.describe().to_html,        
         # "df_month_chart": df99.plot
+        "df2": df2.to_html(classes="table"),
     }
     return render(request, 'sales/sales_summary.html', context=mydict)
 

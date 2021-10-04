@@ -64,6 +64,8 @@ class CorpModel(models.Model):
     class Meta:
         verbose_name_plural = '51_店舗データ'
     
+    # corpname = models.CharField(verbose_name='社名', max_length=50, default='株式会社イエストホーム')
+    # branch = models.CharField(verbose_name='店舗名', max_length=50, default='')
     name = models.CharField(verbose_name='店舗名', max_length=50, default='')
     postcode = models.CharField(verbose_name='郵便番号', default='', max_length=10, blank=True, null=True)
     address = models.CharField(verbose_name='住所', default='', blank=True, null=True, max_length=100)
@@ -193,7 +195,7 @@ class ContractModel(models.Model):
     item2 = models.CharField(verbose_name='項目2', default='火災保険料', max_length=50, blank=True, null=True, )
     kasai = models.SmallIntegerField(verbose_name='項目2金額', default=0, blank=True, null=True, )
     item3 = models.CharField(verbose_name='項目3', default='仲介手数料', max_length=50, blank=True, null=True, )
-    chukai = models.SmallIntegerField(verbose_name='項目3金額', default=0, blank=True, null=True, )
+    brokerage = models.SmallIntegerField(verbose_name='項目3金額', default=0, blank=True, null=True, )
     item4 = models.CharField(verbose_name='項目4', default='清掃料', max_length=50, blank=True, null=True, )
     etc3 = models.SmallIntegerField(verbose_name='項目4金額', default=0, blank=True, null=True, )
     item5 = models.CharField(verbose_name='項目5', default='初回保証委託料', max_length=50, blank=True, null=True, )
@@ -216,7 +218,7 @@ class ContractModel(models.Model):
     etcitem2bill = models.SmallIntegerField(verbose_name='上記外項目2金額', default=0, blank=True, null=True, )
     etcitem3 = models.CharField(verbose_name='上記外項目3', default='シリンダー交換料(退去時)', max_length=50, blank=True, null=True, )
     etcitem3bill = models.SmallIntegerField(verbose_name='上記外項目3金額', default=0, blank=True, null=True, )
-    adbill = models.SmallIntegerField(verbose_name='広告料金額', default=0, blank=True, null=True, )
+    adfee = models.SmallIntegerField(verbose_name='広告料金額', default=0, blank=True, null=True, )
     doc1 = models.CharField(verbose_name='必要書類1', default='入居者全員住民票(本籍省略)', max_length=50, blank=True, null=True, )
     doc1a = models.BooleanField(verbose_name='必要書類1_契約者', default=False, blank=True, null=True, )
     doc1b = models.BooleanField(verbose_name='必要書類1_同居人', default=False, blank=True, null=True, )
@@ -274,10 +276,10 @@ class ContractModel(models.Model):
     key3 = models.PositiveSmallIntegerField(verbose_name='鍵本数(トランクルーム)', default=0, blank=True, null=True, )
     kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
     kanridoc = models.TextField(verbose_name='管理会社宛FAX　本文', blank=True, null=True,  
-        default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\nいつもお世話になっております。\n\n表記物件の入居申込書を送付致します。\n\n（送信枚数　本紙を含め　　枚）\n\n【備考】\n\n', )
+        default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\n', )
     trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
     transdate = models.TextField(verbose_name='引越連絡希望日', default='第1希望 月　日　:  ～　: \n\n第2希望 月　日　:  ～　: \n\n第3希望 月　日　:  ～　: ', blank=True, null=True,  )
-    transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='', blank=True, null=True,  )
+    transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='拝啓　時下ますますご清栄のこととお慶び申し上げます。', blank=True, null=True,  )
     receipt_date = models.DateField(verbose_name='領収書　発行日', default=None, blank=True, null=True,  )
     receipt_atena = models.CharField(verbose_name='領収書　宛名', default='', max_length=50, blank=True, null=True, )  
     receipt_meimo = models.CharField(verbose_name='領収書　但し書き', default='', max_length=50, blank=True, null=True, )  

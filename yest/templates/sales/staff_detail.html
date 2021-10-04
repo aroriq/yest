@@ -19,6 +19,21 @@
 
 </div>
 
+<div class="container mt-5">
+    <h2 class="text-center">売上データ一覧</h2>
+
+    <div class="table; line-height: 200%;">
+        {{df2|safe}}
+    </div>
+
+    {% comment %}
+
+    <img src="{% url 'sales_app:bar' %}" width=600 height=600>
+
+    {% endcomment %}
+
+</div>
+
 <div class="container mt-5" style="width: 80%;line-height: 200%;">
     <h2 class="text-center">月次売上</h2>
 
@@ -27,7 +42,7 @@
     </div>
 
     <div class="text-center">
-        <img src="{% url 'sales_app:create_bar_svg' user.id %}">
+        <img src="{% url 'sales_app:create_bar_svg' user_id %}">
     </div>
     
     
