@@ -177,7 +177,7 @@ def sales_summary(request):
     corpdf = CorpModel.objects.all()
     corpdf = pd.DataFrame({'corp_id':range(len(corpdf)),'corp':corpdf})
     corpdf['corp_id']=corpdf['corp_id']+1
-    corpdf=corpdf.replace(to_replace='株式会社イエストホーム', value='', regex=True)  
+    corpdf=corpdf['corp'].replace(to_replace='株式会社イエストホーム', value='', regex=True)  
     # contdf = ContractModel.objects.all().values()
     contdf = pd.DataFrame(ContractModel.objects.all().values())
     contdf = contdf[['id', 'completed','corp_id', 'item8bill']]#,'responsiblestaff_id'
