@@ -10,9 +10,11 @@
 
 <div class="header-end" style="height: 150px;">---</div>
 
+{% comment %}
 <div class="container p-0 mt-0">
-    <p class="lead text-end">({{ contract.title }})</p>
+    <p class="lead text-end">{{ contract.title }}</p>
 </div>
+{% endcomment %}
 
 <div class="container p-0 mt-0">
     <h1 class="text-center">契約費明細書</h1>
@@ -128,10 +130,10 @@
             <td><div class='text-end'>{{ contract.kasai|intcomma }}円　　　　　　　</div></td>
           </tr>
           {% endif %}
-          {% if contract.chukai %}
+          {% if contract.brokerage %}
           <tr>
             <td colspan="2">　{{ contract.item3 }}</td>
-            <td><div class='text-end'>{{ contract.chukai|intcomma }}円　　　　　　　</div></td>
+            <td><div class='text-end'>{{ contract.brokerage|intcomma }}円　　　　　　　</div></td>
           </tr>
           {% endif %}
           {% if contract.etc3 %}
@@ -542,7 +544,7 @@
           </tr>
             <tr>
               <th scope="row">担当</th>
-              <td>{{ contract.staff.lastname }}</td>
+              <td>{{ contract.responsiblestaff }}</td>
             </tr>
           </tbody>
         </table>

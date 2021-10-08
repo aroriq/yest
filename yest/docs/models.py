@@ -271,13 +271,18 @@ class ContractModel(models.Model):
     reportdoc = models.TextField(verbose_name='契約関係書類報告書　添付書類', blank=True, null=True, \
         default='・入居申込書\n・契約書コピー（別紙特約、覚書等）\n・重説控え（原本）\n・保証会社申込書（身分証明書等含）\n・保証会社承認通知書\n・保証会社契約書控え（コピー）\n・鍵受領書\n・')
     reportremarks = models.TextField(verbose_name='契約関係書類報告書　備考', blank=True, null=True, default='')
-    key1 = models.PositiveSmallIntegerField(verbose_name='鍵本数(部屋)', default=1, blank=True, null=True, )
-    key2 = models.PositiveSmallIntegerField(verbose_name='鍵本数(車庫)', default=0, blank=True, null=True, )
-    key3 = models.PositiveSmallIntegerField(verbose_name='鍵本数(トランクルーム)', default=0, blank=True, null=True, )
+    key1name = models.CharField(verbose_name='鍵A(番号)', default='部屋', max_length=50, blank=True, null=True, )
+    key1 = models.PositiveSmallIntegerField(verbose_name='鍵A本数', default=1, blank=True, null=True, )
+    key2name = models.CharField(verbose_name='鍵B(番号)', default='車庫', max_length=50, blank=True, null=True, )
+    key2 = models.PositiveSmallIntegerField(verbose_name='鍵B本数', default=0, blank=True, null=True, )
+    key3name = models.CharField(verbose_name='鍵C(番号)', default='トランクルーム', max_length=50, blank=True, null=True, )
+    key3 = models.PositiveSmallIntegerField(verbose_name='鍵C本数', default=0, blank=True, null=True, )
     kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
+    kanristaff = models.CharField(verbose_name='管理会社担当者名', default='ご担当者様', max_length=50, blank=True, null=True, )
     kanridoc = models.TextField(verbose_name='管理会社宛FAX　本文', blank=True, null=True,  
         default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\n', )
     trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
+    transstaff = models.CharField(verbose_name='引越業者担当者名', default='ご担当者様', max_length=50, blank=True, null=True, )
     transdate = models.TextField(verbose_name='引越連絡希望日', default='第1希望 月　日　:  ～　: \n\n第2希望 月　日　:  ～　: \n\n第3希望 月　日　:  ～　: ', blank=True, null=True,  )
     transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='拝啓　時下ますますご清栄のこととお慶び申し上げます。', blank=True, null=True,  )
     receipt_date = models.DateField(verbose_name='領収書　発行日', default=None, blank=True, null=True,  )
@@ -303,7 +308,7 @@ class ContractModel(models.Model):
              + self.park1 + self.park2\
              + self.hosyo\
              + self.kasai\
-             + self.chukai\
+             + self.brokerage\
              + self.etc3\
              + self.hosyoitaku\
              + self.ff\

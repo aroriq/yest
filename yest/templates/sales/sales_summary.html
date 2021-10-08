@@ -14,7 +14,7 @@
 </div>
 
 <div class="container mt-5">
-    <h2 class="text-center">売上データ一覧</h2>
+    <h2 class="text-center">売上データ サマリー</h2>
 
     <div class="table; line-height: 200%;">
         {{df2|safe}}
@@ -48,6 +48,15 @@
 </div>
 
 <hr>
+
+<div class="container mt-5"  style="width: 15%;line-height: 200%;">
+    <h2 class="text-center">店舗別売上</h2>
+
+    <div class="table">
+        {{df_corp|safe}}
+    </div>
+
+</div>
 
 <div class="container mt-5"  style="width: 15%;line-height: 200%;">
     <h2 class="text-center">担当者別売上</h2>

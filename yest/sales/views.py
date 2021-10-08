@@ -10,6 +10,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 
 import matplotlib
+from pandas.core.reshape.merge import merge
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
@@ -154,15 +155,20 @@ def staff_detail(request,user_id):
     #     return super().get(request, *args, **kwargs)
 
 
+def get_short_name(self):
+    return "%s" % (self.name.replace('株式会社イエストホーム', ''))
+
+def get_normal_name(self):
+    return "%s" % (self.name)
+
 def sales_summary(request):
     # alldata = SalesModel.objects.all().values()
     df = pd.DataFrame(SalesModel.objects.all().values())
-    
+
     df["total"]=df["brokerage"]+df["adfee"]+df["hangingfee"]+df["etc1fee"]+df["etc2fee"]
     df["receivedate_day"]=pd.to_datetime(df["receivedate"])
     df["receivedate_month"]=df["receivedate_day"].dt.strftime("%Y年%m月")
     df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
-    
 
     df['responsiblestaff_id']=pd.to_numeric(df['responsiblestaff_id'], downcast='integer') 
 
@@ -171,28 +177,48 @@ def sales_summary(request):
     userdf['responsiblestaff_id']=userdf['id']
     userdf = userdf[['responsiblestaff_id', 'name']] #, 'email', 'is_staff', 'is_active']]
     # pd.to_numeric(userdf['responsiblestaff_id'])
-    
+
     df=pd.merge(df,userdf)
 
+    CorpModel.add_to_class("__str__", get_short_name)
     corpdf = CorpModel.objects.all()
+    print('pre corpdf')
+    print(corpdf)
     corpdf = pd.DataFrame({'corp_id':range(len(corpdf)),'corp':corpdf})
+    # corpdf = pd.DataFrame(corpdf)
+    # corpdf['corp_id']=corpdf['id']
+
+    print('corpdf')
+    print(corpdf)
     corpdf['corp_id']=corpdf['corp_id']+1
-    corpdf=corpdf['corp'].replace(to_replace='株式会社イエストホーム', value='', regex=True)  
+    #corpdf=corpdf['corp'].replace(to_replace='株式会社イエストホーム', value='', regex=True)
     # contdf = ContractModel.objects.all().values()
     contdf = pd.DataFrame(ContractModel.objects.all().values())
     contdf = contdf[['id', 'completed','corp_id', 'item8bill']]#,'responsiblestaff_id'
+    print('contdf')
+    print(contdf)
     contdf['contract_id']=contdf['id']
 
     contcorpdf = pd.merge(contdf,corpdf,on='corp_id')
-    
+    print('contcorpdf')
+    print(contcorpdf)
+
     df= pd.merge(df,contcorpdf,on='contract_id',sort=True)
     df=df.sort_values(by='id_x')
+    print('df')
+    print(df)
 
         # df_month = df.groupby("receivedate_month").sum()["brokerage"]
     df_year = pd.DataFrame(df.groupby("receivedate_year").sum()["total"])
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
     df_staff = pd.DataFrame(df.groupby("name").sum()["total"])
     df_corp = pd.DataFrame(df.groupby("corp_id").sum()["total"])
+    print('df_corp')
+    print(df_corp)
+    
+    df_corp2=merge(corpdf, df_corp,on='corp_id')
+    df_corp2=df_corp2[['corp', 'total']]
+
     df_yearstaff = pd.DataFrame(df.groupby(["receivedate_year", "name"]).sum()["total"])
     df_monthstaff = pd.DataFrame(df.groupby(["receivedate_month", "name"]).sum()["total"])
     df_staffyear = pd.DataFrame(df.groupby(["name", "receivedate_year" ]).sum()["total"])
@@ -205,7 +231,7 @@ def sales_summary(request):
         "df_year": df_year.to_html(header=False, classes="table",index_names=False ),
         "df_month": df_month.to_html(header=False, classes="table",index_names=False ),
         "df_staff": df_staff.to_html(header=False, classes="table",index_names=False  ),
-        # "df_corp": df_corp.to_html(header=False, classes="table",index_names=False  ),
+        "df_corp": df_corp2.to_html(header=False, index=False, classes="table",index_names=False  ),
         "df_yearstaff": df_yearstaff.to_html(header=False, classes="table" ,index_names=False ),
         "df_monthstaff": df_monthstaff.to_html(header=False, classes="table" ,index_names=False ),
         "df_staffyear": df_staffyear.to_html(header=False, classes="table" ,index_names=False ),
@@ -214,8 +240,10 @@ def sales_summary(request):
         # "df_month_chart": df99.plot
         "df2": df2.to_html(classes="table"),
     }
+    print("mydict['df_corp']")
+    print(mydict['df_corp'])
+    CorpModel.add_to_class("__str__", get_normal_name)
     return render(request, 'sales/sales_summary.html', context=mydict)
-
 
 
 # # html表示view

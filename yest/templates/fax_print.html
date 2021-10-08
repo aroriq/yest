@@ -29,7 +29,7 @@
               <td>{{ contract.kanri.name }}　御中</td>
           </tr>
             <tr>
-              <td>　ご担当者 様</td>
+              <td>{{ contract.kanristaff }} 様</td>
           </tr>
             <tr>
               <td>TEL {{ contract.kanri.tel }}</td>
@@ -62,7 +62,7 @@
             <td>{{ contract.corp.email }}</td>
         </tr>
         <tr>
-            <td>担当者　{{ contract.staff.lastname }}</td>
+          <td>担当　{{ contract.responsiblestaff }}</td>
         </tr>
           </tbody>
         </strong>
@@ -112,7 +112,7 @@
                 <td>{{ contract.trans.name }}　御中</td>
             </tr>
               <tr>
-                <td>　ご担当者 様</td>
+                <td>{{ contract.transstaff }} 様</td>
             </tr>
               <tr>
                 <td>TEL {{ contract.trans.tel }}</td>
@@ -145,7 +145,7 @@
               <td>{{ contract.corp.email }}</td>
           </tr>
           <tr>
-              <td>担当者　{{ contract.staff.lastname }}</td>
+              <td>担当　{{ contract.responsiblestaff }}</td>
           </tr>
             </tbody>
           </strong>

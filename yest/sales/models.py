@@ -28,7 +28,7 @@ class SalesModel(Model):
     receivedate = DateField(verbose_name='回収日', default=None, blank=True, null=True, )
     created_dt = DateTimeField(verbose_name='登録日時', auto_now_add=True, blank=True, null=True)
     updated_dt = DateTimeField(verbose_name='更新日時', auto_now=True, null=True)
-    corp = IntegerField(verbose_name='支店', default=None, blank=True, null=True, )
+    #corp = IntegerField(verbose_name='支店', default=None, blank=True, null=True, )
 
     
     def __str__(self):

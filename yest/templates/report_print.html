@@ -9,9 +9,11 @@
 
 <div class="header-end" style="height: 150px;">---</div>
 
+{% comment %}
 <div class="container p-0 mt-0">
-    <p class="lead text-end">({{ contract.title }})</p>
+    <p class="lead text-end">{{ contract.title }}</p>
 </div>
+{% endcomment %}
 
 <div class="container p-0 mt-0">
     <h1 class="text-center">契約関係書類報告書</h1>
@@ -52,7 +54,7 @@
     </dl>
   </div>
 
-  <div class="container p-5 mt-5" style="border: solid 1px;">
+  <div class="container p-4 mt-5" style="border: solid 1px;">
     <h3 class="">備考</h3>
     <div class="container " style="font-size: 1.25rem; line-height: 150%;">
         <strong><u>
@@ -68,7 +70,7 @@
   <br>
 
   <div class="container p-0 mt-0">
-    <p class="lead text-end" style="font-size: 1.5rem;">(担当) {{ contract.staff.lastname }}   </p>
+    <p class="lead text-end" style="font-size: 1.5rem;">(担当) {{ contract.responsiblestaff }}   </p>
 </div>
 
   {% comment %}

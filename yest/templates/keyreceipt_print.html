@@ -32,15 +32,15 @@
     <table class="table px-6" style="width: 90%; font-size: 1.5rem; line-height: 200%; margin-right: auto; margin-left: auto;">
       <tbody>
         <tr>
-          <td colspan="2">部屋</td>
+          <td colspan="2">{{ contract.key1name }}</td>
           <td><div class='text-end'>{{ contract.key1 }}　本　　　　　　　</div></td>
         </tr>
         <tr>
-          <td colspan="2">車庫</td>
+          <td colspan="2">{{ contract.key2name }}</td>
           <td><div class='text-end'>{{ contract.key2 }}　本　　　　　　　</div></td>
         </tr>
         <tr>
-          <td colspan="2">トランクルーム</td>
+          <td colspan="2">{{ contract.key3name }}</td>
           <td><div class='text-end'>{{ contract.key3 }}　本　　　　　　　</div></td>
         </tr>
       </tbody>
@@ -69,15 +69,12 @@
 
       <br>
       <br>
-      <div class="container p-0 mt-5" style="border: solid 0px;width: 80%;">
+      <div class="container p-0 mt-5" style="border: solid 0px;width: 70%;">
         <strong>
-        <dl class="row " style="font-size: 1.25rem;">
-          <p class="col-sm-12">新住所</p>
-          <hr>
-          <p class="col-sm-12">氏　名　　　　　　　　　　　　　　　　　　　　　　　　　　　印</p>
-          <hr>
-          <p class="col-sm-12">電話番号</p>
-          <hr>
+        <dl class="row " style="font-size: 1.5rem;">
+          <p class="col-sm-12" style="border-bottom: solid 1px;">氏　名　　　　　 　　　　　　　　　　　　　　　印</p>
+          <p class="col-sm-12" style="border-bottom: solid 0px;"></p>
+          <p class="col-sm-12" style="border-bottom: solid 1px;">電話番号</p>
         </dl>
      </strong>
   </div>

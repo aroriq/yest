@@ -9,9 +9,11 @@
 
 <div class="header-end" style="height: 150px;">---</div>
 
+{% comment %}
 <div class="container p-0 mt-0">
-    <p class="lead text-end">({{ contract.title }})</p>
+    <p class="lead text-end">{{ contract.title }}</p>
 </div>
+{% endcomment %}
 
 <div class="container p-0 mt-0">
     <h1 class="text-center">残務処理指示書</h1>
@@ -146,9 +148,11 @@
     </div>
   </div>
 
-<div style="text-align: center">
+ {% comment %}
+  <div style="text-align: center">
     <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="30%">
 </div>
+{% endcomment %}
 
 <!-- <footer class="footer mt-auto py-3 divFooter">
   <div class="container px-6">
