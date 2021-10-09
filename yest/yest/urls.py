@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('yhauth.urls')),
     path('docs/', include('docs.urls')),
     path('sales/', include('sales.urls')),
+    path('boards/', include('boards.urls')),
     # path('blog/', include('blog.urls')),
 ]
 

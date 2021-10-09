@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'docs.apps.DocsConfig',
     'sales.apps.SalesConfig',
     'blog.apps.BlogConfig',
+    'boards.apps.BoardsConfig',
     'django.contrib.humanize',
     'widget_tweaks',
 ]

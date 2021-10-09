@@ -278,11 +278,11 @@ class ContractModel(models.Model):
     key3name = models.CharField(verbose_name='鍵C(番号)', default='トランクルーム', max_length=50, blank=True, null=True, )
     key3 = models.PositiveSmallIntegerField(verbose_name='鍵C本数', default=0, blank=True, null=True, )
     kanri = models.ForeignKey(KanriModel, verbose_name='管理会社', on_delete=models.PROTECT)
-    kanristaff = models.CharField(verbose_name='管理会社担当者名', default='ご担当者様', max_length=50, blank=True, null=True, )
+    kanristaff = models.CharField(verbose_name='管理会社担当者名', default='ご担当者', max_length=50, blank=True, null=True, )
     kanridoc = models.TextField(verbose_name='管理会社宛FAX　本文', blank=True, null=True,  
         default='拝啓　時下益々ご清栄のこととお慶び申し上げます。\n\n', )
     trans = models.ForeignKey(TransModel, verbose_name='引越業者', on_delete=models.PROTECT)
-    transstaff = models.CharField(verbose_name='引越業者担当者名', default='ご担当者様', max_length=50, blank=True, null=True, )
+    transstaff = models.CharField(verbose_name='引越業者担当者名', default='ご担当者', max_length=50, blank=True, null=True, )
     transdate = models.TextField(verbose_name='引越連絡希望日', default='第1希望 月　日　:  ～　: \n\n第2希望 月　日　:  ～　: \n\n第3希望 月　日　:  ～　: ', blank=True, null=True,  )
     transremarks = models.TextField(verbose_name='引越見積依頼書　備考', default='拝啓　時下ますますご清栄のこととお慶び申し上げます。', blank=True, null=True,  )
     receipt_date = models.DateField(verbose_name='領収書　発行日', default=None, blank=True, null=True,  )
