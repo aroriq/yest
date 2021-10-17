@@ -108,9 +108,7 @@ def create_bar_svg(request,user_id):
     return response
 
 def staff_detail(request,user_id):
-
     alldata = SalesModel.objects.all().values()
-    #alldata = get_object_or_404(SalesModel)#, pk=user_id)
     df = pd.DataFrame(alldata)
     df = df[df["responsiblestaff_id"]==user_id]
     
@@ -125,17 +123,19 @@ def staff_detail(request,user_id):
     df_year = pd.DataFrame(df.groupby("receivedate_year").sum()["total"])
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
    
+    Sales = get_object_or_404(SalesModel, pk=user_id)
+
     mydict = {
         "df": df.to_html(classes="table"),
         "df_year": df_year.to_html(header=False, classes="table",index_names=False ),
         "df_month": df_month.to_html(header=True, classes="table",index_names=False ),
         # "describe":df.describe().to_html,        
         # "df_month_chart": df99.plot,
-        "user_id":user_id
+        "user_id":user_id,
+        "Sales":Sales
     }
     return render(request,  'sales/staff_detail.html', context=mydict)
 
-    
     # #変数としてグラフイメージをテンプレートに渡す
     # def get_context_data(self, **kwargs):
 
@@ -154,6 +154,9 @@ def staff_detail(request,user_id):
     # def get(self, request, *args, **kwargs):
     #     return super().get(request, *args, **kwargs)
 
+    contract = get_object_or_404(ContractModel, pk=contract_id)
+    return render(request, 'meisai_print.html',
+                  {'contract': contract})
 
 def get_short_name(self):
     return "%s" % (self.name.replace('株式会社イエストホーム', ''))

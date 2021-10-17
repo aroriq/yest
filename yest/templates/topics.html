@@ -1,6 +1,8 @@
 
 {% extends 'base.html' %}
 
+<div class="header-end" style="height: 150px;">tttt</div>
+
 {% block title %}
   {{ board.name }} - {{ block.super }}
 {% endblock %}
@@ -27,13 +29,13 @@
     </thead>
     <tbody>
       {% for topic in board.topics.all %}
-        <tr>
-          <td>{{ topic.subject }}</td>
-          <td>{{ topic.starter.username }}</td>
-          <td>0</td>
-          <td>0</td>
-          <td>{{ topic.last_updated }}</td>
-        </tr>
+      <tr>
+        <td><a href="{% url 'topic_posts' board.pk topic.pk %}">{{ topic.subject }}</a></td>
+        <td>{{ topic.starter.username }}</td>
+        <td>0</td>
+        <td>0</td>
+        <td>{{ topic.last_updated }}</td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>

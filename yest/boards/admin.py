@@ -3,4 +3,4 @@ from .models import Board
 # from .forms import CulcForm
 
 # Register your models here.
-admin.site.register(Board)
+# admin.site.register(Board)

@@ -5,16 +5,15 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h2 class="text-center">売上データ一覧</h2>
-
+    <h2 class="text-center">個人別　売上データ</h2>
+    <h2 class="text-center">({{ Sales.responsiblestaff }})</h2>
+    
+    {% comment %}
     <div class="table; line-height: 200%;">
         {{df|safe}}
     </div>
 
-    {% comment %}
-
     <img src="{% url 'sales_app:bar' %}" width=600 height=600>
-
     {% endcomment %}
 
 </div>
@@ -23,14 +22,13 @@
 <div class="container mt-5" style="width: 80%;line-height: 200%;">
     <h2 class="text-center">月次売上</h2>
 
-    <div class="table" style="width: 20%;line-height: 200%;">
-        {{df_month|safe}}
-    </div>
-
     <div class="text-center">
         <img src="{% url 'sales_app:create_bar_svg' user_id %}">
     </div>
     
+    <div class="table" style="width: 20%;line-height: 200%;">
+        {{df_month|safe}}
+    </div>
     
 </div>
 

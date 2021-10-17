@@ -60,6 +60,8 @@
 
 {% include 'include/page.html' %}
 
+{% comment %}
+
 <div class="container mt-5">
     <h2>未契約データ一覧</h2>
 </div>
@@ -117,5 +119,7 @@
 <div class="container mt-5">
     <p class="text-end"><a href="{% url 'contract_new' %}">新規登録</a></p>
 </div>
+
+{% endcomment %}
 
 {% endblock content %}
