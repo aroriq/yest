@@ -130,31 +130,31 @@ class GuarantModel(models.Model):
     def __str__(self):
         return "%s" % (self.name)
 
-class StaffModel(models.Model):
-    class Meta:
-        verbose_name_plural = '52_スタッフデータ'
-    lastname = models.CharField(verbose_name='姓', max_length=20, default='')
-    firstname = models.CharField(verbose_name='名', max_length=20, default='')
-    lastnamekana = models.CharField(verbose_name='姓（フリガナ）', max_length=20, default='')
-    firstnamekana = models.CharField(verbose_name='名（フリガナ）', max_length=20, default='')
-    # nameen = models.CharField(verbose_name='Lastname Firstname', max_length=100, default='')
-    department=models.CharField(verbose_name='部署', default='', blank=True, null=True, max_length=10)
-    age = models.PositiveSmallIntegerField(verbose_name='年齢', default='', blank=True, null=True, )
-    gender = models.CharField(verbose_name='性別', default='', blank=True, null=True, choices=(('1','男性'), ('2', '女性'), ('3', 'その他')), max_length=1)
-    birthday = models.DateField(verbose_name='生年月日', blank=True, null=True, default='2000-01-01')
-    postcode = models.CharField(verbose_name='郵便番号', default='', max_length=10, blank=True, null=True)
-    address1 = models.CharField(verbose_name='住所1', default='', blank=True, null=True, max_length=100)
-    address2 = models.CharField(verbose_name='住所2', default='', blank=True, null=True, max_length=100)
-    email = models.EmailField(verbose_name='E-mail', default='', blank=True, null=True, max_length=100, )
-    tel1 = models.CharField(verbose_name='電話番号1', default='', blank=True, null=True, max_length=20,)
-    tel2 = models.CharField(verbose_name='電話番号2', default='', blank=True, null=True, max_length=20,)
-    fax = models.CharField(verbose_name='FAX', default='', blank=True, null=True, max_length=20, )
-    remarks = models.TextField(verbose_name='特記事項', blank=True, null=True, default='特記なし')
-    postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, null=True)
-    update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
+# class StaffModel(models.Model):
+#     class Meta:
+#         verbose_name_plural = '52_スタッフデータ'
+#     lastname = models.CharField(verbose_name='姓', max_length=20, default='')
+#     firstname = models.CharField(verbose_name='名', max_length=20, default='')
+#     lastnamekana = models.CharField(verbose_name='姓（フリガナ）', max_length=20, default='')
+#     firstnamekana = models.CharField(verbose_name='名（フリガナ）', max_length=20, default='')
+#     # nameen = models.CharField(verbose_name='Lastname Firstname', max_length=100, default='')
+#     department=models.CharField(verbose_name='部署', default='', blank=True, null=True, max_length=10)
+#     age = models.PositiveSmallIntegerField(verbose_name='年齢', default='', blank=True, null=True, )
+#     gender = models.CharField(verbose_name='性別', default='', blank=True, null=True, choices=(('1','男性'), ('2', '女性'), ('3', 'その他')), max_length=1)
+#     birthday = models.DateField(verbose_name='生年月日', blank=True, null=True, default='2000-01-01')
+#     postcode = models.CharField(verbose_name='郵便番号', default='', max_length=10, blank=True, null=True)
+#     address1 = models.CharField(verbose_name='住所1', default='', blank=True, null=True, max_length=100)
+#     address2 = models.CharField(verbose_name='住所2', default='', blank=True, null=True, max_length=100)
+#     email = models.EmailField(verbose_name='E-mail', default='', blank=True, null=True, max_length=100, )
+#     tel1 = models.CharField(verbose_name='電話番号1', default='', blank=True, null=True, max_length=20,)
+#     tel2 = models.CharField(verbose_name='電話番号2', default='', blank=True, null=True, max_length=20,)
+#     fax = models.CharField(verbose_name='FAX', default='', blank=True, null=True, max_length=20, )
+#     remarks = models.TextField(verbose_name='特記事項', blank=True, null=True, default='特記なし')
+#     postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, null=True)
+#     update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
 
-    def __str__(self):
-        return "%s %s (%s)" % (self.lastname, self.firstname, self.department)
+#     def __str__(self):
+#         return "%s %s (%s)" % (self.lastname, self.firstname, self.department)
 
 class ContractModel(models.Model):
     class Meta:
@@ -208,9 +208,9 @@ class ContractModel(models.Model):
     item8bill = models.SmallIntegerField(verbose_name='項目8金額', default=0, blank=True, null=True, )
     item9 = models.CharField(verbose_name='項目9', default='', max_length=50, blank=True, null=True, )
     itemb9ill = models.SmallIntegerField(verbose_name='項目9金額', default=0, blank=True, null=True, )
-    total = models.PositiveSmallIntegerField(verbose_name='合計金額(税込)', default=None, blank=True, null=True, )
+    # total = models.PositiveSmallIntegerField(verbose_name='合計金額(税込)', default=None, blank=True, null=True, )
     deposit = models.PositiveSmallIntegerField(verbose_name='手付金', default=0, blank=True, null=True, )
-    zankin = models.PositiveSmallIntegerField(verbose_name='差引残金', default=None, blank=True, null=True, )
+    # zankin = models.PositiveSmallIntegerField(verbose_name='差引残金', default=None, blank=True, null=True, )
     limit = models.DateField(verbose_name='差引残金期日', default=None, blank=True, null=True)
     etcitem1 = models.CharField(verbose_name='上記外項目1', default='火災保険料(2年)', max_length=50, blank=True, null=True, )
     etcitem1bill = models.SmallIntegerField(verbose_name='上記外項目1金額', default=0, blank=True, null=True, )

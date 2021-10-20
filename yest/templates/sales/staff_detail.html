@@ -6,7 +6,10 @@
 
 <div class="container mt-5">
     <h2 class="text-center">個人別　売上データ</h2>
-    <h2 class="text-center">({{ Sales.responsiblestaff }})</h2>
+
+    <div class="table" style="width: 20%;line-height: 200%;">
+        {{df_name|safe}}
+    </div>
     
     {% comment %}
     <div class="table; line-height: 200%;">

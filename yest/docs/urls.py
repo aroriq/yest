@@ -3,10 +3,10 @@ from .views import customerList, DocsHiyomeisai
 from docs import views
 # app_name = 'docs_app'
 urlpatterns = [
-    path("staff_top/", views.staff_top, name="staff_top"),
-    path("staff_new/", views.staff_new, name="staff_new"),
-    path("staff/<int:staff_id>/", views.staff_detail, name="staff_detail"),
-    path("staff/<int:staff_id>/edit/", views.staff_edit, name="staff_edit"),
+    # path("staff_top/", views.staff_top, name="staff_top"),
+    # path("staff_new/", views.staff_new, name="staff_new"),
+    # path("staff/<int:staff_id>/", views.staff_detail, name="staff_detail"),
+    # path("staff/<int:staff_id>/edit/", views.staff_edit, name="staff_edit"),
     path("contract_top/", views.contract_top, name="contract_top"),
     path("contract_new/", views.contract_new, name="contract_new"),
     path("contract/<int:contract_id>/", views.contract_detail, name="contract_detail"),

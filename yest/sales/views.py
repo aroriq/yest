@@ -1,3 +1,4 @@
+from os import name
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import io
@@ -118,7 +119,20 @@ def staff_detail(request,user_id):
     df["receivedate_year"]=df["receivedate_day"].dt.strftime("%Y")
 
     df=df[['id', 'responsiblestaff_id', 'brokerage', 'adfee', 'hangingfee', 'etc1fee', 'etc2fee', 'total', 'receive', 'receivedate',"receivedate_month", "receivedate_year"]]
-    
+
+    df['responsiblestaff_id']=pd.to_numeric(df['responsiblestaff_id'], downcast='integer') 
+
+    userdf = pd.DataFrame(User.objects.all().values())
+    userdf['name']=userdf['first_name'] + userdf['last_name']
+    userdf['responsiblestaff_id']=userdf['id']
+    userdf = userdf[['responsiblestaff_id', 'name']] #, 'email', 'is_staff', 'is_active']]
+    # pd.to_numeric(userdf['responsiblestaff_id'])
+
+    df=pd.merge(df,userdf)
+
+    df_name = pd.DataFrame(df.groupby("name").sum()["total"])
+    print(df_name)
+
     # df_month = df.groupby("receivedate_month").sum()["brokerage"]
     df_year = pd.DataFrame(df.groupby("receivedate_year").sum()["total"])
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
@@ -132,7 +146,8 @@ def staff_detail(request,user_id):
         # "describe":df.describe().to_html,        
         # "df_month_chart": df99.plot,
         "user_id":user_id,
-        "Sales":Sales
+        "Sales":Sales,
+        "df_name": df_name.to_html(header=False, classes="table",index_names=False ),
     }
     return render(request,  'sales/staff_detail.html', context=mydict)
 

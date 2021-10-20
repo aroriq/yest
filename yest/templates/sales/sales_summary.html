@@ -4,6 +4,8 @@
 
 {% block content %}
 
+
+{% comment %}
 <div class="container mt-5">
     <h2 class="text-center">売上データ一覧</h2>
 
@@ -20,15 +22,12 @@
         {{df2|safe}}
     </div>
 
-    {% comment %}
-
     <img src="{% url 'sales_app:bar' %}" width=600 height=600>
 
-    {% endcomment %}
-
 </div>
+{% endcomment %}
 
-
+{% comment %}
 <div class="container mt-5">
     <h2 class="text-center">describe</h2>
 
@@ -48,6 +47,7 @@
 </div>
 
 <hr>
+{% endcomment %}
 
 <div class="container mt-5"  style="width: 15%;line-height: 200%;">
     <h2 class="text-center">店舗別売上</h2>
