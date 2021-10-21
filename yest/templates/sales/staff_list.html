@@ -6,6 +6,11 @@
     <div class="container mt-5">
         <h2 class="text-center">スタッフ一覧</h2>
     </div>
+
+    <div class="container mt-5">
+        <p class="text-end">{% now "Y年m月d日" %}</p>
+        <p class="text-end">全{{ object_list | length }}件</p>
+    </div>
     
     {% comment %}    
     <div class="container mt-5">
