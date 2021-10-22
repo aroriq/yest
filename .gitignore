@@ -1,12 +1,13 @@
 venv
 */settings.py
 yest/settings.py
+yest/yest/settings.py
 
 *.pyc
 *.pyo
 __pycache__
 
-db.sqlite3
+yest/db.sqlite3
 manage.py
 
 memo.md

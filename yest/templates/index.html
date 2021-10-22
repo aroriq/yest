@@ -6,9 +6,9 @@
   <h2></h2>
 </div>
 
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <p class="text-end">{% now "Y年m月d日" %}</p>
-</div>
+</div> -->
 
 <div style="height: 110px;"></div>
 
@@ -17,7 +17,8 @@
       <div class="row d-flex justify-content-center">
           <div class="col-md-6">
               <div class="card p-4 py-5" style="background-color: #15173c;">
-                  <h1 style="color: #ff7d24;">INDEX</h1>
+                  <h1 class="text-center" style="color: #ff7d24;">Home</h1>
+                  <p class="text-end" style="color: white;">{% now "Y年m月d日" %}</p>
                   {% if error %}
                   <div style="color: whitesmoke;">
                   {{ error }}
@@ -37,8 +38,14 @@
                   </div>
 
                   <div class="container mt-5">
+                    <h3><a href="/admin/" style="color: white;">各種データ入力</a></h3>
+                  </div>
+
+                  {% if user.is_superuser %}
+                  <div class="container mt-5">
                     <h3><a href="{% url 'signup' %}" style="color: white;">ユーザー登録</a></h3>
                   </div>
+                  {% endif %}
 
                   {% comment %} 
                     <!-- <br><br><a href="{% url 'contract_top' %}">契約データ</a> <br><br>
@@ -50,7 +57,9 @@
                   <!-- <br><br><a href="{% url 'signup' %}">ユーザー登録画面</a> <br><br> -->
                   {% endcomment %} 
 
-                  <div class="mt-4" > <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
+                  <br><br>
+
+                  <div class="mt-4 text-center" > <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
                   <!-- <div class="mt-4"> <button class="btn btn-danger button btn-block">ログアウト</button> </div><br> -->
                   <!-- <a href="logout/">ログアウト</a> -->
               </div>

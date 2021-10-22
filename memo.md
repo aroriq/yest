@@ -79,4 +79,16 @@ Running migrations:
   ![](img/IMG-20211020-065935.png)
 
   ** setup static files in Django
-  
+
+
+* python anywhereの本番環境にlocalの変化を反映させる手順
+https://help.pythonanywhere.com/pages/Virtualenvs/
+https://note.com/masato1230/n/n525ed979a59c
+![](img/IMG-20211022-044031.png)
+
+** 仮想環境を起動して、Djangoのプロジェクトへ移動する。
+$ workon mysite-virtualenv
+$ which python
+/home/yesthome/.virtualenvs/mysite-virtualenv/bin/python
+
+** git pull origin
