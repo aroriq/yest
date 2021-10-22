@@ -5,27 +5,24 @@
 <div style="height: 110px;"></div>
 
 <div class="container mt-5">
-    <form method='post'>{% csrf_token %}
-      <div class="row d-flex justify-content-center">
-          <div class="col-md-6">
-              <div class="card p-4 py-5" style="background-color: #15173c;">
-                  <h2 style="color: #ff7d24;">Yes&Home</h2>
-                  <h4 style="color: white;">ログアウトしました</h4>
-                  {% if error %}
-                  <div style="color: whitesmoke;">
-                  {{ error }}
-                  </div>
-                  {% endif %}
-                  <div class="signup mt-3"> 
+  <form method='post'>{% csrf_token %}
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 py-5" style="background-color: #15173c;">
+                <h2 style="color: #ff7d24;">Yes&Home</h2>
+                <h4 style="color: white;">Web System Logoutしました</h4>
+                {% if error %}
+                <div style="color: whitesmoke;">
+                {{ error }}
+                </div>
+                {% endif %}
+                <div class="signup mt-3"> 
+　　                <div class="mt-4"> <a href="{% url 'login' %}" class="btn btn-secondary btn-lg"  role="button">ログイン画面へ</a></div>
+　　            </div>
+　　　　　</div>
+　　    </div>
+    </div>
+  </form>
+</div>
 
-
-
-                    <div class="mt-4"> <a href="{% url 'login' %}" class="btn btn-secondary btn-lg"  role="button">ログイン画面へ</a></div>
-                  <!-- <div class="mt-4"> <button class="btn btn-danger button btn-block">ログアウト</button> </div><br> -->
-              </div>
-          </div>
-      </div>
-    </form>
-  </div>
-  
 {% endblock content %}
