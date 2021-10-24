@@ -43,13 +43,13 @@
             <th>{{ contract.staff.lastname }}</th>
             <th>{{ contract.update }}</th>
             <!-- <th><a href="{% url 'contract_edit' contract.id %}">Update</a></th> -->
-            <th><a href="{% url 'meisai_print' contract.id %}">契約時費用明細</a></th>
-            <th><a href="{% url 'kanrimeisai_print' contract.id %}">契約費明細書</a></th>
-            <th><a href="{% url 'zanmu_print' contract.id %}">残務処理指示書</a></th>
-            <th><a href="{% url 'report_print' contract.id %}">契約関係書類報告書</a></th>
-            <th><a href="{% url 'keyreceipt_print' contract.id %}">鍵受領書</a></th>
-            <th><a href="{% url 'receipt_print' contract.id %}">領収書・預り証</a></th>
-            <th><a href="{% url 'fax_print' contract.id %}">FAX送付状</a></th>
+            <th><a href="{% url 'meisai_print' contract.id %}" target="_blank">契約時費用明細</a></th>
+            <th><a href="{% url 'kanrimeisai_print' contract.id %}" target="_blank">契約費明細書</a></th>
+            <th><a href="{% url 'zanmu_print' contract.id %}" target="_blank">残務処理指示書</a></th>
+            <th><a href="{% url 'report_print' contract.id %}" target="_blank">契約関係書類報告書</a></th>
+            <th><a href="{% url 'keyreceipt_print' contract.id %}" target="_blank">鍵受領書</a></th>
+            <th><a href="{% url 'receipt_print' contract.id %}" target="_blank">領収書・預り証</a></th>
+            <th><a href="{% url 'fax_print' contract.id %}" target="_blank">FAX送付状</a></th>
         </tr>
         {% endfor %}
         </tbody>

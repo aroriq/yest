@@ -39,7 +39,7 @@
             {% for user in object_list %}
             <tr>
                 <th>{{ user.id }}</th>
-                <th><a href="{% url 'sales_app:staff_detail' user.id %}">{{ user.first_name }} {{ user.last_name }}</a></th>
+                <th><a href="{% url 'sales_app:staff_detail' user.id %}" target="_blank">{{ user.first_name }} {{ user.last_name }}</a></th>
                 <th>{{ user.username }}</th>
                 <th>{{ user.email }}</th>
                 <th>{{ user.groups.all.0 }}</th>
