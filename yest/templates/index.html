@@ -16,31 +16,35 @@
               <div class="card p-4 py-5" style="background-color: #15173c;">
                   <h1 class="text-center" style="color: #ff7d24;">Home</h1>
                   <p class="text-end" style="color: white;">{% now "Y年m月d日" %}</p>
-                  {% if error %}
+                  
+                  
+                  <font size="1.5rem" class="text-center">
+                    {% if error %}
                   <div style="color: whitesmoke;">
                   {{ error }}
                   </div>
                   {% endif %}
+                  </font>
 
                   <div class="container mt-5">
-                    <h3><a href="{% url 'contract_top' %}" style="color: white;">Docments</a></h3>
+                    <h3><a href="{% url 'contract_top' %}" style="color: white; text-decoration:none;">Docments</a></h3>
                   </div>
 
                   <div class="container mt-5">
-                    <h3><a href="{% url 'sales_app:sales_list' %}" style="color: white;">Sales</a></h3>
+                    <h3><a href="{% url 'sales_app:sales_list' %}" style="color: white; text-decoration:none;">Sales</a></h3>
                   </div>
                   
                   <div class="container mt-5">
-                    <h3><a href="{% url 'sales_app:staff_list' %}" style="color: white;">Staff</a></h3>
+                    <h3><a href="{% url 'sales_app:staff_list' %}" style="color: white; text-decoration:none;">Staff</a></h3>
                   </div>
 
                   <div class="container mt-5">
-                    <h3><a href="/admin/" style="color: white;">各種データ入力</a></h3>
+                    <h3><a href="/admin/" style="color: white; text-decoration:none;" target="_blank">Database(各種データ入力)</a></h3>
                   </div>
 
                   {% if user.is_superuser %}
                   <div class="container mt-5">
-                    <h3><a href="{% url 'signup' %}" style="color: white;">ユーザー登録</a></h3>
+                    <h3><a href="{% url 'signup' %}" style="color: white; text-decoration:none;">ユーザー登録</a></h3>
                   </div>
                   {% endif %}
 
@@ -56,7 +60,7 @@
 
                   <br><br>
 
-                  <div class="mt-4 text-center" > <a href="{% url 'logout' %}" class="btn btn-secondary btn-lg"  role="button">ログアウト</a></div>
+                  <div class="mt-4 text-center" > <a href="{% url 'logout' %}" class="btn btn-danger btn-lg"  role="button">ログアウト</a></div>
                   <!-- <div class="mt-4"> <button class="btn btn-danger button btn-block">ログアウト</button> </div><br> -->
                   <!-- <a href="logout/">ログアウト</a> -->
               </div>

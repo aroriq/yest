@@ -87,10 +87,15 @@
                 <a class="nav-link " href="{% url 'sales_app:staff_list' %}">Staff</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link " href="/admin/" target="_blank">Database</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link " href="{% url 'board_home' %}"> </a>
               </li>
 
             </ul>
+
+            
             <!--
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -98,6 +103,28 @@
             </form>
             -->
           </div>
+
+
+          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ms-auto">
+              {% if user.is_authenticated %}
+
+                <!-- <li class="nav-item">
+                    <div class="nav-link" href="#">Welcome'{{ user.username }}'</div>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">{{ user.username }} Logout</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                  <div class="nav-link" href="#">ログインしていません</div>
+              </li>
+             {% endif %}
+    
+            </ul>
+        </div>
+
         </div>
       </nav>
   </header>

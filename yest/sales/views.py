@@ -131,11 +131,16 @@ def staff_detail(request,user_id):
     df=pd.merge(df,userdf)
 
     df_name = pd.DataFrame(df.groupby("name").sum()["total"])
+    df_name['total'] = df_name['total'].astype(int).apply('{:,}'.format)
+
     print(df_name)
 
     # df_month = df.groupby("receivedate_month").sum()["brokerage"]
     df_year = pd.DataFrame(df.groupby("receivedate_year").sum()["total"])
+    df_year['total'] = df_year['total'].astype(int).apply('{:,}'.format)
+
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
+    df_month['total'] = df_month['total'].astype(int).apply('{:,}'.format)
    
     Sales = get_object_or_404(SalesModel, pk=user_id)
 
@@ -228,19 +233,33 @@ def sales_summary(request):
 
         # df_month = df.groupby("receivedate_month").sum()["brokerage"]
     df_year = pd.DataFrame(df.groupby("receivedate_year").sum()["total"])
+    df_year['total'] = df_year['total'].astype(int).apply('{:,}'.format)
+
     df_month = pd.DataFrame(df.groupby("receivedate_month").sum()["total"])
+    df_month['total'] = df_month['total'].astype(int).apply('{:,}'.format)
+
     df_staff = pd.DataFrame(df.groupby("name").sum()["total"])
-    df_corp = pd.DataFrame(df.groupby("corp_id").sum()["total"])
+    df_staff['total'] = df_staff['total'].astype(int).apply('{:,}'.format)
+
+    df_corp = pd.DataFrame(df.groupby("corp_id").sum()["total"])   
+    df_corp['total'] = df_corp['total'].astype(int).apply('{:,}'.format)
     print('df_corp')
     print(df_corp)
     
     df_corp2=merge(corpdf, df_corp,on='corp_id')
-    df_corp2=df_corp2[['corp', 'total']]
+    df_corp2=df_corp2[['corp', 'total']] 
 
     df_yearstaff = pd.DataFrame(df.groupby(["receivedate_year", "name"]).sum()["total"])
+    df_yearstaff['total'] = df_yearstaff['total'].astype(int).apply('{:,}'.format)
+
     df_monthstaff = pd.DataFrame(df.groupby(["receivedate_month", "name"]).sum()["total"])
+    df_monthstaff['total'] = df_monthstaff['total'].astype(int).apply('{:,}'.format)
+
     df_staffyear = pd.DataFrame(df.groupby(["name", "receivedate_year" ]).sum()["total"])
+    df_staffyear['total'] = df_staffyear['total'].astype(int).apply('{:,}'.format)
+
     df_staffmonth = pd.DataFrame(df.groupby(["name", "receivedate_month"]).sum()["total"])
+    df_staffmonth['total'] = df_staffmonth['total'].astype(int).apply('{:,}'.format)
 
     df2=df[['name', 'contract_id','total', 'receivedate_day']]
 
