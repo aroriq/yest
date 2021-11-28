@@ -2,6 +2,7 @@ from os import name
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
+import math
 
 # Create your models here.
 from django.contrib.auth.models import User
@@ -331,3 +332,178 @@ class Post(models.Model):
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     def __str__(self):
         return self.title + ',' + self.comment
+
+
+
+class InvoiceModel(models.Model):
+    class Meta:
+        verbose_name_plural = '61_請求書データ'
+    # completed = models.BooleanField(verbose_name='非表示', default=False)
+    customer = models.CharField(verbose_name='宛名', default='', max_length=50, blank=True, null=True, )
+    invoice_date = models.DateField(verbose_name='請求書発行日', default=None, blank=True, null=True,  )
+    title  = models.CharField(verbose_name='件名', default='', max_length=255, blank=True, null=True, )
+    corp = models.ForeignKey(CorpModel, verbose_name='担当店舗', on_delete=models.PROTECT, blank=True, null=True, )
+    responsiblestaff = models.ForeignKey('auth.User', verbose_name='担当者', default='', on_delete=models.PROTECT, blank=True, null=True, )
+    limitdate = models.DateField(verbose_name='支払期限', default=None, blank=True, null=True, )
+    postdate = models.DateField(verbose_name='登録日時', auto_now_add=True, blank=True, null=True)
+    update = models.DateField(verbose_name='更新日時', auto_now=True, null=True)
+    i1name = models.CharField(verbose_name='品目A', default='', max_length=50, blank=True, null=True, )
+    i1more = models.CharField(verbose_name='詳細A', default='_', max_length=50, blank=True, null=True, )
+    i1price= models.SmallIntegerField(verbose_name='単価A', default=0, )
+    i1num  = models.FloatField(verbose_name='数量A', default=0, )
+    i2name = models.CharField(verbose_name='品目B', default='', max_length=50, blank=True, null=True, )
+    i2more = models.CharField(verbose_name='詳細B', default='_', max_length=50, blank=True, null=True, )
+    i2price= models.SmallIntegerField(verbose_name='単価B', default=0, )
+    i2num  = models.FloatField(verbose_name='数量B', default=0, )
+    i3name = models.CharField(verbose_name='品目C', default='', max_length=50, blank=True, null=True, )
+    i3more = models.CharField(verbose_name='詳細C', default='_', max_length=50, blank=True, null=True, )
+    i3price= models.SmallIntegerField(verbose_name='単価C', default=0, )
+    i3num  = models.FloatField(verbose_name='数量C', default=0, )
+    i4name = models.CharField(verbose_name='品目D', default='', max_length=50, blank=True, null=True, )
+    i4more = models.CharField(verbose_name='詳細D', default='_', max_length=50, blank=True, null=True, )
+    i4price= models.SmallIntegerField(verbose_name='単価D', default=0, )
+    i4num  = models.FloatField(verbose_name='数量D', default=0, )
+    i5name = models.CharField(verbose_name='品目E', default='', max_length=50, blank=True, null=True, )
+    i5more = models.CharField(verbose_name='詳細E', default='_', max_length=50, blank=True, null=True, )
+    i5price= models.SmallIntegerField(verbose_name='単価E', default=0, )
+    i5num  = models.FloatField(verbose_name='数量E', default=0, )  
+    i6name = models.CharField(verbose_name='品目F', default='', max_length=50, blank=True, null=True, )
+    i6more = models.CharField(verbose_name='詳細F', default='_', max_length=50, blank=True, null=True, )
+    i6price= models.SmallIntegerField(verbose_name='単価F', default=0, )
+    i6num  = models.FloatField(verbose_name='数量F', default=0, )
+    i7name = models.CharField(verbose_name='品目G', default='', max_length=50, blank=True, null=True, )
+    i7more = models.CharField(verbose_name='詳細G', default='_', max_length=50, blank=True, null=True, )
+    i7price= models.SmallIntegerField(verbose_name='単価G', default=0, )
+    i7num  = models.FloatField(verbose_name='数量G', default=0, )
+    i8name = models.CharField(verbose_name='品目H', default='', max_length=50, blank=True, null=True, )
+    i8more = models.CharField(verbose_name='詳細H', default='_', max_length=50, blank=True, null=True, )
+    i8price= models.SmallIntegerField(verbose_name='単価H', default=0, )
+    i8num  = models.FloatField(verbose_name='数量H', default=0, )
+    i9name = models.CharField(verbose_name='品目I', default='', max_length=50, blank=True, null=True, )
+    i9more = models.CharField(verbose_name='詳細I', default='_', max_length=50, blank=True, null=True, )
+    i9price= models.SmallIntegerField(verbose_name='単価I', default=0, )
+    i9num  = models.FloatField(verbose_name='数量I', default=0, )
+    ianame = models.CharField(verbose_name='品目J', default='', max_length=50, blank=True, null=True, )
+    iamore = models.CharField(verbose_name='詳細J', default='_', max_length=50, blank=True, null=True, )
+    iaprice= models.SmallIntegerField(verbose_name='単価J', default=0, )
+    ianum  = models.FloatField(verbose_name='数量J', default=0, )
+    ibname = models.CharField(verbose_name='品目K', default='', max_length=50, blank=True, null=True, )
+    ibmore = models.CharField(verbose_name='詳細K', default='_', max_length=50, blank=True, null=True, )
+    ibprice= models.SmallIntegerField(verbose_name='単価K', default=0, )
+    ibnum  = models.FloatField(verbose_name='数量K', default=0, )
+    icname = models.CharField(verbose_name='品目L', default='', max_length=50, blank=True, null=True, )
+    icmore = models.CharField(verbose_name='詳細L', default='_', max_length=50, blank=True, null=True, )
+    icprice= models.SmallIntegerField(verbose_name='単価L', default=0, )
+    icnum  = models.FloatField(verbose_name='数量L', default=0, )
+    idname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    idmore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    idprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    idnum  = models.FloatField(verbose_name='数量', default=0, )
+    iename = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    iemore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    ieprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    ienum  = models.FloatField(verbose_name='数量', default=0, )
+    ifname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    ifmore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    ifprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    ifnum  = models.FloatField(verbose_name='数量', default=0, )
+    igname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    igmore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    igprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    ignum  = models.FloatField(verbose_name='数量', default=0, )
+    ihname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    ihmore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    ihprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    ihnum  = models.FloatField(verbose_name='数量', default=0, )
+    iiname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    iimore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    iiprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    iinum  = models.FloatField(verbose_name='数量', default=0, )
+    ijname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    ijmore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    ijprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    ijnum  = models.FloatField(verbose_name='数量', default=0, )
+    ikname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    ikmore = models.CharField(verbose_name='詳細', default='_', max_length=50, blank=True, null=True, )
+    ikprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    iknum  = models.FloatField(verbose_name='数量', default=0, )
+    # iname = models.CharField(verbose_name='品目', default='', max_length=50, blank=True, null=True, )
+    # imore = models.CharField(verbose_name='詳細', default='', max_length=50, blank=True, null=True, )
+    # iprice= models.SmallIntegerField(verbose_name='単価', default=0, )
+    # inum  = models.FloatField(verbose_name='数量', default=0, )
+    remarks = models.TextField(verbose_name='請求書　備考', default='', blank=True, null=True,  )
+    def __str__(self):
+        return "%s (%s)" % (self.title, self.customer)
+    
+    def price_sub1(self):
+        return round(self.i1price * self.i1num)
+      
+    def price_sub2(self):
+        return round(self.i2price * self.i2num)
+
+    def price_sub3(self):
+        return round(self.i3price * self.i3num)
+
+    def price_sub4(self):
+        return round(self.i4price * self.i4num)
+
+    def price_sub5(self):
+        return round(self.i5price * self.i5num)
+
+    def price_sub6(self):
+        return round(self.i6price * self.i6num)
+
+    def price_sub7(self):
+        return round(self.i7price * self.i7num)
+
+    def price_sub8(self):
+        return round(self.i8price * self.i8num)
+
+    def price_sub9(self):
+        return round(self.i9price * self.i9num)
+
+    def price_suba(self):
+        return round(self.iaprice * self.ianum)
+
+    def price_subb(self):
+        return round(self.ibprice * self.ibnum)
+
+    def price_subc(self):
+        return round(self.icprice * self.icnum)
+
+    def price_subd(self):
+        return round(self.idprice * self.idnum)
+
+    def price_sube(self):
+        return round(self.ieprice * self.ienum)
+
+    def price_subf(self):
+        return round(self.ifprice * self.ifnum)
+
+    def price_subg(self):
+        return round(self.igprice * self.ignum)
+
+    def price_subh(self):
+        return round(self.ihprice * self.ihnum)
+
+    def price_subi(self):
+        return round(self.iiprice * self.iinum)
+
+    def price_subj(self):
+        return round(self.ijprice * self.ijnum)
+
+    def price_subk(self):
+        return round(self.ikprice * self.iknum)
+
+    def price_total_a(self):
+        return self.price_sub1() + self.price_sub2() + self.price_sub3() + self.price_sub4() + self.price_sub5() + self.price_sub6() + self.price_sub7() + self.price_sub8() + self.price_sub9() + self.price_suba() + self.price_subb() + self.price_subc() + self.price_subd() + self.price_sube() + self.price_subf() + self.price_subg() + self.price_subh() + self.price_subi() + self.price_subj() + self.price_subk()
+
+    def price_tax(self):
+        return math.floor(self.price_total_a()*0.1)
+        # return round(self.price_total_a()*0.1)
+
+    def price_total_b(self):
+        return self.price_total_a() + self.price_tax()
+        
+
+        

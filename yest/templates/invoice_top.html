@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center">請求書データ一覧</h2>
+</div>
+
+<div class="container mt-5">
+    <p class="text-end">{% now "Y年m月d日" %}</p>
+    <p class="text-end">全{{ invoice_list | length }}件</p>
+</div>
+
+<div class="container mt-5">
+    {% if invoice_list %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>件名</th>
+            <th>宛名</th>
+            <th>担当者</th>
+            <th>作成日</th>
+            <th>更新日</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for invoice in invoice_list %}
+   
+        {% if not invoice.completed %}
+        <tr>
+            <th>{{ invoice.id }}</th>
+            <th><a href="{% url 'invoice_detail' invoice.id %}" target="_blank">{{ invoice.title }}</a></th>
+            <th>{{ invoice.customer }}</th>
+            <th>{{ invoice.responsiblestaff.first_name }} {{ invoice.responsiblestaff.last_name }}</a></th>
+            <th>{{ invoice.postdate }}</th>
+            <th>{{ invoice.update }}</th>
+        </tr>
+        {% endif %}
+
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>請求書はまだ登録されていません。</p>
+    {% endif %}
+</div>
+
+{% include 'include/page.html' %}
+
+{% comment %}
+
+{% endcomment %}
+
+{% endblock content %}

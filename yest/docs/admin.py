@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomerModel, CorpModel,PropertyModel, KanriModel, TransModel, GuarantModel, ContractModel 
+from .models import CustomerModel, CorpModel,PropertyModel, KanriModel, TransModel, GuarantModel, ContractModel, InvoiceModel
 #, StaffModel
 # from .forms import CulcForm
 
@@ -13,3 +13,4 @@ admin.site.register(TransModel)
 admin.site.register(GuarantModel)
 admin.site.register(ContractModel)
 # admin.site.register(CulcForm)
+admin.site.register(InvoiceModel)

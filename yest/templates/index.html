@@ -27,19 +27,23 @@
                   </font>
 
                   <div class="container mt-5">
-                    <h3><a href="{% url 'contract_top' %}" style="color: white; text-decoration:none;">Docments</a></h3>
+                    <h3><a href="{% url 'contract_top' %}" style="color: white; text-decoration:none;">Docments　(契約管理)</a></h3>
                   </div>
 
                   <div class="container mt-5">
-                    <h3><a href="{% url 'sales_app:sales_list' %}" style="color: white; text-decoration:none;">Sales</a></h3>
+                    <h3><a href="{% url 'sales_app:sales_list' %}" style="color: white; text-decoration:none;">Sales　(売上管理)</a></h3>
                   </div>
                   
                   <div class="container mt-5">
-                    <h3><a href="{% url 'sales_app:staff_list' %}" style="color: white; text-decoration:none;">Staff</a></h3>
+                    <h3><a href="{% url 'sales_app:staff_list' %}" style="color: white; text-decoration:none;">Staff　(スタッフ管理)</a></h3>
                   </div>
 
                   <div class="container mt-5">
-                    <h3><a href="/admin/" style="color: white; text-decoration:none;" target="_blank">Database(各種データ入力)</a></h3>
+                    <h3><a href="{% url 'invoice_top' %}" style="color: white; text-decoration:none;">Invoice　(請求書)</a></h3>
+                  </div>
+
+                  <div class="container mt-5">
+                    <h3><a href="/admin/" style="color: white; text-decoration:none;" target="_blank">Database　(各種データ入力)</a></h3>
                   </div>
 
                   {% if user.is_superuser %}

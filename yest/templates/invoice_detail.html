@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<!-- Begin page content -->
+<!-- <body class="d-flex flex-column h-100"> -->
+  <main class="flex-shrink-0 py-0 px-6">
+
+    <div class="header-end" style="height: 150px;"></div>
+    
+    
+    <div class="container p-0 mt-0">
+        <h1 class="text-center">請求書</h1>
+    </div>
+    
+    <div class="container p-0 mt-0">
+        <p class="lead text-end">発行日 {{ invoice.invoice_date }}<br>
+        請求書番号 {{ invoice.id }}</p>
+    </div>
+    
+    <div class="container p-0 mt-3">
+      <p class="lead" style="font-size: 1.25rem; font-weight: bold;">{{ invoice.customer }} 様</p>
+      <div class="container px-6 py-0 mt-2">
+        <dl class="row" style="font-size: 1.25rem;">
+          <p class="col-sm-12">　件　　　名　{{ invoice.title }}
+            <br>　ご請求金額　{{ invoice.price_total_b|intcomma }} 円 ( お支払期限　{{ invoice.limitdate }} )</p>
+        </dl>
+      </div>
+    </div>
+     
+    <div class="containerp-0 mt-0">
+      <table class="table table-hover px-6" style="width: 100%; font-size: 1.20rem; line-height: 100%; margin-right: auto; margin-left: auto;">
+        <thead  class="table-light">
+          <tr>
+            <th scope="col" style="width: 50%; text-align:left;">品目</th>
+            <th scope="col" style="width: 10%;">　単価</th>
+            <th scope="col" style="width: 10%;">　数量</th>
+            <th scope="col">　　価格</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          {% if invoice.i1name %}
+          <tr>
+            <td>{{ invoice.i1name }}<br><div style="font-size: 0.9rem; font-weight: bold;">{{ invoice.i1more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i1price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i1num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub1|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+    
+          {% if invoice.i2name %}
+          <tr>
+            <td>{{ invoice.i2name }}<br><div style="font-size: 0.9rem;">{{ invoice.i2more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i2price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i2num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub2|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+    
+          {% if invoice.i3name %}
+          <tr>
+            <td>{{ invoice.i3name }}<br><div style="font-size: 0.9rem;">{{ invoice.i3more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i3price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i3num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub3|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+    
+          {% if invoice.i4name %}
+          <tr>
+            <td>{{ invoice.i4name }}<br><div style="font-size: 0.9rem;">{{ invoice.i4more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i4price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i4num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub4|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.i5name %}
+          <tr>
+            <td>{{ invoice.i5name }}<br><div style="font-size: 0.9rem;">{{ invoice.i5more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i5price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i5num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub5|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.i6name %}
+          <tr>
+            <td>{{ invoice.i6name }}<br><div style="font-size: 0.9rem;">{{ invoice.i6more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i6price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i6num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub6|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.i7name %}
+          <tr>
+            <td>{{ invoice.i7name }}<br><div style="font-size: 0.9rem;">{{ invoice.i7more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i7price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i7num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub7|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.i8name %}
+          <tr>
+            <td>{{ invoice.i8name }}<br><div style="font-size: 0.9rem;">{{ invoice.i8more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i8price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i8num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub8|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.i9name %}
+          <tr>
+            <td>{{ invoice.i9name }}<br><div style="font-size: 0.9rem;">{{ invoice.i9more }}</div></td>
+            <td style="text-align:right;">{{ invoice.i9price|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.i9num|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sub9|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.ianame %}
+          <tr>
+            <td>{{ invoice.ianame }}<br><div style="font-size: 0.9rem;">{{ invoice.iamore }}</div></td>
+            <td style="text-align:right;">{{ invoice.iaprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ianum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_suba|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.ibname %}
+          <tr>
+            <td>{{ invoice.ibname }}<br><div style="font-size: 0.9rem;">{{ invoice.ibmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.ibprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ibnum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subb|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.icname %}
+          <tr>
+            <td>{{ invoice.icname }}<br><div style="font-size: 0.9rem;">{{ invoice.icmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.icprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.icnum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subc|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.idname %}
+          <tr>
+            <td>{{ invoice.idname }}<br><div style="font-size: 0.9rem;">{{ invoice.idmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.idprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.idnum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subd|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.iename %}
+          <tr>
+            <td>{{ invoice.iename }}<br><div style="font-size: 0.9rem;">{{ invoice.iemore }}</div></td>
+            <td style="text-align:right;">{{ invoice.ieprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ienum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_sube|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.ifname %}
+          <tr>
+            <td>{{ invoice.ifname }}<br><div style="font-size: 0.9rem;">{{ invoice.ifmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.ifprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ifnum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subf|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.igname %}
+          <tr>
+            <td>{{ invoice.igname }}<br><div style="font-size: 0.9rem;">{{ invoice.igmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.igprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ignum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subg|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.ihname %}
+          <tr>
+            <td>{{ invoice.ihname }}<br><div style="font-size: 0.9rem;">{{ invoice.ihmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.ihprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ihnum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subh|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.iiname %}
+          <tr>
+            <td>{{ invoice.iiname }}<br><div style="font-size: 0.9rem;">{{ invoice.iimore }}</div></td>
+            <td style="text-align:right;">{{ invoice.iiprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.iinum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subi|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.ijname %}
+          <tr>
+            <td>{{ invoice.ijname }}<br><div style="font-size: 0.9rem;">{{ invoice.ijmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.ijprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.ijnum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subj|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+          {% if invoice.ikname %}
+          <tr>
+            <td>{{ invoice.ikname }}<br><div style="font-size: 0.9rem;">{{ invoice.ikmore }}</div></td>
+            <td style="text-align:right;">{{ invoice.ikprice|intcomma }}</td>
+            <td style="text-align:right;">{{ invoice.iknum|intcomma }}</td>
+            <td><div class='text-end'>{{ invoice.price_subk|intcomma }}円　　　　　</div></td>
+          </tr>
+          {% endif %}
+    
+        </tbody>
+    
+        <tfoot class="table-light">
+          <tr class="table-active">
+            <td scope="row" class="text-end" colspan="3">[A]　小　計</td>
+            <td><div class='text-end'>{{ invoice.price_total_a |intcomma }}円　　　　　</div></td>
+          </tr>
+      
+          <tr>
+            <td scope="row" class="text-end" colspan="3">[B]　消費税</td>
+            <td><div class='text-end'>{{ invoice.price_tax |intcomma }}円　　　　　</div></td>
+          </tr>
+      
+          <tr>
+            <td scope="row" class="text-end" colspan="3">[A+B]　合　計</td>
+            <td><div class='text-end'>{{ invoice.price_total_b |intcomma }}円　　　　　</div></td>
+          </tr>
+      
+        </tfoot>
+      </table>
+    </div>
+    
+    <h4 class="">備考</h4>
+    <div class="container p-3 mt-0" style="border: solid 1px;">
+      <div class="container mt-0 px-3" style="font-size: 1.0rem; line-height: 100%;">
+            {% autoescape on %}
+              {{ invoice.remarks | linebreaksbr }}
+              {% endautoescape %}
+      </div>
+    </div>
+
+    
+    <div class="container px-3 pt-0 mt-2">
+      <div class="row gx-2 ">
+        <div class="col">
+    
+          <h4 class="mt-5">振込先</h4>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th scope="row">銀行</th>
+                <td>{{ invoice.corp.bank }}</td>
+              </tr>
+              <tr>
+                <th scope="row">支店</th>
+                <td>{{ invoice.corp.bankbranch }}</td>
+              </tr>
+              <tr>
+                <th scope="row">口座</th>
+                <td>{{ invoice.corp.bankaccount }}</td>
+              </tr>
+              <tr>
+                <th scope="row">名義</th>
+                <td>{{ invoice.corp.bankid }}</td>
+              </tr>
+              <tr>
+                <th scope="row">ﾌﾘｶﾞﾅ</th>
+                <td>{{ invoice.corp.bankkana }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div class="col " style="position: relative;"> 
+          <img class="mt-3 py-2" src="{% static 'img/logo2.png' %}" alt="イエストホーム" title="logo" width="85%">
+          <img class="imgprint" src="{% static 'img/kakuin.png' %}" alt="イエストホーム角印" width="100px" style="position: absolute; top: 8%;">
+            <table class="table table-borderless">
+              <tbody style="font-size: 1.25rem;">            
+                <tr>
+                  <td>{{ invoice.corp.name }}</td>
+                </tr>
+                <tr>
+                  <td>{{ invoice.corp.address }}</td>
+                </tr>
+                <tr>
+                  <td>TEL {{ invoice.corp.tel }} / FAX {{ invoice.corp.fax }}</td>
+                </tr>
+                <tr>
+                  <td>担当　{{ invoice.responsiblestaff }}</td>
+                </tr>
+              </tbody>
+            </table>
+         </div>
+      </div>
+    </div>
+    
+    <div class="header-end" style="height: 150px;"></div>
+    
+    </main>
+    
+    <!-- </body> -->
+    
+  
+{% endblock content %}

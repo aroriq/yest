@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
 
-from .models import CustomerModel, ContractModel #, StaffModel
+from .models import CustomerModel, ContractModel, InvoiceModel #, StaffModel
 from django.http import HttpResponse
 
 from .forms import ContractForm, ReceiptForm # StaffForm,
@@ -206,3 +206,21 @@ def paginate_queryset(request, queryset, count):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
     return page_obj
+
+
+@login_required
+def invoice_top(request):
+    invoice_list = InvoiceModel.objects.all()
+    page_obj = paginate_queryset(request, invoice_list, 50)
+    context = {
+        'invoice_list': page_obj.object_list,
+        'page_obj': page_obj,
+    }
+    return render(request, "invoice_top.html", context)
+
+@login_required
+def invoice_detail(request, invoice_id):
+    invoice = get_object_or_404(InvoiceModel, pk=invoice_id)
+    return render(request, 'invoice_detail.html',
+                  {'invoice': invoice})
+

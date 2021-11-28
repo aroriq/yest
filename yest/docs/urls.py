@@ -31,4 +31,7 @@ urlpatterns = [
     # path('review_create/', ReviewCreate.as_view(), name='review_create'),
     # path('review_delete/<int:pk>', ReviewDelete.as_view(), name='review_delete'),
     # path('review_update/<int:pk>', ReviewUpdate.as_view(), name='review_update'),
+    path("invoice/", views.invoice_top, name="invoice_top"),
+    path("invoice/<int:invoice_id>/", views.invoice_detail, name="invoice_detail"),
+
 ]
