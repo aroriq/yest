@@ -211,10 +211,11 @@ def paginate_queryset(request, queryset, count):
 @login_required
 def invoice_top(request):
     invoice_list = InvoiceModel.objects.all()
-    page_obj = paginate_queryset(request, invoice_list, 50)
+#    page_obj = paginate_queryset(request, invoice_list, 50)
     context = {
-        'invoice_list': page_obj.object_list,
-        'page_obj': page_obj,
+        'invoice_list': invoice_list,
+#        'invoice_list': page_obj.object_list,
+ #       'page_obj': page_obj,
     }
     return render(request, "invoice_top.html", context)
 
